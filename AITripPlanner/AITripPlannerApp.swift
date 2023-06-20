@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct AITripPlannerApp: App {
+    let openAIConnector = OpenAIConnector()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(openAIConnector)
         }
     }
 }
