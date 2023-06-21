@@ -2,12 +2,12 @@
 //  OpenAIConnector.swift
 //  AITripPlanner
 //
-//  Created by Dan and Beth Engel on 6/20/23.
+//  Created by Dan Engel on 6/20/23.
 //
 
 import Foundation
 import Combine
-
+import SwiftUI
 
 class OpenAIConnector: ObservableObject {
     @Published var sightsToSee = ""
@@ -15,12 +15,9 @@ class OpenAIConnector: ObservableObject {
     @Published var numberOfDays = ""
     @Published var response = ""
     @Published var timeOfYear = ""
-    /// This URL might change in the future, so if you get an error, make sure to check the OpenAI API Reference.
     let openAIURL = URL(string: "https://api.openai.com/v1/chat/completions")
     
-    /// This is what stores your messages. You can see how to use it in a SwiftUI view here:
     @Published var messageLog: [[String: String]] = [
-        /// Modify this to change the personality of the assistant.
         ["role": "system", "content": "You're a friendly, helpful assistant"]
     ]
     
@@ -29,13 +26,12 @@ class OpenAIConnector: ObservableObject {
     }
     
     func buildQuery() {
-        let message = "Can you give me an itinerary for a trip to \(location), that lasts \(numberOfDays) in \(timeOfYear) and I'd like to see or experience \(sightsToSee)?"
+        let message = "Can you give me an itinerary for a trip to \(location), that lasts \(numberOfDays) in \(timeOfYear) and I'd like to see or experience \(sightsToSee)? Please provide links to any sights you recommend, consider the local holidays, crowds and the best time of the day to visit each site. Please place line break before each link."
         logMessage(message, messageUserType: .user)
         sendToAssistant()
     }
 
     func sendToAssistant() {
-        /// DON'T TOUCH THIS
         var request = URLRequest(url: self.openAIURL!)
         print("made it to sendToAssistant")
         if let openAIKey = getAPIKey(for: "OPENAI_API_KEY") {
@@ -47,16 +43,13 @@ class OpenAIConnector: ObservableObject {
         }
         
         let httpBody: [String: Any] = [
-            /// In the future, you can use a different chat model here.
             "model" : "gpt-3.5-turbo",
             "messages" : messageLog
         ]
         
-        /// DON'T TOUCH THIS
         var httpBodyJson: Data? = nil
 
         do {
-//            httpBodyJson = try JSONEncoder().encode(httpBody)
             httpBodyJson = try JSONSerialization.data(withJSONObject: httpBody, options: .prettyPrinted)
         } catch {
             print("Unable to convert to JSON \(error)")
@@ -79,12 +72,10 @@ class OpenAIConnector: ObservableObject {
 }
 
 
-/// Don't worry about this too much. This just gets rid of errors when using messageLog in a SwiftUI List or ForEach.
 extension Dictionary: Identifiable { public var id: UUID { UUID() } }
 extension Array: Identifiable { public var id: UUID { UUID() } }
 extension String: Identifiable { public var id: UUID { UUID() } }
 
-/// DO NOT TOUCH THIS. LEAVE IT ALONE.
 extension OpenAIConnector {
     private func executeRequest(request: URLRequest, withSessionConfig sessionConfig: URLSessionConfiguration?) -> Data? {
         let semaphore = DispatchSemaphore(value: 0)
@@ -107,7 +98,6 @@ extension OpenAIConnector {
         })
         task.resume()
         
-        // Handle async with semaphores. Max wait of 10 seconds
         let timeout = DispatchTime.now() + .seconds(20)
         print("Waiting for semaphore signal")
         let retVal = semaphore.wait(timeout: timeout)
@@ -117,7 +107,6 @@ extension OpenAIConnector {
 }
 
 extension OpenAIConnector {
-    /// This function makes it simpler to append items to messageLog.
     func logMessage(_ message: String, messageUserType: MessageUserType) {
         var messageUserTypeString = ""
         switch messageUserType {
@@ -133,5 +122,12 @@ extension OpenAIConnector {
     enum MessageUserType {
         case user
         case assistant
+    }
+}
+
+// Helper function to make type-erased views
+extension View {
+    func anyView() -> AnyView {
+        AnyView(self)
     }
 }
