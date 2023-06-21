@@ -17,13 +17,16 @@ class OpenAIConnector: ObservableObject {
     @Published var timeOfYear = ""
     /// This URL might change in the future, so if you get an error, make sure to check the OpenAI API Reference.
     let openAIURL = URL(string: "https://api.openai.com/v1/chat/completions")
-    let openAIKey = "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"
     
     /// This is what stores your messages. You can see how to use it in a SwiftUI view here:
     @Published var messageLog: [[String: String]] = [
         /// Modify this to change the personality of the assistant.
         ["role": "system", "content": "You're a friendly, helpful assistant"]
     ]
+    
+    func getAPIKey(for key: String) -> String? {
+        return ProcessInfo.processInfo.environment[key]
+    }
     
     func buildQuery() {
         let message = "Can you give me an itinerary for a trip to \(location), that lasts \(numberOfDays) in \(timeOfYear) and I'd like to see or experience \(sightsToSee)?"
@@ -34,9 +37,14 @@ class OpenAIConnector: ObservableObject {
     func sendToAssistant() {
         /// DON'T TOUCH THIS
         var request = URLRequest(url: self.openAIURL!)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Bearer \(self.openAIKey)", forHTTPHeaderField: "Authorization")
+        print("made it to sendToAssistant")
+        if let openAIKey = getAPIKey(for: "OPENAI_API_KEY") {
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("Bearer \(openAIKey)", forHTTPHeaderField: "Authorization")
+        } else {
+            print("there was an error with your API key")
+        }
         
         let httpBody: [String: Any] = [
             /// In the future, you can use a different chat model here.

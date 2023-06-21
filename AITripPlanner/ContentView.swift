@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  AITripPlanner
 //
-//  Created by Dan and Beth Engel on 6/20/23.
+//  Created by Dan Engel on 6/20/23.
 //
 
 import SwiftUI
@@ -14,10 +14,19 @@ struct ContentView: View {
     var body: some View {
         VStack {
             ScrollView {
-                Text(connector.response)
-                    .font(.body)
+                resultsView
             }
             Divider()
+            inputView
+
+        }
+        .padding()
+    }
+}
+
+extension ContentView {
+    var inputView: some View {
+        VStack {
             TextField("Where do you want to go?", text: $connector.location)
                 .border(Color.gray, width: 1)
                 .font(.title2)
@@ -38,26 +47,13 @@ struct ContentView: View {
                 Text("Send")
             }
         }
-        .padding()
-//        VStack {
-//            ScrollView {
-//                ForEach(connector.messageLog) { message in
-//                    MessageView(message: message)
-//                }
-//            }
-//
-//            Divider()
-//
-//            HStack {
-//                TextField("Type here", text: $textField)
-//                Button("Send") {
-//                    connector.logMessage(textField, messageUserType: .user)
-//                    connector.sendToAssistant()
-//                    print("messageLog")
-//                }
-//            }
-//
-//        }.padding()
+    }
+    
+    var resultsView: some View {
+        VStack {
+            Text(connector.response)
+                .font(.body)
+        }
     }
 }
 
