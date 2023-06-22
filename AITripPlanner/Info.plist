@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>OPENAI_API_KEY</key>
-	<string>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</string>
+	<string>$(OPENAI_API_KEY)</string>
 </dict>
 </plist>

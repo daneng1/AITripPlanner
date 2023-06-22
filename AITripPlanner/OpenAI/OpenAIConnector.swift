@@ -10,11 +10,11 @@ import Combine
 import SwiftUI
 
 class OpenAIConnector: ObservableObject {
-    @Published var sightsToSee = ""
-    @Published var location = ""
-    @Published var numberOfDays = ""
+    @Published var sightsToSee = "space needle"
+    @Published var location = "seattle"
+    @Published var numberOfDays = "3"
     @Published var response = ""
-    @Published var timeOfYear = ""
+    @Published var timeOfYear = "fall"
     let openAIURL = URL(string: "https://api.openai.com/v1/chat/completions")
     
     @Published var messageLog: [[String: String]] = [
@@ -35,6 +35,7 @@ class OpenAIConnector: ObservableObject {
         var request = URLRequest(url: self.openAIURL!)
         print("made it to sendToAssistant")
         if let openAIKey = getAPIKey(for: "OPENAI_API_KEY") {
+            print("******* key: \(openAIKey)")
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("Bearer \(openAIKey)", forHTTPHeaderField: "Authorization")

@@ -24,6 +24,7 @@
 		4901AB242A421D2700281A28 /* OpenAIResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIResponseHandler.swift; sourceTree = "<group>"; };
 		4901AB262A421D4F00281A28 /* OpenAIConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIConnector.swift; sourceTree = "<group>"; };
 		4901AB282A43490B00281A28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		49A9A9F42A44969A004C8650 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +41,7 @@
 		4901AB092A42071000281A28 = {
 			isa = PBXGroup;
 			children = (
+				49A9A9F42A44969A004C8650 /* Config.xcconfig */,
 				4901AB142A42071000281A28 /* AITripPlanner */,
 				4901AB132A42071000281A28 /* Products */,
 			);
@@ -165,6 +167,7 @@
 /* Begin XCBuildConfiguration section */
 		4901AB1E2A42071100281A28 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49A9A9F42A44969A004C8650 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -225,6 +228,7 @@
 		};
 		4901AB1F2A42071100281A28 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49A9A9F42A44969A004C8650 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
