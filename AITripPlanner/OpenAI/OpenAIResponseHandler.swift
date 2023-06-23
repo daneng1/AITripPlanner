@@ -2,7 +2,7 @@
 //  OpenAIResponseHandler.swift
 //  AITripPlanner
 //
-//  Created by Dan and Beth Engel on 6/20/23.
+//  Created by Dan Engel on 6/20/23.
 //
 
 import Foundation

@@ -7,14 +7,15 @@
 
 import Foundation
 import Combine
-import SwiftUI
 
 class OpenAIConnector: ObservableObject {
-    @Published var sightsToSee = "space needle"
-    @Published var location = "seattle"
-    @Published var numberOfDays = "3"
-    @Published var response = ""
-    @Published var timeOfYear = "fall"
+//    @Published var sightsToSee = "space needle"
+//    @Published var location = "seattle"
+//    @Published var numberOfDays = "3"
+//    @Published var response = ""
+//    @Published var timeOfYear = "fall"
+//    @Published var loading: Bool = false
+    
     let openAIURL = URL(string: "https://api.openai.com/v1/chat/completions")
     
     @Published var messageLog: [[String: String]] = [
@@ -25,17 +26,17 @@ class OpenAIConnector: ObservableObject {
         return ProcessInfo.processInfo.environment[key]
     }
     
-    func buildQuery() {
-        let message = "Can you give me an itinerary for a trip to \(location), that lasts \(numberOfDays) in \(timeOfYear) and I'd like to see or experience \(sightsToSee)? Please provide links to any sights you recommend, consider the local holidays, crowds and the best time of the day to visit each site. Please place line break before each link."
-        logMessage(message, messageUserType: .user)
-        sendToAssistant()
-    }
+//    func buildQuery() {
+//        loading = true
+//        let message = "Can you give me an itinerary for a trip to \(location), that lasts \(numberOfDays) in \(timeOfYear) and I'd like to see or experience \(sightsToSee)? Please provide links to any sights you recommend, consider the local holidays, crowds and the best time of the day to visit each site. Please place line break before each link."
+//        logMessage(message, messageUserType: .user)
+//        sendToAssistant()
+//    }
 
-    func sendToAssistant() {
+    func sendToAssistant() -> String {
         var request = URLRequest(url: self.openAIURL!)
-        print("made it to sendToAssistant")
+        var response: String = ""
         if let openAIKey = getAPIKey(for: "OPENAI_API_KEY") {
-            print("******* key: \(openAIKey)")
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("Bearer \(openAIKey)", forHTTPHeaderField: "Authorization")
@@ -61,14 +62,12 @@ class OpenAIConnector: ObservableObject {
         
         if let requestData = executeRequest(request: request, withSessionConfig: nil) {
             let jsonStr = String(data: requestData, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))!
-            print(jsonStr)
             let responseHandler = OpenAIResponseHandler()
             logMessage((responseHandler.decodeJson(jsonString: jsonStr)?.choices[0].message["content"])!, messageUserType: .assistant)
             response = (responseHandler.decodeJson(jsonString: jsonStr)?.choices[0].message["content"])!
-
+            print("\(response)")
         }
-
-        
+        return response
     }
 }
 
@@ -126,9 +125,3 @@ extension OpenAIConnector {
     }
 }
 
-// Helper function to make type-erased views
-extension View {
-    func anyView() -> AnyView {
-        AnyView(self)
-    }
-}

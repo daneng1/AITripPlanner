@@ -10,11 +10,13 @@ import SwiftUI
 @main
 struct AITripPlannerApp: App {
     let openAIConnector = OpenAIConnector()
+    let viewModel = PlannerViewModel()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(openAIConnector)
+                .environmentObject(viewModel)
         }
     }
 }
