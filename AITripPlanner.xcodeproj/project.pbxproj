@@ -13,6 +13,7 @@
 		4901AB1D2A42071100281A28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4901AB1C2A42071100281A28 /* Preview Assets.xcassets */; };
 		4901AB252A421D2700281A28 /* OpenAIResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901AB242A421D2700281A28 /* OpenAIResponseHandler.swift */; };
 		4901AB272A421D4F00281A28 /* OpenAIConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901AB262A421D4F00281A28 /* OpenAIConnector.swift */; };
+		49A9A9F62A44AA42004C8650 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9A9F52A44AA42004C8650 /* Loader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		4901AB262A421D4F00281A28 /* OpenAIConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIConnector.swift; sourceTree = "<group>"; };
 		4901AB282A43490B00281A28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		49A9A9F42A44969A004C8650 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		49A9A9F52A44AA42004C8650 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				4901AB232A421CFF00281A28 /* OpenAI */,
 				4901AB152A42071000281A28 /* AITripPlannerApp.swift */,
 				4901AB172A42071000281A28 /* ContentView.swift */,
+				49A9A9F52A44AA42004C8650 /* Loader.swift */,
 				4901AB192A42071100281A28 /* Assets.xcassets */,
 				4901AB1B2A42071100281A28 /* Preview Content */,
 			);
@@ -159,6 +162,7 @@
 				4901AB252A421D2700281A28 /* OpenAIResponseHandler.swift in Sources */,
 				4901AB162A42071000281A28 /* AITripPlannerApp.swift in Sources */,
 				4901AB272A421D4F00281A28 /* OpenAIConnector.swift in Sources */,
+				49A9A9F62A44AA42004C8650 /* Loader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
