@@ -12,34 +12,43 @@ struct ContentView: View {
     @EnvironmentObject var viewModel: PlannerViewModel
     @EnvironmentObject var connector: OpenAIConnector
     @State var inputIsPresented = false
+    @State var showDetailView: Bool = false
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                Image("IMG_0901")
-                    .resizable()
-                    .scaledToFill()
-                    .clipped()
-                    .edgesIgnoringSafeArea(.all)
-                VStack {
-                    Spacer()
-                    if !inputIsPresented {
-                        Button {
-                            withAnimation(.spring(response: 0.2)) {
-                                inputIsPresented.toggle()
+        NavigationStack {
+            if viewModel.loading {
+                LoaderView()
+                    .background(Color.white)
+            } else {
+                ZStack {
+                    Image("IMG_0901")
+                        .resizable()
+                        .scaledToFill()
+                        .clipped()
+                        .edgesIgnoringSafeArea(.all)
+                    VStack {
+                        Spacer()
+                        if !inputIsPresented {
+                            Button {
+                                withAnimation(.spring(response: 0.2)) {
+                                    inputIsPresented.toggle()
+                                }
+                            } label: {
+                                Text("Plan my trip!")
+                                    .font(.headline)
+                                    .frame(width: 175, height: 35)
                             }
-                        } label: {
-                            Text("Plan my trip!")
-                                .font(.headline)
-                                .frame(width: 175, height: 35)
+                            .buttonStyle(.borderedProminent)
+                            .padding(.bottom, 32)
+                        } else {
+                            inputView
+                                .padding()
+                                .background(.ultraThinMaterial)
+                                .cornerRadius(10)
+                                .navigationDestination(isPresented: $showDetailView) {
+                                    TripResultsView()
+                                }
                         }
-                        .buttonStyle(.borderedProminent)
-                        .padding(.bottom, 32)
-                    } else {
-                        inputView
-                            .padding()
-                            .background(.ultraThinMaterial)
-                            .cornerRadius(10)
                     }
                 }
             }
@@ -82,21 +91,20 @@ extension ContentView {
             TextEditor(text: $viewModel.sightsToSee)
                 .border(Color.black, width: 0.5)
                 .frame(height: 100)
-            Button {
-                inputIsPresented.toggle()
-                viewModel.buildQuery()
-            } label: {
-                NavigationLink(destination: TripResultsView(), label: {
+            NavigationLink(destination: TripResultsView()) {
+                Button {
+                    viewModel.buildQuery()
+                    showDetailView.toggle()
+                } label: {
                     Text("Plan Trip")
                         .font(.headline)
                         .foregroundColor(Color.white)
                         .frame(width: 125, height: 35)
                 }
-                )
+                .buttonStyle(.borderedProminent)
             }
-            .buttonStyle(.borderedProminent)
+            .padding()
         }
-        .padding()
     }
 }
 

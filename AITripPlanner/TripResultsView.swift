@@ -12,11 +12,7 @@ struct TripResultsView: View {
     
     var body: some View {
         VStack {
-            if viewModel.loading {
-                Loader()
-            } else {
-                Text("Hello world")
-            }
+            toSwiftUI(viewModel.response)
         }
     }
     

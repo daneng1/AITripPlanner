@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-struct Loader: View {
+struct LoaderView: View {
     
     var body: some View {
         ZStack {
@@ -83,6 +83,6 @@ struct plane: View {
 
 struct Loader_Previews: PreviewProvider {
     static var previews: some View {
-        Loader()
+        LoaderView()
     }
 }
