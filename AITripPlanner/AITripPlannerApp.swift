@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct AITripPlannerApp: App {
     let openAIConnector = OpenAIConnector()
-    let viewModel = PlannerViewModel()
+    @StateObject var viewModel = PlannerViewModel()
 
     var body: some Scene {
         WindowGroup {

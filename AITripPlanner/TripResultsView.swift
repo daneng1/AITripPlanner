@@ -12,7 +12,14 @@ struct TripResultsView: View {
     
     var body: some View {
         VStack {
-            toSwiftUI(viewModel.response)
+            if viewModel.loading {
+                LoaderView()
+            } else {
+                toSwiftUI(viewModel.response)                
+            }
+        }
+        .onAppear {
+            viewModel.buildQuery()
         }
     }
     

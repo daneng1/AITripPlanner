@@ -16,39 +16,34 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            if viewModel.loading {
-                LoaderView()
-                    .background(Color.white)
-            } else {
-                ZStack {
-                    Image("IMG_0901")
-                        .resizable()
-                        .scaledToFill()
-                        .clipped()
-                        .edgesIgnoringSafeArea(.all)
-                    VStack {
-                        Spacer()
-                        if !inputIsPresented {
-                            Button {
-                                withAnimation(.spring(response: 0.2)) {
-                                    inputIsPresented.toggle()
-                                }
-                            } label: {
-                                Text("Plan my trip!")
-                                    .font(.headline)
-                                    .frame(width: 175, height: 35)
+            ZStack {
+                Image("IMG_0901")
+                    .resizable()
+                    .scaledToFill()
+                    .clipped()
+                    .edgesIgnoringSafeArea(.all)
+                VStack {
+                    Spacer()
+                    if !inputIsPresented {
+                        Button {
+                            withAnimation(.spring(response: 0.2)) {
+                                inputIsPresented.toggle()
                             }
-                            .buttonStyle(.borderedProminent)
-                            .padding(.bottom, 32)
-                        } else {
-                            inputView
-                                .padding()
-                                .background(.ultraThinMaterial)
-                                .cornerRadius(10)
-                                .navigationDestination(isPresented: $showDetailView) {
-                                    TripResultsView()
-                                }
+                        } label: {
+                            Text("Plan my trip!")
+                                .font(.headline)
+                                .frame(width: 175, height: 35)
                         }
+                        .buttonStyle(.borderedProminent)
+                        .padding(.bottom, 32)
+                    } else {
+                        inputView
+                            .padding()
+                            .background(.ultraThinMaterial)
+                            .cornerRadius(10)
+                            .navigationDestination(isPresented: $showDetailView) {
+                                TripResultsView()
+                            }
                     }
                 }
             }
@@ -93,8 +88,8 @@ extension ContentView {
                 .frame(height: 100)
             NavigationLink(destination: TripResultsView()) {
                 Button {
-                    viewModel.buildQuery()
                     showDetailView.toggle()
+                    viewModel.loading = true
                 } label: {
                     Text("Plan Trip")
                         .font(.headline)
