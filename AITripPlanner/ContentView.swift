@@ -20,7 +20,7 @@ struct ContentView: View {
                 Image("IMG_0901")
                     .resizable()
                     .scaledToFill()
-                    .clipped()
+                    .frame(maxWidth: UIScreen.main.bounds.width)
                     .edgesIgnoringSafeArea(.all)
                 VStack {
                     Spacer()
@@ -77,7 +77,7 @@ extension ContentView {
                 .padding(.top, 10)
             TextField("", text: $viewModel.timeOfYear)
                 .padding(8)
-                .background(RoundedRectangle(cornerRadius: 10).stroke(Color.black, lineWidth: 0.5).background(Color.white))
+                .background(RoundedRectangle(cornerRadius: 10).stroke(Color.black, lineWidth: 0.5))
             Text("Sights and/or activities")
                 .font(.title3)
                 .fontWeight(.bold)
@@ -98,7 +98,7 @@ extension ContentView {
                 }
                 .buttonStyle(.borderedProminent)
             }
-            .padding()
+            .frame(maxWidth: .infinity, alignment: .center)
         }
     }
 }

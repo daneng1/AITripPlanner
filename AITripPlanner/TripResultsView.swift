@@ -11,16 +11,19 @@ struct TripResultsView: View {
     @EnvironmentObject var viewModel: PlannerViewModel
     
     var body: some View {
-        VStack {
-            if viewModel.loading {
-                LoaderView()
-            } else {
-                toSwiftUI(viewModel.response)                
+        ScrollView {
+            VStack {
+                if viewModel.loading {
+                    LoaderView()
+                } else {
+                    toSwiftUI(viewModel.response)                
+                }
             }
         }
         .onAppear {
             viewModel.buildQuery()
         }
+        .padding()
     }
     
     private func toSwiftUI(_ output: String) -> some View {

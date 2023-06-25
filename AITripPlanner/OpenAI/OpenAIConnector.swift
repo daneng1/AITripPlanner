@@ -64,8 +64,10 @@ class OpenAIConnector: ObservableObject {
             let jsonStr = String(data: requestData, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))!
             let responseHandler = OpenAIResponseHandler()
             logMessage((responseHandler.decodeJson(jsonString: jsonStr)?.choices[0].message["content"])!, messageUserType: .assistant)
-            response = (responseHandler.decodeJson(jsonString: jsonStr)?.choices[0].message["content"])!
-            print("\(response)")
+            guard let response = (responseHandler.decodeJson(jsonString: jsonStr)?.choices[0].message["content"]) else {
+                response = "Error code.\n\n Sorry, there was an issue getting your trip. Please try again later. \n\n Error Code"
+                return response
+            }
         }
         return response
     }
