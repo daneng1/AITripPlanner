@@ -33,43 +33,49 @@ class OpenAIConnector: ObservableObject {
 //        sendToAssistant()
 //    }
 
-    func sendToAssistant() -> String {
+    func sendToAssistant(completion: @escaping (Result<String, Error>) -> Void) {
         var request = URLRequest(url: self.openAIURL!)
-        var response: String = ""
+
         if let openAIKey = getAPIKey(for: "OPENAI_API_KEY") {
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("Bearer \(openAIKey)", forHTTPHeaderField: "Authorization")
         } else {
             print("there was an error with your API key")
+            completion(.failure(NSError(domain: "", code: -1, userInfo: ["description": "There was an error with your API key"])))
+            return
         }
         
         let httpBody: [String: Any] = [
             "model" : "gpt-3.5-turbo",
             "messages" : messageLog
         ]
-        
-        var httpBodyJson: Data? = nil
 
         do {
-            httpBodyJson = try JSONSerialization.data(withJSONObject: httpBody, options: .prettyPrinted)
+            let httpBodyJson = try JSONSerialization.data(withJSONObject: httpBody, options: .prettyPrinted)
+            request.httpBody = httpBodyJson
         } catch {
             print("Unable to convert to JSON \(error)")
+            completion(.failure(error))
             logMessage("error", messageUserType: .assistant)
         }
         
-        request.httpBody = httpBodyJson
-        
-        if let requestData = executeRequest(request: request, withSessionConfig: nil) {
-            let jsonStr = String(data: requestData, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))!
-            let responseHandler = OpenAIResponseHandler()
-            logMessage((responseHandler.decodeJson(jsonString: jsonStr)?.choices[0].message["content"])!, messageUserType: .assistant)
-            guard let response = (responseHandler.decodeJson(jsonString: jsonStr)?.choices[0].message["content"]) else {
-                response = "Error code.\n\n Sorry, there was an issue getting your trip. Please try again later. \n\n Error Code"
-                return response
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("Error: \(error)")
+                completion(.failure(error))
+            } else if let data = data {
+                let jsonStr = String(data: data, encoding: .utf8)!
+                let responseHandler = OpenAIResponseHandler()
+                if let responseData = (responseHandler.decodeJson(jsonString: jsonStr)?.choices[0].message["content"]) {
+                    completion(.success(responseData))
+                } else {
+                    let error = NSError(domain: "", code: -1, userInfo: ["description": "Unable to parse response"])
+                    completion(.failure(error))
+                }
             }
         }
-        return response
+        task.resume()
     }
 }
 

@@ -64,13 +64,10 @@
 		4901AB142A42071000281A28 /* AITripPlanner */ = {
 			isa = PBXGroup;
 			children = (
+				49A9A9FC2A4A10CA004C8650 /* ViewModels */,
+				49A9A9FB2A4A10BC004C8650 /* Views */,
 				4901AB282A43490B00281A28 /* Info.plist */,
 				4901AB232A421CFF00281A28 /* OpenAI */,
-				4901AB152A42071000281A28 /* AITripPlannerApp.swift */,
-				4901AB172A42071000281A28 /* ContentView.swift */,
-				49A9A9F92A460A81004C8650 /* PlannerViewModel.swift */,
-				49A9A9F52A44AA42004C8650 /* LoaderView.swift */,
-				49A9A9F72A45F7DC004C8650 /* TripResultsView.swift */,
 				4901AB192A42071100281A28 /* Assets.xcassets */,
 				4901AB1B2A42071100281A28 /* Preview Content */,
 			);
@@ -92,6 +89,25 @@
 				4901AB262A421D4F00281A28 /* OpenAIConnector.swift */,
 			);
 			path = OpenAI;
+			sourceTree = "<group>";
+		};
+		49A9A9FB2A4A10BC004C8650 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4901AB152A42071000281A28 /* AITripPlannerApp.swift */,
+				4901AB172A42071000281A28 /* ContentView.swift */,
+				49A9A9F52A44AA42004C8650 /* LoaderView.swift */,
+				49A9A9F72A45F7DC004C8650 /* TripResultsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		49A9A9FC2A4A10CA004C8650 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				49A9A9F92A460A81004C8650 /* PlannerViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
