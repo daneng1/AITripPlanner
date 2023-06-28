@@ -16,6 +16,7 @@
 		49A9A9F62A44AA42004C8650 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9A9F52A44AA42004C8650 /* LoaderView.swift */; };
 		49A9A9F82A45F7DC004C8650 /* TripResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9A9F72A45F7DC004C8650 /* TripResultsView.swift */; };
 		49A9A9FA2A460A81004C8650 /* PlannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9A9F92A460A81004C8650 /* PlannerViewModel.swift */; };
+		49A9AA012A4B50A1004C8650 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9AA002A4B50A1004C8650 /* Destination.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		49A9A9F52A44AA42004C8650 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		49A9A9F72A45F7DC004C8650 /* TripResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripResultsView.swift; sourceTree = "<group>"; };
 		49A9A9F92A460A81004C8650 /* PlannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerViewModel.swift; sourceTree = "<group>"; };
+		49A9AA002A4B50A1004C8650 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 		4901AB142A42071000281A28 /* AITripPlanner */ = {
 			isa = PBXGroup;
 			children = (
+				49A9A9FF2A4B5045004C8650 /* Models */,
 				49A9A9FC2A4A10CA004C8650 /* ViewModels */,
 				49A9A9FB2A4A10BC004C8650 /* Views */,
 				4901AB282A43490B00281A28 /* Info.plist */,
@@ -108,6 +111,14 @@
 				49A9A9F92A460A81004C8650 /* PlannerViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		49A9A9FF2A4B5045004C8650 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				49A9AA002A4B50A1004C8650 /* Destination.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,6 +197,7 @@
 				4901AB162A42071000281A28 /* AITripPlannerApp.swift in Sources */,
 				4901AB272A421D4F00281A28 /* OpenAIConnector.swift in Sources */,
 				49A9A9F82A45F7DC004C8650 /* TripResultsView.swift in Sources */,
+				49A9AA012A4B50A1004C8650 /* Destination.swift in Sources */,
 				49A9A9F62A44AA42004C8650 /* LoaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -49,7 +49,7 @@ struct ContentView: View {
         .onAppear {
             viewModel.selectImage()
         }
-        .alert(isPresented: $viewModel.isQueryValid) {
+        .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text("Ooops, there was an issue"), message: Text("it looks like you may not have entered anything in one or more fields."))
         }
     }
@@ -92,8 +92,10 @@ extension ContentView {
                 .frame(height: 100)
             NavigationLink(destination: TripResultsView()) {
                 Button {
-                    showDetailView.toggle()
-                    viewModel.loading = true
+                    if viewModel.checkValid() {
+                        showDetailView.toggle()
+                        viewModel.loading = true
+                    }
                 } label: {
                     Text("Plan Trip")
                         .font(.headline)

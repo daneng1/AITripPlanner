@@ -23,10 +23,11 @@ struct LoaderView: View {
                 plane(angle: -30, horizontalOffset: -55, verticalOffset: 20, delayTimer: 2.5)
 
             }
+            .padding(.bottom, 32)
             Text("Your next big trip is being created right now!")
                 .font(.headline)
+                .foregroundColor(Color("secondary2"))
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 

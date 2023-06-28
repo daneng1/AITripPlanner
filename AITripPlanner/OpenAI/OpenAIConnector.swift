@@ -9,12 +9,6 @@ import Foundation
 import Combine
 
 class OpenAIConnector: ObservableObject {
-//    @Published var sightsToSee = "space needle"
-//    @Published var location = "seattle"
-//    @Published var numberOfDays = "3"
-//    @Published var response = ""
-//    @Published var timeOfYear = "fall"
-//    @Published var loading: Bool = false
     
     let openAIURL = URL(string: "https://api.openai.com/v1/chat/completions")
     
@@ -25,13 +19,6 @@ class OpenAIConnector: ObservableObject {
     func getAPIKey(for key: String) -> String? {
         return ProcessInfo.processInfo.environment[key]
     }
-    
-//    func buildQuery() {
-//        loading = true
-//        let message = "Can you give me an itinerary for a trip to \(location), that lasts \(numberOfDays) in \(timeOfYear) and I'd like to see or experience \(sightsToSee)? Please provide links to any sights you recommend, consider the local holidays, crowds and the best time of the day to visit each site. Please place line break before each link."
-//        logMessage(message, messageUserType: .user)
-//        sendToAssistant()
-//    }
 
     func sendToAssistant(completion: @escaping (Result<String, Error>) -> Void) {
         var request = URLRequest(url: self.openAIURL!)
@@ -46,9 +33,32 @@ class OpenAIConnector: ObservableObject {
             return
         }
         
+        let function: [[String: Any]] = [
+            [
+                "name": "get_trip_itinerary",
+                "description": "get a trip itinery based on a location, a time of year for travel and a duration of days",
+                "parameters": [
+                    "type": "object",
+                    "properties": [
+                        "location": [
+                            "type": "string",
+                            "description": "the city or region the user wants to visit",
+                        ],
+                        "itinerary": [
+                            "type": "string",
+                            "description": "the suggested itinerary for each day with each item as a string in an array",
+                        ]
+                    ],
+                    "required": ["location", "itinerary"],
+                ] as [String : Any]
+            ],
+        ]
+        
         let httpBody: [String: Any] = [
-            "model" : "gpt-3.5-turbo",
-            "messages" : messageLog
+            "model": "gpt-3.5-turbo-0613",
+            "messages": messageLog,
+            "functions": function,
+            "function_call": "auto",
         ]
 
         do {
@@ -56,7 +66,9 @@ class OpenAIConnector: ObservableObject {
             request.httpBody = httpBodyJson
         } catch {
             print("Unable to convert to JSON \(error)")
-            completion(.failure(error))
+            DispatchQueue.main.async {
+                completion(.failure(error))
+            }
             logMessage("error", messageUserType: .assistant)
         }
         
@@ -66,12 +78,17 @@ class OpenAIConnector: ObservableObject {
                 completion(.failure(error))
             } else if let data = data {
                 let jsonStr = String(data: data, encoding: .utf8)!
+                print("******************\(jsonStr)")
                 let responseHandler = OpenAIResponseHandler()
-                if let responseData = (responseHandler.decodeJson(jsonString: jsonStr)?.choices[0].message["content"]) {
-                    completion(.success(responseData))
+                if let responseData = (responseHandler.decodeJson(jsonString: jsonStr)?.choices[0].message) {
+                    DispatchQueue.main.async {
+                        completion(.success(responseData))
+                    }
                 } else {
                     let error = NSError(domain: "", code: -1, userInfo: ["description": "Unable to parse response"])
-                    completion(.failure(error))
+                    DispatchQueue.main.async {
+                        completion(.failure(error))
+                    }
                 }
             }
         }

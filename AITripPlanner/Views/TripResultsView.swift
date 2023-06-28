@@ -11,21 +11,33 @@ struct TripResultsView: View {
     @EnvironmentObject var viewModel: PlannerViewModel
     
     var body: some View {
-        ScrollView {
-            VStack {
-                if viewModel.error != nil {
-                    Text(viewModel.error?.localizedDescription ?? "Sorry there was an error")
-                } else if viewModel.response != "" {
-                    toSwiftUI(viewModel.response)
-                } else {
-                    LoaderView()
+        ZStack {
+            Image(viewModel.selectedImage)
+                .resizable()
+                .scaledToFill()
+                .frame(maxWidth: UIScreen.main.bounds.width)
+                .edgesIgnoringSafeArea(.all)
+                .opacity(0.2)
+            ScrollView {
+                VStack {
+                    if viewModel.error != nil {
+                        Text(viewModel.error?.localizedDescription ?? "Sorry there was an error")
+                    } else if viewModel.response != "" {
+                        toSwiftUI(viewModel.response)
+                    } else {
+                        Spacer()
+                        LoaderView()
+                    }
                 }
             }
+            //            .background(.ultraThinMaterial)
+            
+            .padding()
         }
         .onAppear {
             viewModel.buildQuery()
         }
-        .padding()
+//        .background(Color.white.opacity(0.3))
     }
     
     private func toSwiftUI(_ output: String) -> some View {

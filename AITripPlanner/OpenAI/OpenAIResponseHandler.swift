@@ -34,7 +34,7 @@ struct OpenAIResponse: Codable {
 
 struct Choice: Codable {
     var index: Int?
-    var message: [String: String]
+    var message: String?
     var finish_reason: String?
 }
 
