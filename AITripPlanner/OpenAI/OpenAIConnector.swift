@@ -95,8 +95,11 @@ class OpenAIConnector: ObservableObject {
             } else if let data = data {
                 let jsonStr = String(data: data, encoding: .utf8)!
                 let responseHandler = OpenAIResponseHandler()
-                if let jsonResult = try JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
+                do {
+                    var jsonResult: NSDictionary = try JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
                     print("response *********************** \(jsonResult)")
+                } catch {
+                    print("there was an error with the response")
                 }
                 if let responseData = (responseHandler.decodeJson(jsonString: jsonStr)?.choices[0].message) {
 //                    print("******************\(responseData)")
