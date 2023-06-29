@@ -20,7 +20,7 @@ class OpenAIConnector: ObservableObject {
         return ProcessInfo.processInfo.environment[key]
     }
 
-    func sendToAssistant(completion: @escaping (Result<String, Error>) -> Void) {
+    func sendToAssistant(completion: @escaping (Result<OpenAIFunctionResponse, Error>) -> Void) {
         var request = URLRequest(url: self.openAIURL!)
 
         if let openAIKey = getAPIKey(for: "OPENAI_API_KEY") {
@@ -33,39 +33,78 @@ class OpenAIConnector: ObservableObject {
             return
         }
         
-        let function: [[String: Any]] = [
+        let openAIFunction: [[String: Any]] = [
             [
                 "name": "get_trip_itinerary",
                 "description": "get a trip itinery based on a location, a time of year for travel and a duration of days",
                 "parameters": [
                     "type": "object",
                     "properties": [
+                        "id": [
+                            "type": "string",
+                            "description": "create a unique ID for this itinerary",
+                        ] as [String : Any],
                         "location": [
                             "type": "string",
                             "description": "the city or region the user wants to visit",
                         ] as [String : Any],
                         "itinerary": [
-                            "type": "object",
+                            "type": "array",
                             "description": "the suggested itinerary",
-                            "days": [
+                            "items": [
                                 "type": "object",
                                 "description": "the day and the items for each day",
-                                "day": [
-                                    "type": "string",
-                                    "description": "the title of the day",
-                                    "items": [
+                                "properties": [
+                                    "day": [
                                         "type": "string",
-                                    ],
+                                        "description": "the title of the day",
+                                        "items": [
+                                            "type": "string",
+                                        ]
+                                    ]  as [String : Any],
                                     "itineraryItems": [
                                         "type": "array",
-                                        "description": "an array of the itinerary items for this specific day",
-                                        "items": "string"
-                                    ]
+                                        "description": "the itinerary items for this specific day",
+                                        "items": [
+                                            "type": "object",
+                                            "description": "each suggestion for the day, including any hyperlinks",
+                                            "properties": [
+                                                "activity": [
+                                                    "type": "string",
+                                                    "description": "a headline of the specific activity suggested for the day",
+                                                    "items": [
+                                                        "type": "string",
+                                                    ],
+                                                ] as [String : Any],
+                                                "activityDescription": [
+                                                    "type": "string",
+                                                    "description": "a detailed description of the specific activity suggested for the day",
+                                                    "items": [
+                                                        "type": "string",
+                                                    ],
+                                                ] as [String : Any],
+                                                "activityTips": [
+                                                    "type": "string",
+                                                    "description": "any specific travel tips associted with the specific activity suggested for the day",
+                                                    "items": [
+                                                        "type": "string",
+                                                    ],
+                                                ] as [String : Any],
+                                                "link": [
+                                                    "type": "string",
+                                                    "description": "optional, any hyperlinks associated with the specific activity",
+                                                    "items": [
+                                                        "type": "string",
+                                                    ]
+                                                ] as [String : Any]
+                                            ] as [String : Any],
+                                        ]  as [String : Any]
+                                    ]  as [String : Any]
                                 ] as [String : Any]
                             ] as [String : Any]
-                        ]
+                        ] as [String : Any]
                     ],
-                    "required": ["location", "itinerary"],
+                    "required": ["itinerary"],
                 ] as [String : Any]
             ],
         ]
@@ -73,7 +112,7 @@ class OpenAIConnector: ObservableObject {
         let httpBody: [String: Any] = [
             "model": "gpt-3.5-turbo-0613",
             "messages": messageLog,
-            "functions": function,
+            "functions": openAIFunction,
             "function_call": "auto",
         ]
 
@@ -96,15 +135,17 @@ class OpenAIConnector: ObservableObject {
                 let jsonStr = String(data: data, encoding: .utf8)!
                 let responseHandler = OpenAIResponseHandler()
                 do {
-                    var jsonResult: NSDictionary = try JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
-                    print("response *********************** \(jsonResult)")
+//                    var jsonResult: NSDictionary = try JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
+                    let decoder = JSONDecoder()
+//                    let json = jsonString.data(using: .utf8)!
+                    let itinerary = try decoder.decode(OpenAIResponse.self, from: jsonStr)
+                    print("response *********************** \(itinerary)")
                 } catch {
                     print("there was an error with the response")
                 }
-                if let responseData = (responseHandler.decodeJson(jsonString: jsonStr)?.choices[0].message) {
-//                    print("******************\(responseData)")
+                if let responseData = (responseHandler.decodeJson(jsonString: jsonStr)) {
                     DispatchQueue.main.async {
-                        completion(.success(responseData))
+                        completion(.success(responseData.choices[0].message.function_call.arguments))
                     }
                 } else {
                     let error = NSError(domain: "", code: -1, userInfo: ["description": "Unable to parse response"])

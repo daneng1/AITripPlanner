@@ -12,7 +12,7 @@ class PlannerViewModel: ObservableObject {
     @Published var sightsToSee = ""
     @Published var location = "seattle"
     @Published var numberOfDays = "3"
-    @Published var response = ""
+    @Published var response: OpenAIFunctionResponse?
     @Published var error: Error?
     @Published var timeOfYear = "august"
     @Published var loading: Bool = false
@@ -29,6 +29,7 @@ class PlannerViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
+                    print("response ************** \(response)")
                     self.response = response
                 case .failure(let error):
                     self.error = error
