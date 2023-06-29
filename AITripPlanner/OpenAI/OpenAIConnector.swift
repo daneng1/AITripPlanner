@@ -43,10 +43,26 @@ class OpenAIConnector: ObservableObject {
                         "location": [
                             "type": "string",
                             "description": "the city or region the user wants to visit",
-                        ],
+                        ] as [String : Any],
                         "itinerary": [
-                            "type": "string",
-                            "description": "the suggested itinerary for each day with each item as a string in an array",
+                            "type": "object",
+                            "description": "the suggested itinerary",
+                            "days": [
+                                "type": "object",
+                                "description": "the day and the items for each day",
+                                "day": [
+                                    "type": "string",
+                                    "description": "the title of the day",
+                                    "items": [
+                                        "type": "string",
+                                    ],
+                                    "itineraryItems": [
+                                        "type": "array",
+                                        "description": "an array of the itinerary items for this specific day",
+                                        "items": "string"
+                                    ]
+                                ] as [String : Any]
+                            ] as [String : Any]
                         ]
                     ],
                     "required": ["location", "itinerary"],
@@ -78,9 +94,12 @@ class OpenAIConnector: ObservableObject {
                 completion(.failure(error))
             } else if let data = data {
                 let jsonStr = String(data: data, encoding: .utf8)!
-                print("******************\(jsonStr)")
                 let responseHandler = OpenAIResponseHandler()
+                if let jsonResult = try JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
+                    print("response *********************** \(jsonResult)")
+                }
                 if let responseData = (responseHandler.decodeJson(jsonString: jsonStr)?.choices[0].message) {
+//                    print("******************\(responseData)")
                     DispatchQueue.main.async {
                         completion(.success(responseData))
                     }
