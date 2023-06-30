@@ -18,6 +18,8 @@
 		49A9A9FA2A460A81004C8650 /* PlannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9A9F92A460A81004C8650 /* PlannerViewModel.swift */; };
 		49A9AA012A4B50A1004C8650 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9AA002A4B50A1004C8650 /* Destination.swift */; };
 		49A9AA032A4DF02C004C8650 /* OpenAIAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9AA022A4DF02C004C8650 /* OpenAIAPIResponse.swift */; };
+		49A9AA052A4E5F38004C8650 /* DayItineraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9AA042A4E5F38004C8650 /* DayItineraryView.swift */; };
+		49A9AA072A4E6D54004C8650 /* DayDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9AA062A4E6D54004C8650 /* DayDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		49A9A9F92A460A81004C8650 /* PlannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerViewModel.swift; sourceTree = "<group>"; };
 		49A9AA002A4B50A1004C8650 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
 		49A9AA022A4DF02C004C8650 /* OpenAIAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIAPIResponse.swift; sourceTree = "<group>"; };
+		49A9AA042A4E5F38004C8650 /* DayItineraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayItineraryView.swift; sourceTree = "<group>"; };
+		49A9AA062A4E6D54004C8650 /* DayDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				4901AB152A42071000281A28 /* AITripPlannerApp.swift */,
+				49A9AA042A4E5F38004C8650 /* DayItineraryView.swift */,
+				49A9AA062A4E6D54004C8650 /* DayDetailsView.swift */,
 				4901AB172A42071000281A28 /* ContentView.swift */,
 				49A9A9F52A44AA42004C8650 /* LoaderView.swift */,
 				49A9A9F72A45F7DC004C8650 /* TripResultsView.swift */,
@@ -199,10 +205,12 @@
 				49A9AA032A4DF02C004C8650 /* OpenAIAPIResponse.swift in Sources */,
 				49A9A9FA2A460A81004C8650 /* PlannerViewModel.swift in Sources */,
 				4901AB162A42071000281A28 /* AITripPlannerApp.swift in Sources */,
+				49A9AA052A4E5F38004C8650 /* DayItineraryView.swift in Sources */,
 				4901AB272A421D4F00281A28 /* OpenAIConnector.swift in Sources */,
 				49A9A9F82A45F7DC004C8650 /* TripResultsView.swift in Sources */,
 				49A9AA012A4B50A1004C8650 /* Destination.swift in Sources */,
 				49A9A9F62A44AA42004C8650 /* LoaderView.swift in Sources */,
+				49A9AA072A4E6D54004C8650 /* DayDetailsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

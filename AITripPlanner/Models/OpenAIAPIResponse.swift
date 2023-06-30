@@ -54,17 +54,27 @@ struct OpenAIFunctionResponse: Codable {
     }
 }
 
-struct Day: Codable {
+struct Day: Codable, Hashable {
+    static func == (lhs: Day, rhs: Day) -> Bool {
+        return lhs.day == rhs.day
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(day)
+        hasher.combine(itineraryItems)
+    }
+    
     let day: String
+    let dayDescription: String
     let itineraryItems: [ItineraryItem]
     
     enum CodingKeys: String, CodingKey {
-        case day
+        case day, dayDescription
         case itineraryItems = "itineraryItems"
     }
 }
 
-struct ItineraryItem: Codable {
+struct ItineraryItem: Codable, Hashable {
     let activity: String
     let activityDescription: String
     let activityTips: String
@@ -72,6 +82,14 @@ struct ItineraryItem: Codable {
     
     enum CodingKeys: String, CodingKey {
         case activity, activityTips, link, activityDescription
+    }
+    
+    static func == (lhs: ItineraryItem, rhs: ItineraryItem) -> Bool {
+        return lhs.activity == rhs.activity
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(activity)
     }
 }
 

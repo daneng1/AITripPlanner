@@ -22,7 +22,7 @@ struct OpenAIResponseHandler {
         return nil
     }
     
-    func decodeArgs(jsonString: String) -> OpenAIFunctionResponse? {
+    func decodeArgumentsJson(jsonString: String) -> OpenAIFunctionResponse? {
         let responseData = jsonString.data(using: .utf8)!
         let decoder = JSONDecoder()
         do {

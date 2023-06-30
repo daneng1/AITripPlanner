@@ -29,7 +29,6 @@ class PlannerViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
-                    print("response ************** \(response)")
                     self.response = response
                 case .failure(let error):
                     self.error = error

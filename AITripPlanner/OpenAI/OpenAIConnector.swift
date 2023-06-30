@@ -62,6 +62,13 @@ class OpenAIConnector: ObservableObject {
                                             "type": "string",
                                         ]
                                     ]  as [String : Any],
+                                    "dayDescription": [
+                                        "type": "string",
+                                        "description": "a brief description of the daily activites",
+                                        "items": [
+                                            "type": "string",
+                                        ]
+                                    ]  as [String : Any],
                                     "itineraryItems": [
                                         "type": "array",
                                         "description": "the itinerary items for this specific day",
@@ -135,7 +142,7 @@ class OpenAIConnector: ObservableObject {
                 let jsonStr = String(data: data, encoding: .utf8)!
                 let responseHandler = OpenAIResponseHandler()
                 if let responseData = (responseHandler.decodeJson(jsonString: jsonStr)) {
-                    if let args = responseHandler.decodeArgs(jsonString: responseData.choices[0].message.function_call.arguments) {
+                    if let args = responseHandler.decodeArgumentsJson(jsonString: responseData.choices[0].message.function_call.arguments) {
                         DispatchQueue.main.async {
                             completion(.success(args))
                         }
