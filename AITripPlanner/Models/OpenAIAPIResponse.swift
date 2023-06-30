@@ -34,8 +34,45 @@ struct Message: Codable {
 }
 
 struct FunctionCall: Codable {
-    var arguments: OpenAIFunctionResponse
+    var arguments: String
     var name: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case arguments = "arguments"
+    }
+}
+
+struct OpenAIFunctionResponse: Codable {
+    let id: String
+    let location: String
+    let itinerary: [Day]
+    
+    enum CodingKeys: String, CodingKey {
+        case id, location
+        case itinerary = "itinerary"
+    }
+}
+
+struct Day: Codable {
+    let day: String
+    let itineraryItems: [ItineraryItem]
+    
+    enum CodingKeys: String, CodingKey {
+        case day
+        case itineraryItems = "itineraryItems"
+    }
+}
+
+struct ItineraryItem: Codable {
+    let activity: String
+    let activityDescription: String
+    let activityTips: String
+    let link: String
+    
+    enum CodingKeys: String, CodingKey {
+        case activity, activityTips, link, activityDescription
+    }
 }
 
 struct Usage: Codable {

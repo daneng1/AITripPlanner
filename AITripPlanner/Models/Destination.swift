@@ -23,29 +23,29 @@ import Foundation
 //    let link: [String]?
 //}
 
-struct OpenAIFunctionResponse: Codable {
-    let id: String
-    let location: String
-    let itinerary: [Day]
-}
-
-struct Day: Codable {
-    let day: String
-    let itineraryItems: [ItineraryItem]
-    
-    enum CodingKeys: String, CodingKey {
-        case day, itineraryItems
-    }
-}
-
-struct ItineraryItem: Codable {
-    let activity: String
-    let activityDescription: String
-    let activityTips: String
-    let link: String
-    
-    enum CodingKeys: String, CodingKey {
-        case activity, activityTips, link
-        case activityDescription = "activity_description"
-    }
-}
+//struct OpenAIFunctionResponse: Codable {
+//    let id: String
+//    let location: String
+//    let itinerary: [Day]
+//}
+//
+//struct Day: Codable {
+//    let day: String
+//    let itineraryItems: [ItineraryItem]
+//    
+//    enum CodingKeys: String, CodingKey {
+//        case day, itineraryItems
+//    }
+//}
+//
+//struct ItineraryItem: Codable {
+//    let activity: String
+//    let activityDescription: String
+//    let activityTips: String
+//    let link: String
+//    
+//    enum CodingKeys: String, CodingKey {
+//        case activity, activityTips, link
+//        case activityDescription = "activity_description"
+//    }
+//}

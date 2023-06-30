@@ -101,11 +101,11 @@ class OpenAIConnector: ObservableObject {
                                         ]  as [String : Any]
                                     ]  as [String : Any]
                                 ] as [String : Any]
-                            ] as [String : Any]
-                        ] as [String : Any]
+                            ]
+                        ]
                     ],
-                    "required": ["itinerary"],
-                ] as [String : Any]
+                    "required": ["itinerary", "location", "id"],
+                ]
             ],
         ]
         
@@ -134,18 +134,11 @@ class OpenAIConnector: ObservableObject {
             } else if let data = data {
                 let jsonStr = String(data: data, encoding: .utf8)!
                 let responseHandler = OpenAIResponseHandler()
-                do {
-//                    var jsonResult: NSDictionary = try JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
-                    let decoder = JSONDecoder()
-//                    let json = jsonString.data(using: .utf8)!
-                    let itinerary = try decoder.decode(OpenAIResponse.self, from: jsonStr)
-                    print("response *********************** \(itinerary)")
-                } catch {
-                    print("there was an error with the response")
-                }
                 if let responseData = (responseHandler.decodeJson(jsonString: jsonStr)) {
-                    DispatchQueue.main.async {
-                        completion(.success(responseData.choices[0].message.function_call.arguments))
+                    if let args = responseHandler.decodeArgs(jsonString: responseData.choices[0].message.function_call.arguments) {
+                        DispatchQueue.main.async {
+                            completion(.success(args))
+                        }
                     }
                 } else {
                     let error = NSError(domain: "", code: -1, userInfo: ["description": "Unable to parse response"])
