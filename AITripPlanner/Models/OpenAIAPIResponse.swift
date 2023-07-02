@@ -78,7 +78,7 @@ struct ItineraryItem: Codable, Hashable {
     let activity: String
     let activityDescription: String
     let activityTips: String
-    let link: String
+    let link: String?
     
     enum CodingKeys: String, CodingKey {
         case activity, activityTips, link, activityDescription

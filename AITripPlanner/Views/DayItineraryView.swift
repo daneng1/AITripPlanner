@@ -20,15 +20,15 @@ struct DayItineraryView: View {
             } label: {
                 HStack(spacing: 4) {
                     Text(dailyDetails.day)
-                        .font(.title2)
+                        .font(.title3)
                         .fontWeight(.bold)
-                        .foregroundColor(Color("secondary2"))
+                        .foregroundColor(Color("secondary1"))
                     Text(" - ")
-                        .font(.title2)
-                        .foregroundColor(Color("secondary2"))
+                        .font(.title3)
+                        .foregroundColor(Color("secondary1"))
                     Text(dailyDetails.dayDescription)
-                        .font(.title2)
-                        .foregroundColor(Color("secondary2"))
+                        .font(.custom("", size: 12))
+                        .foregroundColor(Color("secondary1"))
                 }
                 .frame(maxWidth: .infinity)
                 .frame(height: 60)
@@ -36,7 +36,7 @@ struct DayItineraryView: View {
                 .overlay(alignment: .leading) {
                     Image(systemName: "arrow.down")
                         .font(.headline)
-                        .foregroundColor(Color("secondary2"))
+                        .foregroundColor(Color("secondary1"))
                         .padding()
                         .rotationEffect(detailsVisible ? .degrees(-180) : .degrees(0))
                 }
@@ -55,7 +55,7 @@ struct DayItineraryView: View {
 struct DayItineraryView_Previews: PreviewProvider {
     static var previews: some View {
         let newItineraryItem = ItineraryItem(activity: "Rowing", activityDescription: "Lets go rowing", activityTips: "don't sink", link: "https://rowing.com")
-        let newDay = Day(day: "Day 1", dayDescription: "See the sights", itineraryItems: [newItineraryItem])
+        let newDay = Day(day: "Day 1", dayDescription: "See the sights, here is a long description", itineraryItems: [newItineraryItem])
         DayItineraryView(dailyDetails: newDay)
     }
 }

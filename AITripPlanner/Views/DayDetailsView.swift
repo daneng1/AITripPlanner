@@ -18,9 +18,9 @@ struct DayDetailsView: View {
             Text(details.activityDescription)
                 .font(.subheadline)
                 .foregroundColor(.black)
-            HStack(spacing: 0) {
-                Text("Hot Tip: ")
-                    .font(.subheadline)
+            VStack {
+                Text("Hot Tip")
+                    .font(.body)
                     .fontWeight(.bold)
                     .foregroundColor(Color("primary"))
                 Text(details.activityTips)
@@ -28,8 +28,10 @@ struct DayDetailsView: View {
                     .foregroundColor(.black)
             }
             .padding(.top, 4)
-            Link(destination: URL(string: details.link)!) {
-                Text("Learn more")
+            if let link = details.link {
+                Link(destination: URL(string: link)!) {
+                    Text("Learn more")
+                }
             }
         }
         .frame(maxWidth: .infinity)

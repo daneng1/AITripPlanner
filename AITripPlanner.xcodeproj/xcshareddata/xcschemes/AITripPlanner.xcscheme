@@ -55,6 +55,16 @@
             value = "$(OPENAI_API_KEY)"
             isEnabled = "YES">
          </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "UNSPLASH_ACCESS_KEY"
+            value = "$(UNSPLASH_ACCESS_KEY)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "UNSPLASH_SECRETS_KEY"
+            value = "$(UNSPLASH_SECRETS_KEY)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
