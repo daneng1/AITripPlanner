@@ -18,7 +18,7 @@ struct DayDetailsView: View {
             Text(details.activityDescription)
                 .font(.subheadline)
                 .foregroundColor(.black)
-            VStack {
+            VStack(alignment: .leading) {
                 Text("Hot Tip")
                     .font(.body)
                     .fontWeight(.bold)
@@ -28,11 +28,13 @@ struct DayDetailsView: View {
                     .foregroundColor(.black)
             }
             .padding(.top, 4)
-            if let link = details.link {
-                Link(destination: URL(string: link)!) {
+            if let link = details.link,
+               let url = URL(string: link) {
+                Link(destination: url) {
                     Text("Learn more")
                 }
             }
+            Divider()
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 8)
@@ -41,7 +43,7 @@ struct DayDetailsView: View {
 
 struct DayDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        let newItineraryItem = ItineraryItem(activity: "Rowing", activityDescription: "Lets go rowing", activityTips: "don't sink", link: "https://rowing.com")
+        let newItineraryItem = ItineraryItem(activity: "Rowing", activityDescription: "Lets go rowing around the whole puget sound", activityTips: "don't sink", link: "https://rowing.com")
         DayDetailsView(details: newItineraryItem)
     }
 }

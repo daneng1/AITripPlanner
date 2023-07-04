@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TripResultsView: View {
     @EnvironmentObject var viewModel: PlannerViewModel
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         ZStack {
@@ -18,24 +19,22 @@ struct TripResultsView: View {
                 .frame(maxWidth: UIScreen.main.bounds.width)
                 .edgesIgnoringSafeArea(.all)
                 .opacity(0.2)
-            ScrollView {
-                VStack {
-                    if viewModel.error != nil {
-                        Text(viewModel.error?.localizedDescription ?? "Sorry there was an error")
-                    } else if viewModel.response != nil {
+            VStack {
+                if viewModel.error != nil {
+                    Text(viewModel.error?.localizedDescription ?? "Sorry there was an error")
+                } else if viewModel.response != nil {
+                    ScrollView {
                         if let itinerary = viewModel.response?.itinerary {
                             ForEach(itinerary, id: \.self) { day in
                                 DayItineraryView(dailyDetails: day)
                             }
                         }
-                    } else {
-                        Spacer()
-                        LoaderView()
-                            .background(Color.red)
                     }
+                    .padding()
+                } else {
+                    LoaderView()
                 }
             }
-            .padding()
         }
         .onAppear {
             viewModel.buildQuery()

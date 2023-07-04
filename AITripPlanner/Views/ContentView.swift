@@ -26,7 +26,7 @@ struct ContentView: View {
                     Spacer()
                     if !inputIsPresented {
                         Button {
-                            withAnimation(.spring(response: 0.2)) {
+                            withAnimation(.spring(response: 0.1)) {
                                 inputIsPresented.toggle()
                             }
                         } label: {
@@ -48,6 +48,7 @@ struct ContentView: View {
         }
         .onAppear {
             viewModel.selectImage()
+            viewModel.clearSearch()
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text("Ooops, there was an issue"), message: Text("it looks like you may not have entered anything in one or more fields."))

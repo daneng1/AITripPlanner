@@ -53,7 +53,7 @@ class OpenAIConnector: ObservableObject {
                             "description": "the suggested itinerary",
                             "items": [
                                 "type": "object",
-                                "description": "the day and the items for each day",
+                                "description": "the day and the items for each day, do not include specific dates",
                                 "properties": [
                                     "day": [
                                         "type": "string",
