@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct TripResultsView: View {
     @EnvironmentObject var viewModel: PlannerViewModel
@@ -23,14 +24,26 @@ struct TripResultsView: View {
                 if viewModel.error != nil {
                     Text(viewModel.error?.localizedDescription ?? "Sorry there was an error")
                 } else if viewModel.response != nil {
-                    ScrollView {
-                        if let itinerary = viewModel.response?.itinerary {
-                            ForEach(itinerary, id: \.self) { day in
-                                DayItineraryView(dailyDetails: day)
+                    VStack {
+                        viewModel.unsplashImage != "" ?
+                        URLImage(url: URL(string: viewModel.unsplashImage?.urls.regular)!) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                        } :
+                        Image(systemName: "image_09.jpg")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxHeight: 300)
+                        ScrollView {
+                            if let itinerary = viewModel.response?.itinerary {
+                                ForEach(itinerary, id: \.self) { day in
+                                    DayItineraryView(dailyDetails: day)
+                                }
                             }
                         }
+                        .padding()
                     }
-                    .padding()
                 } else {
                     LoaderView()
                 }

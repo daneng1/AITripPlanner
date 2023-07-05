@@ -57,14 +57,14 @@ class OpenAIConnector: ObservableObject {
                                 "properties": [
                                     "day": [
                                         "type": "string",
-                                        "description": "the title of the day",
+                                        "description": "the title of the day (2-5 words)",
                                         "items": [
                                             "type": "string",
                                         ]
                                     ]  as [String : Any],
                                     "dayDescription": [
                                         "type": "string",
-                                        "description": "a brief description of the daily activites",
+                                        "description": "a brief description (10-15 words) of the daily activites",
                                         "items": [
                                             "type": "string",
                                         ]
@@ -85,7 +85,7 @@ class OpenAIConnector: ObservableObject {
                                                 ] as [String : Any],
                                                 "activityDescription": [
                                                     "type": "string",
-                                                    "description": "a detailed description of the specific activity suggested for the day",
+                                                    "description": "a detailed description (20-30 words) of the specific activity suggested for the day",
                                                     "items": [
                                                         "type": "string",
                                                     ],

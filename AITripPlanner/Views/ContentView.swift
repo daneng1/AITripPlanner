@@ -26,7 +26,7 @@ struct ContentView: View {
                     Spacer()
                     if !inputIsPresented {
                         Button {
-                            withAnimation(.spring(response: 0.1)) {
+                            withAnimation(.spring(response: 0.2)) {
                                 inputIsPresented.toggle()
                             }
                         } label: {
@@ -34,6 +34,7 @@ struct ContentView: View {
                                 .font(.headline)
                         }
                         .buttonStyle(CustomButtonStyle(color: "secondary2"))
+                        .padding(.bottom, 32)
                     } else {
                         inputView
                             .padding()
@@ -44,11 +45,12 @@ struct ContentView: View {
                             }
                     }
                 }
+                .edgesIgnoringSafeArea(.bottom)
             }
         }
         .onAppear {
             viewModel.selectImage()
-            viewModel.clearSearch()
+//            viewModel.clearSearch()
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text("Ooops, there was an issue"), message: Text("it looks like you may not have entered anything in one or more fields."))
@@ -106,6 +108,8 @@ extension ContentView {
             }
             .frame(maxWidth: .infinity, alignment: .center)
         }
+        .padding(.bottom, 32)
+//        .edgesIgnoringSafeArea(.bottom)
     }
 }
 

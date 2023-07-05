@@ -43,7 +43,7 @@ struct DayDetailsView: View {
 
 struct DayDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        let newItineraryItem = ItineraryItem(activity: "Rowing", activityDescription: "Lets go rowing around the whole puget sound", activityTips: "don't sink", link: "https://rowing.com")
+        let newItineraryItem = ItineraryItem(activity: "Rowing", activityDescription: "Lets go rowing around the whole puget sound", activityTips: "don't sink the boat because that would be really, really, really, really bad", link: "https://rowing.com")
         DayDetailsView(details: newItineraryItem)
     }
 }

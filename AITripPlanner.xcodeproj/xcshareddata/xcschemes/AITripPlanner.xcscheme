@@ -63,7 +63,7 @@
          <EnvironmentVariable
             key = "UNSPLASH_SECRETS_KEY"
             value = "$(UNSPLASH_SECRETS_KEY)"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>

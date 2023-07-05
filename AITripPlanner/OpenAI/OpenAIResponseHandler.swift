@@ -27,6 +27,7 @@ struct OpenAIResponseHandler {
         let decoder = JSONDecoder()
         do {
             let response = try decoder.decode(OpenAIFunctionResponse.self, from: responseData)
+            print("this is the response, \(response)")
             return response
         } catch {
             print("Error deserializing JSON: \(error)")
