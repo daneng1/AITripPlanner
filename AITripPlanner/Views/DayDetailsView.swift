@@ -26,6 +26,7 @@ struct DayDetailsView: View {
                 Text(details.activityTips)
                     .font(.subheadline)
                     .foregroundColor(.black)
+                    .frame(maxHeight: .infinity)
             }
             .padding(.top, 4)
             if let link = details.link,

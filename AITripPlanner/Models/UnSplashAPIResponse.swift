@@ -18,7 +18,8 @@ struct Results: Codable, Hashable {
     let urls: Urls
     
     enum CodingKeys: String, CodingKey {
-        case id, urls, altDescription
+        case id, urls
+        case altDescription = "alt_description"
     }
     
     static func == (lhs: Results, rhs: Results) -> Bool {

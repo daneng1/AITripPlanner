@@ -71,14 +71,9 @@ class PlannerViewModel: ObservableObject {
 //    }
 
     func fetchPhoto(completion: @escaping (Result<UnSplashAPIResponse, Error>) -> Void) {
-        if let environment = ProcessInfo.processInfo.environment as? [String: String] {
-            for (key, value) in environment {
-                print("Environment Variable - Key: \(key), Value: \(value)")
-            }
-        }
         
         let locationNoSpaces = location.replacingOccurrences(of: " ", with: "%20")
-        let urlString = URL(string: "https://api.unsplash.com/search/photos?query=\(locationNoSpaces)&orientation=squarish&per_page=1")
+        let urlString = URL(string: "https://api.unsplash.com/search/photos?query=\(locationNoSpaces)%20tourism&orientation=squarish&per_page=1")
         var request = URLRequest(url: urlString!)
         if let unsplashAPIKey = getAPIKey(for: "UNSPLASH_ACCESS_KEY") {
             request.httpMethod = "GET"

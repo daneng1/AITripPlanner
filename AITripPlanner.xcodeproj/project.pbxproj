@@ -21,6 +21,7 @@
 		49A9AA052A4E5F38004C8650 /* DayItineraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9AA042A4E5F38004C8650 /* DayItineraryView.swift */; };
 		49A9AA072A4E6D54004C8650 /* DayDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9AA062A4E6D54004C8650 /* DayDetailsView.swift */; };
 		49A9AA0A2A4F3392004C8650 /* UnsplashPhotoPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 49A9AA092A4F3392004C8650 /* UnsplashPhotoPicker */; };
+		49D480422A56102E0027B4FC /* URLImageModule in Frameworks */ = {isa = PBXBuildFile; productRef = 49D480412A56102E0027B4FC /* URLImageModule */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49D480422A56102E0027B4FC /* URLImageModule in Frameworks */,
 				49A9AA0A2A4F3392004C8650 /* UnsplashPhotoPicker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,6 +152,7 @@
 			name = AITripPlanner;
 			packageProductDependencies = (
 				49A9AA092A4F3392004C8650 /* UnsplashPhotoPicker */,
+				49D480412A56102E0027B4FC /* URLImageModule */,
 			);
 			productName = AITripPlanner;
 			productReference = 4901AB122A42071000281A28 /* AITripPlanner.app */;
@@ -181,6 +184,7 @@
 			mainGroup = 4901AB092A42071000281A28;
 			packageReferences = (
 				49A9AA082A4F3392004C8650 /* XCRemoteSwiftPackageReference "unsplash-photopicker-ios" */,
+				49D480402A56102E0027B4FC /* XCRemoteSwiftPackageReference "url-image-module" */,
 			);
 			productRefGroup = 4901AB132A42071000281A28 /* Products */;
 			projectDirPath = "";
@@ -431,6 +435,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		49D480402A56102E0027B4FC /* XCRemoteSwiftPackageReference "url-image-module" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftui-packages/url-image-module.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -438,6 +450,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 49A9AA082A4F3392004C8650 /* XCRemoteSwiftPackageReference "unsplash-photopicker-ios" */;
 			productName = UnsplashPhotoPicker;
+		};
+		49D480412A56102E0027B4FC /* URLImageModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49D480402A56102E0027B4FC /* XCRemoteSwiftPackageReference "url-image-module" */;
+			productName = URLImageModule;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
