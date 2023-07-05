@@ -128,6 +128,8 @@ struct CustomButtonStyle: ButtonStyle {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(PlannerViewModel(unsplashImage: nil, error: nil, response: nil))
+            .environmentObject(OpenAIConnector())
     }
 }
 
