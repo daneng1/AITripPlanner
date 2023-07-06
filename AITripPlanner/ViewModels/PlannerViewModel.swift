@@ -31,14 +31,14 @@ class PlannerViewModel: ObservableObject {
     
     func buildQuery() {
         self.loading = true
-        let message = "Can you give me an itinerary for a trip to \(location), that lasts \(numberOfDays) in \(timeOfYear) and I'd like to see or experience \(sightsToSee)? Please provide links to any sights you recommend, consider the local holidays, crowds and the best time of the day to visit each site. Do not include specific dates for travel, just the time of year requested."
+        let message = "Please give me an itinerary for a trip to \(location), that lasts \(numberOfDays) in \(timeOfYear) and I'd like to see or experience \(sightsToSee)? Please provide links to any sights you recommend, consider the local holidays, crowds and the best time of the day to visit each site. Do not include specific dates for travel, just the time of year requested."
         connector.logMessage(message, messageUserType: .user)
+        
         fetchPhoto { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
                     self.unsplashImage = response.results[0]
-                    print("First photo ID: \(response)")
                 case .failure(let error):
                     print("Unsplash Error: \(error)")
                 }
@@ -60,15 +60,6 @@ class PlannerViewModel: ObservableObject {
     func getAPIKey(for key: String) -> String? {
         return ProcessInfo.processInfo.environment[key]
     }
-    
-//    func clearSearch() {
-//        sightsToSee = ""
-//        timeOfYear = ""
-//        numberOfDays = ""
-//        response = nil
-//        error = nil
-//        location = ""
-//    }
 
     func fetchPhoto(completion: @escaping (Result<UnSplashAPIResponse, Error>) -> Void) {
         
@@ -87,7 +78,7 @@ class PlannerViewModel: ObservableObject {
                 return
             }
             guard let data = data else {
-                print("there was an issue with the rsponse from Unsplash")
+                print("there was an issue with the response from Unsplash")
                 return
             }
             do {

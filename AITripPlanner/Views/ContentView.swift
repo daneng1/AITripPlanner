@@ -25,6 +25,25 @@ struct ContentView: View {
                 VStack {
                     Spacer()
                     if !inputIsPresented {
+                        ZStack {
+                            Rectangle()
+                                .frame(width: 180, height: 220)
+                                .foregroundColor(Color.pink)
+                                .cornerRadius(20)
+                            VStack {
+                                Image("TRAVaiL_logo")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(maxWidth: 150)
+                                    .padding(.top, 10)
+                                Image("TRAVaiL_font")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(maxWidth: 150)
+                            }
+                        }
+
+                        Spacer()
                         Button {
                             withAnimation(.spring(response: 0.2)) {
                                 inputIsPresented.toggle()
@@ -33,7 +52,7 @@ struct ContentView: View {
                             Text("Plan my trip!")
                                 .font(.headline)
                         }
-                        .buttonStyle(CustomButtonStyle(color: "secondary2"))
+                        .buttonStyle(CustomButtonStyle(color: Color.pink))
                         .padding(.bottom, 32)
                     } else {
                         inputView
@@ -50,7 +69,6 @@ struct ContentView: View {
         }
         .onAppear {
             viewModel.selectImage()
-//            viewModel.clearSearch()
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text("Ooops, there was an issue"), message: Text("it looks like you may not have entered anything in one or more fields."))
@@ -109,18 +127,17 @@ extension ContentView {
             .frame(maxWidth: .infinity, alignment: .center)
         }
         .padding(.bottom, 32)
-//        .edgesIgnoringSafeArea(.bottom)
     }
 }
 
 struct CustomButtonStyle: ButtonStyle {
-    var color: String = "primary"
+    var color = Color.pink
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(height: 45)
             .padding(.horizontal, 45)
             .foregroundColor(.white)
-            .background(configuration.isPressed ? Color(color).opacity(0.5) : Color(color).opacity(0.8))
+            .background(configuration.isPressed ? color.opacity(0.5) : color.opacity(0.8))
             .cornerRadius(25)
     }
 }
