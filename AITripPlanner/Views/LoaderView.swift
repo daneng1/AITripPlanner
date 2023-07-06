@@ -14,12 +14,12 @@ struct LoaderView: View {
         VStack {
             ZStack {
                 Circle()
-                    .fill(Color.blue)
+                    .fill(.yellow)
                     .frame(width: 100, height: 100)
                 Image(systemName: "globe.americas.fill")
                     .resizable()
                     .frame(width: 100, height: 100)
-                    .foregroundColor(Color("Green"))
+                    .foregroundColor(.pink)
                 plane(angle: -30, horizontalOffset: -55, verticalOffset: 20, delayTimer: 2.5)
 
             }

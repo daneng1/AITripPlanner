@@ -43,6 +43,7 @@ struct DayItineraryView: View {
                         .rotationEffect(detailsVisible ? .degrees(-180) : .degrees(0))
                 }
             }
+            .cornerRadius(10)
             if detailsVisible {
                 ScrollView {
                     ForEach(dailyDetails.itineraryItems, id: \.self) { detail in

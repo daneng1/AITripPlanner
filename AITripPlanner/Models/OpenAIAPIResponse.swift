@@ -43,7 +43,7 @@ struct FunctionCall: Codable {
     }
 }
 
-struct OpenAIFunctionResponse: Codable {
+struct OpenAIFunctionResponse: Codable, Equatable {
     let id: String
     let location: String
     let itinerary: [Day]

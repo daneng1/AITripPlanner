@@ -13,6 +13,10 @@
 		4901AB1D2A42071100281A28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4901AB1C2A42071100281A28 /* Preview Assets.xcassets */; };
 		4901AB252A421D2700281A28 /* OpenAIResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901AB242A421D2700281A28 /* OpenAIResponseHandler.swift */; };
 		4901AB272A421D4F00281A28 /* OpenAIConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901AB262A421D4F00281A28 /* OpenAIConnector.swift */; };
+		49870C8A2A571616008171D8 /* AppLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49870C892A571616008171D8 /* AppLogoView.swift */; };
+		49870C922A575110008171D8 /* AITripPlannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49870C912A575110008171D8 /* AITripPlannerUITests.swift */; };
+		49870C942A575110008171D8 /* AITripPlannerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49870C932A575110008171D8 /* AITripPlannerUITestsLaunchTests.swift */; };
+		49870CA12A575123008171D8 /* AITripPlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49870CA02A575123008171D8 /* AITripPlannerTests.swift */; };
 		49A9A9F62A44AA42004C8650 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9A9F52A44AA42004C8650 /* LoaderView.swift */; };
 		49A9A9F82A45F7DC004C8650 /* TripResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9A9F72A45F7DC004C8650 /* TripResultsView.swift */; };
 		49A9A9FA2A460A81004C8650 /* PlannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9A9F92A460A81004C8650 /* PlannerViewModel.swift */; };
@@ -24,6 +28,23 @@
 		49D480422A56102E0027B4FC /* URLImageModule in Frameworks */ = {isa = PBXBuildFile; productRef = 49D480412A56102E0027B4FC /* URLImageModule */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		49870C952A575110008171D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4901AB0A2A42071000281A28 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4901AB112A42071000281A28;
+			remoteInfo = AITripPlanner;
+		};
+		49870CA22A575123008171D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4901AB0A2A42071000281A28 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4901AB112A42071000281A28;
+			remoteInfo = AITripPlanner;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		4901AB122A42071000281A28 /* AITripPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AITripPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4901AB152A42071000281A28 /* AITripPlannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITripPlannerApp.swift; sourceTree = "<group>"; };
@@ -33,6 +54,12 @@
 		4901AB242A421D2700281A28 /* OpenAIResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIResponseHandler.swift; sourceTree = "<group>"; };
 		4901AB262A421D4F00281A28 /* OpenAIConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIConnector.swift; sourceTree = "<group>"; };
 		4901AB282A43490B00281A28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		49870C892A571616008171D8 /* AppLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogoView.swift; sourceTree = "<group>"; };
+		49870C8F2A575110008171D8 /* AITripPlannerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AITripPlannerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		49870C912A575110008171D8 /* AITripPlannerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITripPlannerUITests.swift; sourceTree = "<group>"; };
+		49870C932A575110008171D8 /* AITripPlannerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITripPlannerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		49870C9E2A575123008171D8 /* AITripPlannerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AITripPlannerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		49870CA02A575123008171D8 /* AITripPlannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITripPlannerTests.swift; sourceTree = "<group>"; };
 		49A9A9F42A44969A004C8650 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		49A9A9F52A44AA42004C8650 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		49A9A9F72A45F7DC004C8650 /* TripResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripResultsView.swift; sourceTree = "<group>"; };
@@ -53,6 +80,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		49870C8C2A575110008171D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49870C9B2A575123008171D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -61,6 +102,8 @@
 			children = (
 				49A9A9F42A44969A004C8650 /* Config.xcconfig */,
 				4901AB142A42071000281A28 /* AITripPlanner */,
+				49870C902A575110008171D8 /* AITripPlannerUITests */,
+				49870C9F2A575123008171D8 /* AITripPlannerTests */,
 				4901AB132A42071000281A28 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,6 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				4901AB122A42071000281A28 /* AITripPlanner.app */,
+				49870C8F2A575110008171D8 /* AITripPlannerUITests.xctest */,
+				49870C9E2A575123008171D8 /* AITripPlannerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -104,10 +149,28 @@
 			path = OpenAI;
 			sourceTree = "<group>";
 		};
+		49870C902A575110008171D8 /* AITripPlannerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				49870C912A575110008171D8 /* AITripPlannerUITests.swift */,
+				49870C932A575110008171D8 /* AITripPlannerUITestsLaunchTests.swift */,
+			);
+			path = AITripPlannerUITests;
+			sourceTree = "<group>";
+		};
+		49870C9F2A575123008171D8 /* AITripPlannerTests */ = {
+			isa = PBXGroup;
+			children = (
+				49870CA02A575123008171D8 /* AITripPlannerTests.swift */,
+			);
+			path = AITripPlannerTests;
+			sourceTree = "<group>";
+		};
 		49A9A9FB2A4A10BC004C8650 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				4901AB152A42071000281A28 /* AITripPlannerApp.swift */,
+				49870C892A571616008171D8 /* AppLogoView.swift */,
 				49A9AA042A4E5F38004C8650 /* DayItineraryView.swift */,
 				49A9AA062A4E6D54004C8650 /* DayDetailsView.swift */,
 				4901AB172A42071000281A28 /* ContentView.swift */,
@@ -158,6 +221,42 @@
 			productReference = 4901AB122A42071000281A28 /* AITripPlanner.app */;
 			productType = "com.apple.product-type.application";
 		};
+		49870C8E2A575110008171D8 /* AITripPlannerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49870C972A575110008171D8 /* Build configuration list for PBXNativeTarget "AITripPlannerUITests" */;
+			buildPhases = (
+				49870C8B2A575110008171D8 /* Sources */,
+				49870C8C2A575110008171D8 /* Frameworks */,
+				49870C8D2A575110008171D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				49870C962A575110008171D8 /* PBXTargetDependency */,
+			);
+			name = AITripPlannerUITests;
+			productName = AITripPlannerUITests;
+			productReference = 49870C8F2A575110008171D8 /* AITripPlannerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		49870C9D2A575123008171D8 /* AITripPlannerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49870CA42A575123008171D8 /* Build configuration list for PBXNativeTarget "AITripPlannerTests" */;
+			buildPhases = (
+				49870C9A2A575123008171D8 /* Sources */,
+				49870C9B2A575123008171D8 /* Frameworks */,
+				49870C9C2A575123008171D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				49870CA32A575123008171D8 /* PBXTargetDependency */,
+			);
+			name = AITripPlannerTests;
+			productName = AITripPlannerTests;
+			productReference = 49870C9E2A575123008171D8 /* AITripPlannerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -170,6 +269,14 @@
 				TargetAttributes = {
 					4901AB112A42071000281A28 = {
 						CreatedOnToolsVersion = 14.3.1;
+					};
+					49870C8E2A575110008171D8 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 4901AB112A42071000281A28;
+					};
+					49870C9D2A575123008171D8 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 4901AB112A42071000281A28;
 					};
 				};
 			};
@@ -191,6 +298,8 @@
 			projectRoot = "";
 			targets = (
 				4901AB112A42071000281A28 /* AITripPlanner */,
+				49870C8E2A575110008171D8 /* AITripPlannerUITests */,
+				49870C9D2A575123008171D8 /* AITripPlannerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -202,6 +311,20 @@
 			files = (
 				4901AB1D2A42071100281A28 /* Preview Assets.xcassets in Resources */,
 				4901AB1A2A42071100281A28 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49870C8D2A575110008171D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49870C9C2A575123008171D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +340,7 @@
 				49A9AA032A4DF02C004C8650 /* OpenAIAPIResponse.swift in Sources */,
 				49A9A9FA2A460A81004C8650 /* PlannerViewModel.swift in Sources */,
 				4901AB162A42071000281A28 /* AITripPlannerApp.swift in Sources */,
+				49870C8A2A571616008171D8 /* AppLogoView.swift in Sources */,
 				49A9AA052A4E5F38004C8650 /* DayItineraryView.swift in Sources */,
 				4901AB272A421D4F00281A28 /* OpenAIConnector.swift in Sources */,
 				49A9A9F82A45F7DC004C8650 /* TripResultsView.swift in Sources */,
@@ -226,7 +350,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		49870C8B2A575110008171D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49870C942A575110008171D8 /* AITripPlannerUITestsLaunchTests.swift in Sources */,
+				49870C922A575110008171D8 /* AITripPlannerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49870C9A2A575123008171D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49870CA12A575123008171D8 /* AITripPlannerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		49870C962A575110008171D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4901AB112A42071000281A28 /* AITripPlanner */;
+			targetProxy = 49870C952A575110008171D8 /* PBXContainerItemProxy */;
+		};
+		49870CA32A575123008171D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4901AB112A42071000281A28 /* AITripPlanner */;
+			targetProxy = 49870CA22A575123008171D8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		4901AB1E2A42071100281A28 /* Debug */ = {
@@ -403,6 +557,72 @@
 			};
 			name = Release;
 		};
+		49870C982A575110008171D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.danengel.AITripPlannerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AITripPlanner;
+			};
+			name = Debug;
+		};
+		49870C992A575110008171D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.danengel.AITripPlannerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AITripPlanner;
+			};
+			name = Release;
+		};
+		49870CA52A575123008171D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.danengel.AITripPlannerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AITripPlanner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AITripPlanner";
+			};
+			name = Debug;
+		};
+		49870CA62A575123008171D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.danengel.AITripPlannerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AITripPlanner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AITripPlanner";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -420,6 +640,24 @@
 			buildConfigurations = (
 				4901AB212A42071100281A28 /* Debug */,
 				4901AB222A42071100281A28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		49870C972A575110008171D8 /* Build configuration list for PBXNativeTarget "AITripPlannerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49870C982A575110008171D8 /* Debug */,
+				49870C992A575110008171D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		49870CA42A575123008171D8 /* Build configuration list for PBXNativeTarget "AITripPlannerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49870CA52A575123008171D8 /* Debug */,
+				49870CA62A575123008171D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

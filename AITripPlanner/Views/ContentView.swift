@@ -25,24 +25,7 @@ struct ContentView: View {
                 VStack {
                     Spacer()
                     if !inputIsPresented {
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 180, height: 220)
-                                .foregroundColor(Color.pink)
-                                .cornerRadius(20)
-                            VStack {
-                                Image("TRAVaiL_logo")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(maxWidth: 150)
-                                    .padding(.top, 10)
-                                Image("TRAVaiL_font")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(maxWidth: 150)
-                            }
-                        }
-
+                        AppLogoView()
                         Spacer()
                         Button {
                             withAnimation(.spring(response: 0.2)) {
@@ -137,7 +120,7 @@ struct CustomButtonStyle: ButtonStyle {
             .frame(height: 45)
             .padding(.horizontal, 45)
             .foregroundColor(.white)
-            .background(configuration.isPressed ? color.opacity(0.5) : color.opacity(0.8))
+            .background(configuration.isPressed ? color.opacity(0.5) : color.opacity(1.0))
             .cornerRadius(25)
     }
 }
