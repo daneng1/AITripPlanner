@@ -17,6 +17,8 @@
 		49870C922A575110008171D8 /* AITripPlannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49870C912A575110008171D8 /* AITripPlannerUITests.swift */; };
 		49870C942A575110008171D8 /* AITripPlannerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49870C932A575110008171D8 /* AITripPlannerUITestsLaunchTests.swift */; };
 		49870CA12A575123008171D8 /* AITripPlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49870CA02A575123008171D8 /* AITripPlannerTests.swift */; };
+		49870CA92A575E7E008171D8 /* APIResponseFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49870CA82A575E7E008171D8 /* APIResponseFixture.swift */; };
+		49870CAB2A5877E1008171D8 /* OpenAIFunctionParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49870CAA2A5877E1008171D8 /* OpenAIFunctionParams.swift */; };
 		49A9A9F62A44AA42004C8650 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9A9F52A44AA42004C8650 /* LoaderView.swift */; };
 		49A9A9F82A45F7DC004C8650 /* TripResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9A9F72A45F7DC004C8650 /* TripResultsView.swift */; };
 		49A9A9FA2A460A81004C8650 /* PlannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9A9F92A460A81004C8650 /* PlannerViewModel.swift */; };
@@ -60,6 +62,8 @@
 		49870C932A575110008171D8 /* AITripPlannerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITripPlannerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		49870C9E2A575123008171D8 /* AITripPlannerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AITripPlannerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49870CA02A575123008171D8 /* AITripPlannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITripPlannerTests.swift; sourceTree = "<group>"; };
+		49870CA82A575E7E008171D8 /* APIResponseFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponseFixture.swift; sourceTree = "<group>"; };
+		49870CAA2A5877E1008171D8 /* OpenAIFunctionParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIFunctionParams.swift; sourceTree = "<group>"; };
 		49A9A9F42A44969A004C8650 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		49A9A9F52A44AA42004C8650 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		49A9A9F72A45F7DC004C8650 /* TripResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripResultsView.swift; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 		4901AB142A42071000281A28 /* AITripPlanner */ = {
 			isa = PBXGroup;
 			children = (
+				49870CA72A575E56008171D8 /* Data */,
 				49A9A9FF2A4B5045004C8650 /* Models */,
 				49A9A9FC2A4A10CA004C8650 /* ViewModels */,
 				49A9A9FB2A4A10BC004C8650 /* Views */,
@@ -164,6 +169,15 @@
 				49870CA02A575123008171D8 /* AITripPlannerTests.swift */,
 			);
 			path = AITripPlannerTests;
+			sourceTree = "<group>";
+		};
+		49870CA72A575E56008171D8 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				49870CA82A575E7E008171D8 /* APIResponseFixture.swift */,
+				49870CAA2A5877E1008171D8 /* OpenAIFunctionParams.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		49A9A9FB2A4A10BC004C8650 /* Views */ = {
@@ -343,8 +357,10 @@
 				49870C8A2A571616008171D8 /* AppLogoView.swift in Sources */,
 				49A9AA052A4E5F38004C8650 /* DayItineraryView.swift in Sources */,
 				4901AB272A421D4F00281A28 /* OpenAIConnector.swift in Sources */,
+				49870CA92A575E7E008171D8 /* APIResponseFixture.swift in Sources */,
 				49A9A9F82A45F7DC004C8650 /* TripResultsView.swift in Sources */,
 				49A9AA012A4B50A1004C8650 /* UnSplashAPIResponse.swift in Sources */,
+				49870CAB2A5877E1008171D8 /* OpenAIFunctionParams.swift in Sources */,
 				49A9A9F62A44AA42004C8650 /* LoaderView.swift in Sources */,
 				49A9AA072A4E6D54004C8650 /* DayDetailsView.swift in Sources */,
 			);

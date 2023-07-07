@@ -64,7 +64,7 @@ class PlannerViewModel: ObservableObject {
     func fetchPhoto(completion: @escaping (Result<UnSplashAPIResponse, Error>) -> Void) {
         
         let locationNoSpaces = location.replacingOccurrences(of: " ", with: "%20")
-        let urlString = URL(string: "https://api.unsplash.com/search/photos?query=\(locationNoSpaces)%20tourism&orientation=squarish&per_page=1")
+        let urlString = URL(string: "https://api.unsplash.com/search/photos?query=\(locationNoSpaces)%20popular%20tourist%20destination&orientation=landscape&per_page=1")
         var request = URLRequest(url: urlString!)
         if let unsplashAPIKey = getAPIKey(for: "UNSPLASH_ACCESS_KEY") {
             request.httpMethod = "GET"

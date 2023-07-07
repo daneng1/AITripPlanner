@@ -22,14 +22,14 @@ struct DayItineraryView: View {
                     Text(dailyDetails.day)
                         .font(.title3)
                         .fontWeight(.bold)
-                        .foregroundColor(Color("secondary1"))
+                        .foregroundColor(.white)
                         .padding(.leading, 40)
                     Text(" - ")
                         .font(.title3)
-                        .foregroundColor(Color("secondary1"))
+                        .foregroundColor(.white)
                     Text(dailyDetails.dayDescription)
                         .font(.custom("", size: 12))
-                        .foregroundColor(Color("secondary1"))
+                        .foregroundColor(.white)
                     Spacer()
                 }
                 .frame(maxWidth: .infinity)
@@ -38,7 +38,7 @@ struct DayItineraryView: View {
                 .overlay(alignment: .leading) {
                     Image(systemName: "arrow.down")
                         .font(.headline)
-                        .foregroundColor(Color("secondary1"))
+                        .foregroundColor(.white)
                         .padding()
                         .rotationEffect(detailsVisible ? .degrees(-180) : .degrees(0))
                 }

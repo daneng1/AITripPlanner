@@ -10,22 +10,31 @@ import SwiftUI
 struct DayDetailsView: View {
     var details: ItineraryItem
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 4) {
             Text(details.activity)
                 .font(.subheadline)
                 .fontWeight(.bold)
-                .foregroundColor(.black)
             Text(details.activityDescription)
                 .font(.subheadline)
-                .foregroundColor(.black)
             VStack(alignment: .leading) {
-                Text("Hot Tip")
-                    .font(.body)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color("primary"))
+                ZStack {
+                    Rectangle()
+                        .frame(width: 80, height: 25)
+                        .foregroundColor(Color("secondary2"))
+                        .cornerRadius(15)
+                        .offset(x: 2, y:2)
+                    Text("Hot Tip")
+                        .font(.body)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color("secondary1"))
+                        .frame(width: 80, height: 25)
+                        .background(Color("primary"))
+                        .cornerRadius(15)
+                }
+                .padding(.top, 8)
+                .padding(.bottom, 4)
                 Text(details.activityTips)
                     .font(.subheadline)
-                    .foregroundColor(.black)
                     .frame(maxHeight: .infinity)
             }
             .padding(.top, 4)
@@ -35,8 +44,10 @@ struct DayDetailsView: View {
                     Text("Learn more")
                 }
             }
-            Divider()
         }
+        .padding()
+        .background(.white)
+        .cornerRadius(10)
         .frame(maxWidth: .infinity)
         .padding(.vertical, 8)
     }

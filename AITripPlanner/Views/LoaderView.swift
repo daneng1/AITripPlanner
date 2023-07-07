@@ -14,19 +14,25 @@ struct LoaderView: View {
         VStack {
             ZStack {
                 Circle()
-                    .fill(.yellow)
+                    .fill(Color("primary"))
                     .frame(width: 100, height: 100)
                 Image(systemName: "globe.americas.fill")
                     .resizable()
                     .frame(width: 100, height: 100)
-                    .foregroundColor(.pink)
+                    .foregroundColor(Color("secondary1"))
                 plane(angle: -30, horizontalOffset: -55, verticalOffset: 20, delayTimer: 2.5)
 
             }
             .padding(.bottom, 32)
-            Text("Your next big trip is being created right now!")
+            Text("Okay, we're on it!")
                 .font(.headline)
                 .foregroundColor(Color("secondary2"))
+                .padding(.bottom, 0)
+            Text("This could take a minute, we're gathering all the latest travel info to build your trip.")
+                .font(.subheadline)
+                .foregroundColor(Color("secondary2"))
+                .padding(.top, 4)
+                .padding(.horizontal, 24)
         }
     }
 }
@@ -55,7 +61,7 @@ struct plane: View {
         Image(systemName: "airplane")
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .foregroundColor(Color("primary"))
+            .foregroundColor(Color("secondary2"))
             .opacity(opacity)
             .frame(width: 50, height: 50)
             .scaleEffect(scale)

@@ -11,13 +11,13 @@ struct AppLogoView: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .frame(width: 180, height: 180)
+                .frame(width: 120, height: 120)
                 .foregroundColor(Color.pink)
                 .cornerRadius(20)
             Image("TRAVaiL_logo")
                 .resizable()
                 .scaledToFit()
-                .frame(maxWidth: 150)
+                .frame(maxWidth: 110)
         }
     }
 }
