@@ -10,14 +10,11 @@ import SwiftUI
 struct AppLogoView: View {
     var body: some View {
         ZStack {
-            Rectangle()
-                .frame(width: 120, height: 120)
-                .foregroundColor(Color.pink)
-                .cornerRadius(20)
-            Image("TRAVaiL_logo")
+            Image("T")
                 .resizable()
                 .scaledToFit()
                 .frame(maxWidth: 110)
+                .cornerRadius(20)
         }
     }
 }
