@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AppLogoView: View {
+    
     var body: some View {
         ZStack {
             Image("T")
@@ -15,6 +16,7 @@ struct AppLogoView: View {
                 .scaledToFit()
                 .frame(maxWidth: 110)
                 .cornerRadius(20)
+                .transition(.opacity)
         }
     }
 }

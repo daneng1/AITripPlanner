@@ -41,13 +41,15 @@ struct TripResultsView: View {
                                 .ignoresSafeArea(.all)
                                 .accessibility(label: Text("An image of the Eiffel Tower"))
                         }
-                        ScrollView {
+                        VStack {
                             Text("Here's your itinerary for \(viewModel.location)!")
                                 .font(.headline)
                                 .foregroundColor(Color("secondary2"))
-                            if let itinerary = viewModel.response?.itinerary {
-                                ForEach(itinerary, id: \.self) { day in
-                                    DayItineraryView(dailyDetails: day)
+                            ScrollView {
+                                if let itinerary = viewModel.response?.itinerary {
+                                    ForEach(itinerary, id: \.self) { day in
+                                        DayItineraryView(dailyDetails: day)
+                                    }
                                 }
                             }
                         }
@@ -60,6 +62,9 @@ struct TripResultsView: View {
         }
         .onAppear {
             viewModel.buildQuery()
+        }
+        .onDisappear {
+            viewModel.resetData()
         }
     }
 }

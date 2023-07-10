@@ -115,4 +115,10 @@ class PlannerViewModel: ObservableObject {
         let number = Int.random(in: 1...8)
         selectedImage = "image_0\(number)"
     }
+    
+    func resetData() {
+        response = nil
+        error = nil
+        unsplashImage = nil
+    }
 }

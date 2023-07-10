@@ -6,13 +6,15 @@
 //
 
 import SwiftUI
-
+import Combine
 
 struct ContentView: View {
     @EnvironmentObject var viewModel: PlannerViewModel
     @EnvironmentObject var connector: OpenAIConnector
-    @State var inputIsPresented = false
-    @State var showDetailView: Bool = false
+    @State private var inputIsPresented = false
+    @State private var showDetailView: Bool = false
+    @State private var keyboardHeight: CGFloat = 0
+    @State private var cancellableSet: Set<AnyCancellable> = []
     
     var body: some View {
         NavigationStack {
@@ -48,11 +50,31 @@ struct ContentView: View {
                             }
                     }
                 }
+                .animation(.easeInOut(duration: 0.2), value: keyboardHeight)
+                .padding(.bottom, keyboardHeight)
                 .edgesIgnoringSafeArea(.bottom)
             }
         }
         .onAppear {
             viewModel.selectImage()
+            NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)
+                .map { $0.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! CGRect }
+                .map { $0.height }
+                .sink { height in
+                    DispatchQueue.main.async {
+                        self.keyboardHeight = height
+                        }
+                    }
+                .store(in: &cancellableSet)
+
+            NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)
+                .map { _ in CGFloat(0) }
+                .sink { height in
+                    DispatchQueue.main.async {
+                        self.keyboardHeight = height
+                        }
+                    }
+                .store(in: &cancellableSet)
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text("Ooops, there was an issue"), message: Text("it looks like you may not have entered anything in one or more fields."))
@@ -62,12 +84,11 @@ struct ContentView: View {
 
 extension ContentView {
     var inputView: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 2) {
             Text("Where do you want to go?")
                 .font(.title3)
                 .fontWeight(.bold)
                 .foregroundColor(Color.black)
-                .padding(.top, 10)
             TextField("", text: $viewModel.location)
                 .padding(8)
                 .background(RoundedRectangle(cornerRadius: 10).stroke(Color.black, lineWidth: 0.5))
@@ -83,6 +104,7 @@ extension ContentView {
                 .background(RoundedRectangle(cornerRadius: 10).stroke(Color.black, lineWidth: 0.5))
                 .background(.white)
                 .cornerRadius(10)
+                .padding(0)
             Text("When would you like to go?")
                 .font(.title3)
                 .fontWeight(.bold)
@@ -114,9 +136,10 @@ extension ContentView {
                 }
                 .buttonStyle(CustomButtonStyle())
             }
+            .padding(.top, 8)
             .frame(maxWidth: .infinity, alignment: .center)
         }
-        .padding(.bottom, 32)
+        .padding(.bottom, 16)
     }
 }
 
