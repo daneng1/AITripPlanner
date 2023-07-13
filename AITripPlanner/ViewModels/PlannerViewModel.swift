@@ -68,7 +68,6 @@ class PlannerViewModel: ObservableObject {
         var request = URLRequest(url: urlString!)
         travailAPI.fetchAPIKeys { (_, unsplashKey, error) in
             if let error = error {
-                print("there was an error fetching upslash api key, \(error)")
                 completion(.failure(error))
             } else if let unsplashKey = unsplashKey {
                 request.httpMethod = "GET"

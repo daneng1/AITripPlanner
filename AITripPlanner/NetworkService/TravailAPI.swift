@@ -24,7 +24,6 @@ class TravailAPI {
             
             do {
                 if let jsonObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: String] {
-                    print("jsonObject, \(jsonObject)")
                     let openAIKey = jsonObject["openAIKey"]
                     let unsplashKey = jsonObject["unsplashKey"]
                     completion(openAIKey, unsplashKey, nil)

@@ -29,18 +29,18 @@ struct OpenAIFunctionParams {
                             "description": "the suggested itinerary",
                             "items": [
                                 "type": "object",
-                                "description": "the day and the itinterary items for each day, do not include specific dates",
+                                "description": "the day and the itinterary items for each day, NEVER include specific dates",
                                 "properties": [
                                     "day": [
                                         "type": "string",
-                                        "description": "the title of the day, eg 'Day 1'",
+                                        "description": "the title of the day. This should always be formatted as 'Day 1', 'Day 2', etc.",
                                         "items": [
                                             "type": "string",
                                         ]
                                     ]  as [String : Any],
                                     "dayDescription": [
                                         "type": "string",
-                                        "description": "a brief description (3-5 words max length) of the daily activites",
+                                        "description": "This should alsways be a brief description (3-5 words max length) of the daily activites, like a newspaper headline.",
                                         "items": [
                                             "type": "string",
                                         ]
@@ -61,14 +61,14 @@ struct OpenAIFunctionParams {
                                                 ] as [String : Any],
                                                 "activityDescription": [
                                                     "type": "string",
-                                                    "description": "a detailed description (20 words minimum length, 30 words max length) of the specific activity suggested for the day",
+                                                    "description": "a detailed description (30 words minimum length, 100 words max length) of the specific activity suggested for the day. This can be verbose and should be an exciting desctiption of the activity.",
                                                     "items": [
                                                         "type": "string",
                                                     ],
                                                 ] as [String : Any],
                                                 "activityTips": [
                                                     "type": "string",
-                                                    "description": "any specific travel tips associted with the specific activity suggested for the day, 10-15 words max length. This should feel like the user is getting inside tips from a local",
+                                                    "description": "any specific travel tips associted with the specific activity suggested for the day, 10-15 words max length. The tone should sound like the user is getting insider tips from a local",
                                                     "items": [
                                                         "type": "string",
                                                     ],
