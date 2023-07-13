@@ -50,7 +50,7 @@ struct ContentView: View {
                             }
                     }
                 }
-                .animation(.easeInOut(duration: 0.2), value: keyboardHeight)
+                .animation(.easeInOut, value: keyboardHeight)
                 .padding(.bottom, keyboardHeight)
                 .edgesIgnoringSafeArea(.bottom)
             }

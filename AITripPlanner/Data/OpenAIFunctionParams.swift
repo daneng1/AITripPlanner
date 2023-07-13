@@ -61,14 +61,14 @@ struct OpenAIFunctionParams {
                                                 ] as [String : Any],
                                                 "activityDescription": [
                                                     "type": "string",
-                                                    "description": "a detailed description (20-30 words max length) of the specific activity suggested for the day",
+                                                    "description": "a detailed description (20 words minimum length, 30 words max length) of the specific activity suggested for the day",
                                                     "items": [
                                                         "type": "string",
                                                     ],
                                                 ] as [String : Any],
                                                 "activityTips": [
                                                     "type": "string",
-                                                    "description": "any specific travel tips associted with the specific activity suggested for the day, 10-15 words max length",
+                                                    "description": "any specific travel tips associted with the specific activity suggested for the day, 10-15 words max length. This should feel like the user is getting inside tips from a local",
                                                     "items": [
                                                         "type": "string",
                                                     ],

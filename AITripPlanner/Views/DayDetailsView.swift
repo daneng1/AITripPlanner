@@ -2,7 +2,7 @@
 //  DayDetailsView.swift
 //  AITripPlanner
 //
-//  Created by Dan and Beth Engel on 6/29/23.
+//  Created by Dan Engel on 6/29/23.
 //
 
 import SwiftUI
@@ -45,10 +45,10 @@ struct DayDetailsView: View {
                 }
             }
         }
+        .frame(maxWidth: .infinity)
         .padding()
         .background(.white)
         .cornerRadius(10)
-        .frame(maxWidth: .infinity)
         .padding(.vertical, 8)
     }
 }

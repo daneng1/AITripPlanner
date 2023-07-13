@@ -19,6 +19,9 @@
 		49870CA12A575123008171D8 /* AITripPlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49870CA02A575123008171D8 /* AITripPlannerTests.swift */; };
 		49870CA92A575E7E008171D8 /* APIResponseFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49870CA82A575E7E008171D8 /* APIResponseFixture.swift */; };
 		49870CAB2A5877E1008171D8 /* OpenAIFunctionParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49870CAA2A5877E1008171D8 /* OpenAIFunctionParams.swift */; };
+		49870CAD2A5E5B50008171D8 /* ImageCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49870CAC2A5E5B50008171D8 /* ImageCarouselView.swift */; };
+		49870CD22A5F1B5F008171D8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49870CD12A5F1B5F008171D8 /* Security.framework */; };
+		49870CD52A5F1BA2008171D8 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 49870CD42A5F1BA2008171D8 /* KeychainSwift */; };
 		49A9A9F62A44AA42004C8650 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9A9F52A44AA42004C8650 /* LoaderView.swift */; };
 		49A9A9F82A45F7DC004C8650 /* TripResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9A9F72A45F7DC004C8650 /* TripResultsView.swift */; };
 		49A9A9FA2A460A81004C8650 /* PlannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9A9F92A460A81004C8650 /* PlannerViewModel.swift */; };
@@ -28,6 +31,7 @@
 		49A9AA072A4E6D54004C8650 /* DayDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9AA062A4E6D54004C8650 /* DayDetailsView.swift */; };
 		49A9AA0A2A4F3392004C8650 /* UnsplashPhotoPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 49A9AA092A4F3392004C8650 /* UnsplashPhotoPicker */; };
 		49D480422A56102E0027B4FC /* URLImageModule in Frameworks */ = {isa = PBXBuildFile; productRef = 49D480412A56102E0027B4FC /* URLImageModule */; };
+		49E31FEC2A6074E8007CB5E1 /* TravailAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E31FEB2A6074E8007CB5E1 /* TravailAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +68,12 @@
 		49870CA02A575123008171D8 /* AITripPlannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITripPlannerTests.swift; sourceTree = "<group>"; };
 		49870CA82A575E7E008171D8 /* APIResponseFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponseFixture.swift; sourceTree = "<group>"; };
 		49870CAA2A5877E1008171D8 /* OpenAIFunctionParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIFunctionParams.swift; sourceTree = "<group>"; };
+		49870CAC2A5E5B50008171D8 /* ImageCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCarouselView.swift; sourceTree = "<group>"; };
+		49870CB42A5F11EE008171D8 /* AITripPlannerDevApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITripPlannerDevApp.swift; sourceTree = "<group>"; };
+		49870CB62A5F11EE008171D8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		49870CB82A5F11F2008171D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		49870CBB2A5F11F2008171D8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		49870CD12A5F1B5F008171D8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		49A9A9F42A44969A004C8650 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		49A9A9F52A44AA42004C8650 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		49A9A9F72A45F7DC004C8650 /* TripResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripResultsView.swift; sourceTree = "<group>"; };
@@ -72,6 +82,7 @@
 		49A9AA022A4DF02C004C8650 /* OpenAIAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIAPIResponse.swift; sourceTree = "<group>"; };
 		49A9AA042A4E5F38004C8650 /* DayItineraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayItineraryView.swift; sourceTree = "<group>"; };
 		49A9AA062A4E6D54004C8650 /* DayDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailsView.swift; sourceTree = "<group>"; };
+		49E31FEB2A6074E8007CB5E1 /* TravailAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravailAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +90,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49870CD22A5F1B5F008171D8 /* Security.framework in Frameworks */,
 				49D480422A56102E0027B4FC /* URLImageModule in Frameworks */,
+				49870CD52A5F1BA2008171D8 /* KeychainSwift in Frameworks */,
 				49A9AA0A2A4F3392004C8650 /* UnsplashPhotoPicker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -108,7 +121,9 @@
 				4901AB142A42071000281A28 /* AITripPlanner */,
 				49870C902A575110008171D8 /* AITripPlannerUITests */,
 				49870C9F2A575123008171D8 /* AITripPlannerTests */,
+				49870CB32A5F11EE008171D8 /* AITripPlannerDev */,
 				4901AB132A42071000281A28 /* Products */,
+				49870CD02A5F1B5F008171D8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +140,7 @@
 		4901AB142A42071000281A28 /* AITripPlanner */ = {
 			isa = PBXGroup;
 			children = (
+				49E31FEA2A6074A7007CB5E1 /* NetworkService */,
 				49870CA72A575E56008171D8 /* Data */,
 				49A9A9FF2A4B5045004C8650 /* Models */,
 				49A9A9FC2A4A10CA004C8650 /* ViewModels */,
@@ -180,10 +196,38 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		49870CB32A5F11EE008171D8 /* AITripPlannerDev */ = {
+			isa = PBXGroup;
+			children = (
+				49870CB42A5F11EE008171D8 /* AITripPlannerDevApp.swift */,
+				49870CB62A5F11EE008171D8 /* ContentView.swift */,
+				49870CB82A5F11F2008171D8 /* Assets.xcassets */,
+				49870CBA2A5F11F2008171D8 /* Preview Content */,
+			);
+			path = AITripPlannerDev;
+			sourceTree = "<group>";
+		};
+		49870CBA2A5F11F2008171D8 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				49870CBB2A5F11F2008171D8 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		49870CD02A5F1B5F008171D8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				49870CD12A5F1B5F008171D8 /* Security.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		49A9A9FB2A4A10BC004C8650 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				4901AB152A42071000281A28 /* AITripPlannerApp.swift */,
+				49870CAC2A5E5B50008171D8 /* ImageCarouselView.swift */,
 				49870C892A571616008171D8 /* AppLogoView.swift */,
 				49A9AA042A4E5F38004C8650 /* DayItineraryView.swift */,
 				49A9AA062A4E6D54004C8650 /* DayDetailsView.swift */,
@@ -211,6 +255,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		49E31FEA2A6074A7007CB5E1 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				49E31FEB2A6074E8007CB5E1 /* TravailAPI.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -230,6 +282,7 @@
 			packageProductDependencies = (
 				49A9AA092A4F3392004C8650 /* UnsplashPhotoPicker */,
 				49D480412A56102E0027B4FC /* URLImageModule */,
+				49870CD42A5F1BA2008171D8 /* KeychainSwift */,
 			);
 			productName = AITripPlanner;
 			productReference = 4901AB122A42071000281A28 /* AITripPlanner.app */;
@@ -306,6 +359,7 @@
 			packageReferences = (
 				49A9AA082A4F3392004C8650 /* XCRemoteSwiftPackageReference "unsplash-photopicker-ios" */,
 				49D480402A56102E0027B4FC /* XCRemoteSwiftPackageReference "url-image-module" */,
+				49870CD32A5F1BA2008171D8 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = 4901AB132A42071000281A28 /* Products */;
 			projectDirPath = "";
@@ -357,10 +411,12 @@
 				49870C8A2A571616008171D8 /* AppLogoView.swift in Sources */,
 				49A9AA052A4E5F38004C8650 /* DayItineraryView.swift in Sources */,
 				4901AB272A421D4F00281A28 /* OpenAIConnector.swift in Sources */,
+				49E31FEC2A6074E8007CB5E1 /* TravailAPI.swift in Sources */,
 				49870CA92A575E7E008171D8 /* APIResponseFixture.swift in Sources */,
 				49A9A9F82A45F7DC004C8650 /* TripResultsView.swift in Sources */,
 				49A9AA012A4B50A1004C8650 /* UnSplashAPIResponse.swift in Sources */,
 				49870CAB2A5877E1008171D8 /* OpenAIFunctionParams.swift in Sources */,
+				49870CAD2A5E5B50008171D8 /* ImageCarouselView.swift in Sources */,
 				49A9A9F62A44AA42004C8650 /* LoaderView.swift in Sources */,
 				49A9AA072A4E6D54004C8650 /* DayDetailsView.swift in Sources */,
 			);
@@ -687,6 +743,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		49870CD32A5F1BA2008171D8 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 20.0.0;
+			};
+		};
 		49A9AA082A4F3392004C8650 /* XCRemoteSwiftPackageReference "unsplash-photopicker-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/unsplash/unsplash-photopicker-ios.git";
@@ -706,6 +770,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		49870CD42A5F1BA2008171D8 /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49870CD32A5F1BA2008171D8 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
 		49A9AA092A4F3392004C8650 /* UnsplashPhotoPicker */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 49A9AA082A4F3392004C8650 /* XCRemoteSwiftPackageReference "unsplash-photopicker-ios" */;
