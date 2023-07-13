@@ -35,7 +35,7 @@ struct DayDetailsView: View {
                 .padding(.bottom, 4)
                 Text(details.activityTips)
                     .font(.subheadline)
-                    .frame(maxHeight: .infinity)
+                    .multilineTextAlignment(.leading)
             }
             .padding(.top, 4)
             if let link = details.link,
@@ -45,7 +45,7 @@ struct DayDetailsView: View {
                 }
             }
         }
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
         .background(.white)
         .cornerRadius(10)
@@ -55,7 +55,7 @@ struct DayDetailsView: View {
 
 struct DayDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        let newItineraryItem = ItineraryItem(activity: "Rowing", activityDescription: "Lets go rowing around the whole puget sound", activityTips: "don't sink the boat because that would be really, really, really, really bad", link: "https://rowing.com")
+        let newItineraryItem = ItineraryItem(activity: "Rowing", activityDescription: "Lets go rowing around the whole puget sound", activityTips: "don't sink the boat because that would be really ", link: "https://rowing.com")
         DayDetailsView(details: newItineraryItem)
     }
 }

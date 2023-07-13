@@ -32,6 +32,7 @@
 		49A9AA0A2A4F3392004C8650 /* UnsplashPhotoPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 49A9AA092A4F3392004C8650 /* UnsplashPhotoPicker */; };
 		49D480422A56102E0027B4FC /* URLImageModule in Frameworks */ = {isa = PBXBuildFile; productRef = 49D480412A56102E0027B4FC /* URLImageModule */; };
 		49E31FEC2A6074E8007CB5E1 /* TravailAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E31FEB2A6074E8007CB5E1 /* TravailAPI.swift */; };
+		49E31FEE2A609B3C007CB5E1 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E31FED2A609B3C007CB5E1 /* ErrorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		49A9AA042A4E5F38004C8650 /* DayItineraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayItineraryView.swift; sourceTree = "<group>"; };
 		49A9AA062A4E6D54004C8650 /* DayDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailsView.swift; sourceTree = "<group>"; };
 		49E31FEB2A6074E8007CB5E1 /* TravailAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravailAPI.swift; sourceTree = "<group>"; };
+		49E31FED2A609B3C007CB5E1 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				4901AB152A42071000281A28 /* AITripPlannerApp.swift */,
+				49E31FED2A609B3C007CB5E1 /* ErrorView.swift */,
 				49870CAC2A5E5B50008171D8 /* ImageCarouselView.swift */,
 				49870C892A571616008171D8 /* AppLogoView.swift */,
 				49A9AA042A4E5F38004C8650 /* DayItineraryView.swift */,
@@ -407,6 +410,7 @@
 				4901AB252A421D2700281A28 /* OpenAIResponseHandler.swift in Sources */,
 				49A9AA032A4DF02C004C8650 /* OpenAIAPIResponse.swift in Sources */,
 				49A9A9FA2A460A81004C8650 /* PlannerViewModel.swift in Sources */,
+				49E31FEE2A609B3C007CB5E1 /* ErrorView.swift in Sources */,
 				4901AB162A42071000281A28 /* AITripPlannerApp.swift in Sources */,
 				49870C8A2A571616008171D8 /* AppLogoView.swift in Sources */,
 				49A9AA052A4E5F38004C8650 /* DayItineraryView.swift in Sources */,

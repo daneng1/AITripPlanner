@@ -38,7 +38,7 @@ struct ContentView: View {
                                 .font(.headline)
                         }
                         .buttonStyle(CustomButtonStyle(color: Color.pink))
-                        .padding(.bottom, 32)
+                        .padding(.bottom, 96)
                     } else {
                         inputView
                             .transition(.move(edge: .bottom))

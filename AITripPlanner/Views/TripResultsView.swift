@@ -22,7 +22,7 @@ struct TripResultsView: View {
                 .opacity(0.2)
             VStack {
                 if viewModel.error != nil {
-                    Text(viewModel.error?.localizedDescription ?? "Sorry there was an error")
+                    ErrorView()
                 } else if viewModel.response != nil {
                     VStack {
                         if let url = viewModel.unsplashImage?.urls.regular {
