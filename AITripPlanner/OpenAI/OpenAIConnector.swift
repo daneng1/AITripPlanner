@@ -80,11 +80,6 @@ class OpenAIConnector: ObservableObject {
 
 }
 
-
-extension Dictionary: Identifiable { public var id: UUID { UUID() } }
-extension Array: Identifiable { public var id: UUID { UUID() } }
-extension String: Identifiable { public var id: UUID { UUID() } }
-
 extension OpenAIConnector {
     private func executeRequest(request: URLRequest, withSessionConfig sessionConfig: URLSessionConfiguration?) -> Data? {
         let semaphore = DispatchSemaphore(value: 0)
