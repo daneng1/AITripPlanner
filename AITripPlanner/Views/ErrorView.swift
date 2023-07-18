@@ -11,7 +11,7 @@ struct ErrorView: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .frame(width: 300, height: 300)
+                .frame(width: 200, height: 200)
                 .foregroundColor(Color("secondary1"))
                 .cornerRadius(20)
             Rectangle()
@@ -29,18 +29,18 @@ struct ErrorView: View {
                 .frame(width: 90)
             VStack(alignment: .center) {
                 Text("OOPS, there was an error")
-                    .foregroundColor(.white)
+                    .foregroundColor(Color("background"))
                     .font(.title2)
                     .padding(.top, 32)
                 Spacer()
                 Text("It's not you, it's us. Please try your search again.")
-                    .foregroundColor(.white)
+                    .foregroundColor(Color("background"))
                     .frame(maxWidth: 250)
                     .padding(.bottom, 28)
                     .font(.title3)
             }
         }
-        .frame(width: 300, height: 300)
+        .frame(width: 200, height: 200)
     }
 }
 
