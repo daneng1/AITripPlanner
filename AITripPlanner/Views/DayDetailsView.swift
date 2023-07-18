@@ -14,13 +14,15 @@ struct DayDetailsView: View {
             Text(details.activity)
                 .font(.subheadline)
                 .fontWeight(.bold)
+                .foregroundColor(Color("text"))
             Text(details.activityDescription)
                 .font(.subheadline)
+                .foregroundColor(Color("text"))
             VStack(alignment: .leading) {
                 ZStack {
                     Rectangle()
                         .frame(width: 80, height: 25)
-                        .foregroundColor(Color("secondary2"))
+                        .foregroundColor(Color("secondary1"))
                         .cornerRadius(15)
                         .offset(x: 2, y:2)
                     Text("Hot Tip")
@@ -47,7 +49,7 @@ struct DayDetailsView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
-        .background(.white)
+        .background(Color("background"))
         .cornerRadius(10)
         .padding(.vertical, 8)
     }
