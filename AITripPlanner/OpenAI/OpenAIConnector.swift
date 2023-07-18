@@ -14,7 +14,7 @@ class OpenAIConnector: ObservableObject {
     let openAIURL = URL(string: "https://api.openai.com/v1/chat/completions")
     
     @Published var messageLog: [[String: String]] = [
-        ["role": "system", "content": "You're a friendly, helpful assistant"]
+        ["role": "system", "content": "You're a helpful, friendly assistant"]
     ]
 
     func sendToAssistant(completion: @escaping (Result<OpenAIFunctionResponse, Error>) -> Void) {

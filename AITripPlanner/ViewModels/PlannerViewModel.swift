@@ -31,8 +31,11 @@ class PlannerViewModel: ObservableObject {
     
     
     func buildQuery() {
+        if sightsToSee == "" {
+            sightsToSee = "the top tourist sights"
+        }
         self.loading = true
-        let message = "Please give me an itinerary for a trip to \(location), that lasts \(numberOfDays) in \(timeOfYear) and I'd like to see or experience \(sightsToSee)? Please provide links to any sights you recommend, consider the local holidays, crowds and the best time of the day to visit each site. Do not include specific dates for travel, just the time of year requested."
+        let message = "Please give me an itinerary for a trip to \(location), that lasts \(numberOfDays) days during \(timeOfYear) and I'd like to see or experience \(sightsToSee). Please provide links to any sights you recommend, consider the local holidays, crowds and the best time of the day to visit each site. Do not include specific dates for travel, just the time of year requested."
         connector.logMessage(message, messageUserType: .user)
         
         fetchPhoto { (result) in

@@ -12,7 +12,7 @@ struct OpenAIFunctionParams {
         return [
             [
                 "name": "get_trip_itinerary",
-                "description": "get a trip itinery based on a location, a time of year for travel and a duration of days",
+                "description": "Get a trip itinery based on a location, a time of year for travel and a duration of days",
                 "parameters": [
                     "type": "object",
                     "properties": [
@@ -26,21 +26,21 @@ struct OpenAIFunctionParams {
                         ] as [String : Any],
                         "itinerary": [
                             "type": "array",
-                            "description": "the suggested itinerary",
+                            "description": "this is the itinerary you are suggesting",
                             "items": [
                                 "type": "object",
-                                "description": "the day and the itinterary items for each day, NEVER include specific dates",
+                                "description": "the day and the itinerary items for each day, NEVER include specific dates",
                                 "properties": [
                                     "day": [
                                         "type": "string",
-                                        "description": "the title of the day. This should always be formatted as 'Day 1', 'Day 2', etc.",
+                                        "description": "This is the title of the day. This should always be formatted as 'Day 1', 'Day 2', etc.",
                                         "items": [
                                             "type": "string",
                                         ]
                                     ]  as [String : Any],
                                     "dayDescription": [
                                         "type": "string",
-                                        "description": "This should alsways be a brief description (3-5 words max length) of the daily activites, like a newspaper headline.",
+                                        "description": "This should always be a brief description (3-5 words max length) of the daily activites, like a newspaper headline.",
                                         "items": [
                                             "type": "string",
                                         ]
