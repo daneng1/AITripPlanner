@@ -9,19 +9,20 @@ import SwiftUI
 import Combine
 
 struct LoaderView: View {
+    @State private var secondPlaneIsActive = false
+    @State private var thirdPlaneIsActive = false
     
     var body: some View {
         VStack {
             ZStack {
-                Circle()
-                    .fill(Color("primary"))
-                    .frame(width: 100, height: 100)
-                Image(systemName: "globe.americas.fill")
-                    .resizable()
-                    .frame(width: 100, height: 100)
-                    .foregroundColor(Color("secondary1"))
+                earth()
                 plane(angle: -30, horizontalOffset: -55, verticalOffset: 20, delayTimer: 2.5)
-
+                if secondPlaneIsActive {
+                    plane(angle: 40, horizontalOffset: -45, verticalOffset: -40, delayTimer: 2.5)
+                }
+                if thirdPlaneIsActive {
+                    plane(angle: 0, horizontalOffset: -60, verticalOffset: 0, delayTimer: 2.5)
+                }
             }
             .padding(.bottom, 32)
             Text("Okay, we're on it!")
@@ -33,6 +34,29 @@ struct LoaderView: View {
                 .foregroundColor(Color("secondary2"))
                 .padding(.top, 4)
                 .padding(.horizontal, 24)
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.secondPlaneIsActive = true
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                self.thirdPlaneIsActive = true
+            }
+        }
+    }
+}
+
+struct earth: View {
+    
+    var body: some View {
+        ZStack {
+            Circle()
+                .fill(Color("primary"))
+                .frame(width: 100, height: 100)
+            Image(systemName: "globe.americas.fill")
+                .resizable()
+                .frame(width: 100, height: 100)
+                .foregroundColor(Color("secondary1"))
         }
     }
 }
@@ -46,16 +70,14 @@ struct plane: View {
     @State private var opacity: Double = 1.0
     @State private var delayTimer: CGFloat
     @State private var duration: Double = 0.75
+    @State private var timer: Timer? = nil
     
     init(angle: Double, horizontalOffset: CGFloat, verticalOffset: CGFloat, delayTimer: Double) {
-        self.angle = angle
-        self.horizontalOffset = horizontalOffset
-        self.verticalOffset = verticalOffset
-        self.delayTimer = delayTimer
-
+        _angle = State(initialValue: angle)
+        _horizontalOffset = State(initialValue: horizontalOffset)
+        _verticalOffset = State(initialValue: verticalOffset)
+        _delayTimer = State(initialValue: delayTimer)
     }
-    
-    let timer = Timer.publish(every: 1.5, on: .main, in: .common).autoconnect()
 
     var body: some View {
         Image(systemName: "airplane")
@@ -67,7 +89,11 @@ struct plane: View {
             .scaleEffect(scale)
             .rotationEffect(.degrees(angle))
             .offset(x: horizontalOffset, y: verticalOffset)
-            .animation(Animation.easeInOut(duration: 3).delay(delayTimer).repeatForever(autoreverses: false), value: rotateDegrees)
+            .animation(Animation
+                .easeInOut(duration: 3)
+                .delay(delayTimer)
+                .repeatForever(autoreverses: false),
+                       value: rotateDegrees)
             .onAppear() {
                 withAnimation {
                     rotateDegrees = 360
@@ -80,16 +106,16 @@ struct plane: View {
                         horizontalOffset = horizontalOffset * -1
                         verticalOffset = verticalOffset * -1
                     }
+                    
+                    timer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: true) { _ in
+                        if opacity == 0.0 {
+                            opacity = 1.0
+                        } else {
+                            opacity = 0.0
+                        }
+                    }
                 }
             }
-            .onReceive(timer) { _ in
-                if opacity == 0.0 {
-                    opacity = 1.0
-                } else {
-                    opacity = 0.0
-                }
-            }
-        
     }
 }
 
