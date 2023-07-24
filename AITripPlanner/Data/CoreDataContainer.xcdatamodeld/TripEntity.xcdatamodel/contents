@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22F82" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="DayEntity" representedClassName="DayEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="dayDescritpion" optional="YES" attributeType="String"/>
+        <relationship name="itineraryItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItineraryItemEntity" inverseName="day" inverseEntity="ItineraryItemEntity"/>
+        <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TripEntity" inverseName="days" inverseEntity="TripEntity"/>
+    </entity>
+    <entity name="ItineraryItemEntity" representedClassName="ItineraryItemEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="activity" optional="YES" attributeType="String"/>
+        <attribute name="activityDescription" optional="YES" attributeType="String"/>
+        <attribute name="link" optional="YES" attributeType="String"/>
+        <relationship name="day" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DayEntity" inverseName="itineraryItems" inverseEntity="DayEntity"/>
+        <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TripEntity" inverseName="itineraryItems" inverseEntity="TripEntity"/>
+    </entity>
+    <entity name="TripEntity" representedClassName="TripEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="attribute" optional="YES"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="location" optional="YES" attributeType="String"/>
+        <relationship name="days" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DayEntity" inverseName="trip" inverseEntity="DayEntity"/>
+        <relationship name="itineraryItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItineraryItemEntity" inverseName="trip" inverseEntity="ItineraryItemEntity"/>
+    </entity>
+</model>

@@ -13,6 +13,7 @@
 		4901AB1D2A42071100281A28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4901AB1C2A42071100281A28 /* Preview Assets.xcassets */; };
 		4901AB252A421D2700281A28 /* OpenAIResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901AB242A421D2700281A28 /* OpenAIResponseHandler.swift */; };
 		4901AB272A421D4F00281A28 /* OpenAIConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901AB262A421D4F00281A28 /* OpenAIConnector.swift */; };
+		4962870B2A69A00900FC2FB4 /* CoreDataContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 496287092A69A00900FC2FB4 /* CoreDataContainer.xcdatamodeld */; };
 		49870C8A2A571616008171D8 /* AppLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49870C892A571616008171D8 /* AppLogoView.swift */; };
 		49870C922A575110008171D8 /* AITripPlannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49870C912A575110008171D8 /* AITripPlannerUITests.swift */; };
 		49870C942A575110008171D8 /* AITripPlannerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49870C932A575110008171D8 /* AITripPlannerUITestsLaunchTests.swift */; };
@@ -62,6 +63,7 @@
 		4901AB242A421D2700281A28 /* OpenAIResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIResponseHandler.swift; sourceTree = "<group>"; };
 		4901AB262A421D4F00281A28 /* OpenAIConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIConnector.swift; sourceTree = "<group>"; };
 		4901AB282A43490B00281A28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4962870A2A69A00900FC2FB4 /* TripEntity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TripEntity.xcdatamodel; sourceTree = "<group>"; };
 		49870C892A571616008171D8 /* AppLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogoView.swift; sourceTree = "<group>"; };
 		49870C8F2A575110008171D8 /* AITripPlannerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AITripPlannerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49870C912A575110008171D8 /* AITripPlannerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITripPlannerUITests.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				49870CA82A575E7E008171D8 /* APIResponseFixture.swift */,
+				496287092A69A00900FC2FB4 /* CoreDataContainer.xcdatamodeld */,
 				49870CAA2A5877E1008171D8 /* OpenAIFunctionParams.swift */,
 			);
 			path = Data;
@@ -434,6 +437,7 @@
 				49870CAB2A5877E1008171D8 /* OpenAIFunctionParams.swift in Sources */,
 				49870CAD2A5E5B50008171D8 /* ImageCarouselView.swift in Sources */,
 				49A9A9F62A44AA42004C8650 /* LoaderView.swift in Sources */,
+				4962870B2A69A00900FC2FB4 /* CoreDataContainer.xcdatamodeld in Sources */,
 				49A9AA072A4E6D54004C8650 /* DayDetailsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -802,6 +806,19 @@
 			productName = URLImageModule;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		496287092A69A00900FC2FB4 /* CoreDataContainer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4962870A2A69A00900FC2FB4 /* TripEntity.xcdatamodel */,
+			);
+			currentVersion = 4962870A2A69A00900FC2FB4 /* TripEntity.xcdatamodel */;
+			path = CoreDataContainer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4901AB0A2A42071000281A28 /* Project object */;
 }
