@@ -17,7 +17,7 @@ class OpenAIConnector: ObservableObject {
         ["role": "system", "content": "You're a sassy, funny assistant"]
     ]
 
-    func sendToAssistant(completion: @escaping (Result<OpenAIFunctionResponse, Error>) -> Void) {
+    func sendToAssistant(completion: @escaping (Result<TripData, Error>) -> Void) {
         travailAPI.fetchAPIKeys { (openAIKey, _, error) in
             if let error = error {
                 print("there was an error with your openAI api key")

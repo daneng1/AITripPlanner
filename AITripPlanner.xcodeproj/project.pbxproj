@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		4901AB162A42071000281A28 /* AITripPlannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901AB152A42071000281A28 /* AITripPlannerApp.swift */; };
-		4901AB182A42071000281A28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901AB172A42071000281A28 /* ContentView.swift */; };
+		4901AB182A42071000281A28 /* DestinationFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901AB172A42071000281A28 /* DestinationFormView.swift */; };
 		4901AB1A2A42071100281A28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4901AB192A42071100281A28 /* Assets.xcassets */; };
 		4901AB1D2A42071100281A28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4901AB1C2A42071100281A28 /* Preview Assets.xcassets */; };
 		4901AB252A421D2700281A28 /* OpenAIResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901AB242A421D2700281A28 /* OpenAIResponseHandler.swift */; };
 		4901AB272A421D4F00281A28 /* OpenAIConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901AB262A421D4F00281A28 /* OpenAIConnector.swift */; };
-		4962870B2A69A00900FC2FB4 /* CoreDataContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 496287092A69A00900FC2FB4 /* CoreDataContainer.xcdatamodeld */; };
+		4927FE182A6EC24E00E15ABB /* DestinationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4927FE172A6EC24E00E15ABB /* DestinationModel.swift */; };
+		4927FE1A2A6ED11B00E15ABB /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4927FE192A6ED11B00E15ABB /* SplashView.swift */; };
 		49870C8A2A571616008171D8 /* AppLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49870C892A571616008171D8 /* AppLogoView.swift */; };
 		49870C922A575110008171D8 /* AITripPlannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49870C912A575110008171D8 /* AITripPlannerUITests.swift */; };
 		49870C942A575110008171D8 /* AITripPlannerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49870C932A575110008171D8 /* AITripPlannerUITestsLaunchTests.swift */; };
@@ -57,13 +58,14 @@
 /* Begin PBXFileReference section */
 		4901AB122A42071000281A28 /* AITripPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AITripPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4901AB152A42071000281A28 /* AITripPlannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITripPlannerApp.swift; sourceTree = "<group>"; };
-		4901AB172A42071000281A28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4901AB172A42071000281A28 /* DestinationFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationFormView.swift; sourceTree = "<group>"; };
 		4901AB192A42071100281A28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4901AB1C2A42071100281A28 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4901AB242A421D2700281A28 /* OpenAIResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIResponseHandler.swift; sourceTree = "<group>"; };
 		4901AB262A421D4F00281A28 /* OpenAIConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIConnector.swift; sourceTree = "<group>"; };
 		4901AB282A43490B00281A28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		4962870A2A69A00900FC2FB4 /* TripEntity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TripEntity.xcdatamodel; sourceTree = "<group>"; };
+		4927FE172A6EC24E00E15ABB /* DestinationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationModel.swift; sourceTree = "<group>"; };
+		4927FE192A6ED11B00E15ABB /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		49870C892A571616008171D8 /* AppLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogoView.swift; sourceTree = "<group>"; };
 		49870C8F2A575110008171D8 /* AITripPlannerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AITripPlannerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49870C912A575110008171D8 /* AITripPlannerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITripPlannerUITests.swift; sourceTree = "<group>"; };
@@ -198,7 +200,6 @@
 			isa = PBXGroup;
 			children = (
 				49870CA82A575E7E008171D8 /* APIResponseFixture.swift */,
-				496287092A69A00900FC2FB4 /* CoreDataContainer.xcdatamodeld */,
 				49870CAA2A5877E1008171D8 /* OpenAIFunctionParams.swift */,
 			);
 			path = Data;
@@ -240,9 +241,10 @@
 				49870C892A571616008171D8 /* AppLogoView.swift */,
 				49A9AA042A4E5F38004C8650 /* DayItineraryView.swift */,
 				49A9AA062A4E6D54004C8650 /* DayDetailsView.swift */,
-				4901AB172A42071000281A28 /* ContentView.swift */,
+				4901AB172A42071000281A28 /* DestinationFormView.swift */,
 				49A9A9F52A44AA42004C8650 /* LoaderView.swift */,
 				49A9A9F72A45F7DC004C8650 /* TripResultsView.swift */,
+				4927FE192A6ED11B00E15ABB /* SplashView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -260,6 +262,7 @@
 			children = (
 				49A9AA002A4B50A1004C8650 /* UnSplashAPIResponse.swift */,
 				49A9AA022A4DF02C004C8650 /* OpenAIAPIResponse.swift */,
+				4927FE172A6EC24E00E15ABB /* DestinationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -420,10 +423,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4901AB182A42071000281A28 /* ContentView.swift in Sources */,
+				4901AB182A42071000281A28 /* DestinationFormView.swift in Sources */,
 				49E31FF12A64B49D007CB5E1 /* Extensions.swift in Sources */,
 				4901AB252A421D2700281A28 /* OpenAIResponseHandler.swift in Sources */,
 				49A9AA032A4DF02C004C8650 /* OpenAIAPIResponse.swift in Sources */,
+				4927FE182A6EC24E00E15ABB /* DestinationModel.swift in Sources */,
 				49A9A9FA2A460A81004C8650 /* PlannerViewModel.swift in Sources */,
 				49E31FEE2A609B3C007CB5E1 /* ErrorView.swift in Sources */,
 				4901AB162A42071000281A28 /* AITripPlannerApp.swift in Sources */,
@@ -437,8 +441,8 @@
 				49870CAB2A5877E1008171D8 /* OpenAIFunctionParams.swift in Sources */,
 				49870CAD2A5E5B50008171D8 /* ImageCarouselView.swift in Sources */,
 				49A9A9F62A44AA42004C8650 /* LoaderView.swift in Sources */,
-				4962870B2A69A00900FC2FB4 /* CoreDataContainer.xcdatamodeld in Sources */,
 				49A9AA072A4E6D54004C8650 /* DayDetailsView.swift in Sources */,
+				4927FE1A2A6ED11B00E15ABB /* SplashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,19 +810,6 @@
 			productName = URLImageModule;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		496287092A69A00900FC2FB4 /* CoreDataContainer.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				4962870A2A69A00900FC2FB4 /* TripEntity.xcdatamodel */,
-			);
-			currentVersion = 4962870A2A69A00900FC2FB4 /* TripEntity.xcdatamodel */;
-			path = CoreDataContainer.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 4901AB0A2A42071000281A28 /* Project object */;
 }

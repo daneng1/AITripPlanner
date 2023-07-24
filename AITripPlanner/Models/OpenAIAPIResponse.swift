@@ -30,7 +30,6 @@ struct Message: Codable {
         case content, role
         case function_call = "function_call"
     }
-
 }
 
 struct FunctionCall: Codable {
@@ -43,7 +42,21 @@ struct FunctionCall: Codable {
     }
 }
 
-struct OpenAIFunctionResponse: Codable, Equatable {
+struct TripData: Codable, Equatable {
+    static func == (lhs: TripData, rhs: TripData) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    let id: String
+    let tripPlan: [Itinerary]
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case tripPlan = "trip_plan"
+    }
+}
+
+struct Itinerary: Codable {
     let id: String
     let location: String
     let itinerary: [Day]

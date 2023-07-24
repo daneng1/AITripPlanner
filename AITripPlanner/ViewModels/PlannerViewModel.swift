@@ -8,11 +8,11 @@
 import Foundation
 
 class PlannerViewModel: ObservableObject {
-    
+    @Published var destinations: [Destination] = []
     @Published var sightsToSee = ""
     @Published var location = ""
     @Published var numberOfDays = ""
-    @Published var response: OpenAIFunctionResponse?
+    @Published var response: TripData?
     @Published var error: Error?
     @Published var timeOfYear = ""
     @Published var loading: Bool = false
@@ -23,12 +23,24 @@ class PlannerViewModel: ObservableObject {
     private var connector = OpenAIConnector()
     private var travailAPI = TravailAPI()
     
-    init(unsplashImage: Results?, error: Error?, response: OpenAIFunctionResponse?) {
+    init(unsplashImage: Results?, error: Error?, response: TripData?) {
         self.unsplashImage = unsplashImage
         self.error = error
         self.response = response
     }
     
+    func addDestination() {
+        if checkValid() {
+            let destination = Destination(name: self.location, sightsToSee: self.sightsToSee, numberOfDays: self.numberOfDays)
+            destinations.append(destination)
+        } else {
+            showAlert = true
+        }
+    }
+    
+    func deleteDestination(at index: IndexSet) {
+        destinations.remove(atOffsets: index)
+    }
     
     func buildQuery() {
         if sightsToSee == "" {
@@ -107,10 +119,6 @@ class PlannerViewModel: ObservableObject {
             return false
         }
         if numberOfDays == "" {
-            showAlert = true
-            return false
-        }
-        if timeOfYear == "" {
             showAlert = true
             return false
         }

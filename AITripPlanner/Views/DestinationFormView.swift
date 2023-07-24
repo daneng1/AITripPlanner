@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-struct ContentView: View {
+struct DestinationFormView: View {
     @EnvironmentObject var viewModel: PlannerViewModel
     @EnvironmentObject var connector: OpenAIConnector
     @State private var inputIsPresented = false
@@ -22,45 +22,67 @@ struct ContentView: View {
                     .scaledToFill()
                     .frame(maxWidth: UIScreen.main.bounds.width)
                     .edgesIgnoringSafeArea(.all)
+                    .opacity(0.3)
                 VStack(alignment: .center) {
-                    if !inputIsPresented {
-                        AppLogoView()
+                    HStack {
+                        Text("My Destinations")
+                            .foregroundColor(Color("secondary2"))
+                            .font(.title)
+                        Spacer()
                         Button {
                             withAnimation(.spring(response: 0.2)) {
                                 inputIsPresented.toggle()
                             }
                         } label: {
-                            Text("Plan my trip!")
-                                .font(.headline)
-                                .foregroundColor(Color("background"))
-                        }
-                        .buttonStyle(CustomButtonStyle(color: Color.pink))
-                        .padding(.bottom, 96)
-                    } else {
-                        inputView
-                            .transition(.move(edge: .bottom))
-                            .background(.ultraThinMaterial)
-                            .frame(maxWidth: 400)
-                            .cornerRadius(10)
-                            .padding()
-                            .navigationDestination(isPresented: $showDetailView) {
-                                TripResultsView()
+                            ZStack {
+                                Circle()
+                                    .foregroundColor(Color("secondary1"))
+                                    .frame(width: 40)
+                                Image(systemName: "plus")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundColor(Color("primary"))
+                                    .frame(width: 25)
                             }
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 50)
+                    .padding(.horizontal)
+                    .background(Color("background"))
+                    .cornerRadius(10)
+                    if viewModel.destinations.count > 0 {
+                        List {
+                            ForEach(viewModel.destinations, id: \.self) { destination in
+                                if destination.sightsToSee == "" {
+                                    Text("\(destination.name), \(destination.numberOfDays) days")
+                                } else {
+                                    Text("\(destination.name), \(destination.numberOfDays) days, \(destination.sightsToSee)")
+                                }
+                            }
+                            .onDelete { index in
+                                viewModel.deleteDestination(at: index)
+                            }
+                        }
                     }
                 }
+                .padding()
             }
         }
         .onAppear {
             viewModel.selectImage()
         }
-        .alert(isPresented: $viewModel.showAlert) {
-            Alert(title: Text("Ooops, there was an issue"), message: Text("it looks like you may not have entered anything in one or more fields."))
+        .sheet(isPresented: $inputIsPresented) {
+            DestinationInputView()
         }
     }
 }
 
-extension ContentView {
-    var inputView: some View {
+struct DestinationInputView: View {
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var viewModel: PlannerViewModel
+    
+    var body: some View {
         VStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 2) {
@@ -84,16 +106,16 @@ extension ContentView {
                         .background(Color("background"))
                         .cornerRadius(10)
                         .padding(0)
-                    Text("When would you like to go?")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color("text"))
-                        .padding(.top, 10)
-                    TextField("", text: $viewModel.timeOfYear)
-                        .padding(8)
-                        .background(RoundedRectangle(cornerRadius: 10).stroke(.black, lineWidth: 0.5))
-                        .background(Color("background"))
-                        .cornerRadius(10)
+//                    Text("When would you like to go?")
+//                        .font(.title3)
+//                        .fontWeight(.bold)
+//                        .foregroundColor(Color("text"))
+//                        .padding(.top, 10)
+//                    TextField("", text: $viewModel.timeOfYear)
+//                        .padding(8)
+//                        .background(RoundedRectangle(cornerRadius: 10).stroke(.black, lineWidth: 0.5))
+//                        .background(Color("background"))
+//                        .cornerRadius(10)
                     Text("Any specific sights or activities?")
                         .font(.title3)
                         .fontWeight(.bold)
@@ -104,26 +126,28 @@ extension ContentView {
                         .background(RoundedRectangle(cornerRadius: 10).stroke(.black, lineWidth: 0.5))
                         .background(Color("background"))
                         .cornerRadius(10)
-                    NavigationLink(destination: TripResultsView()) {
-                        Button {
-                            if viewModel.checkValid() {
-                                showDetailView.toggle()
-                                viewModel.loading = true
-                            }
-                        } label: {
-                            Text("Plan Trip")
-                                .font(.headline)
-                                .foregroundColor(Color("background"))
-                        }
-                        .buttonStyle(CustomButtonStyle())
-                    }
-                    .padding(.top, 8)
-                    .frame(maxWidth: .infinity, alignment: .center)
                 }
+                VStack(alignment: .center) {
+                    Button {
+                        viewModel.addDestination()
+                        if !viewModel.showAlert {
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    } label: {
+                        Text("Add Destination")
+                            .font(.headline)
+                            .foregroundColor(Color("background"))
+                    }
+                    .buttonStyle(CustomButtonStyle())
+                }
+                .padding(.vertical)
             }
         }
         .frame(height: 350)
         .padding()
+        .alert(isPresented: $viewModel.showAlert) {
+            Alert(title: Text("Ooops, there was an issue"), message: Text("it looks like you may not have entered anything in one or more fields."))
+        }
     }
 }
 
@@ -141,7 +165,7 @@ struct CustomButtonStyle: ButtonStyle {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        DestinationFormView()
             .environmentObject(PlannerViewModel(unsplashImage: nil, error: nil, response: nil))
             .environmentObject(OpenAIConnector())
     }

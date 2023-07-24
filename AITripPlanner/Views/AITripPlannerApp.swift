@@ -14,7 +14,7 @@ struct AITripPlannerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SplashView()
                 .environmentObject(openAIConnector)
                 .environmentObject(viewModel)
         }

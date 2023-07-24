@@ -45,13 +45,13 @@ struct TripResultsView: View {
                             Text("Here's your itinerary for \(viewModel.location)!")
                                 .font(.headline)
                                 .foregroundColor(Color("secondary2"))
-                            ScrollView {
-                                if let itinerary = viewModel.response?.itinerary {
-                                    ForEach(itinerary, id: \.self) { day in
-                                        DayItineraryView(dailyDetails: day)
-                                    }
-                                }
-                            }
+//                            ScrollView {
+//                                if let itinerary = viewModel.response?.itinerary {
+//                                    ForEach(itinerary, id: \.self) { day in
+//                                        DayItineraryView(dailyDetails: day)
+//                                    }
+//                                }
+//                            }
                         }
                         .padding()
                     }
