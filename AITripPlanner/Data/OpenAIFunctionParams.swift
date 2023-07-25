@@ -12,37 +12,36 @@ struct OpenAIFunctionParams {
         return [
             [
                 "name": "get_trip_itinerary",
-                "description": "Get a trip itinery based on a destination or multiple destinations, a time of year for travel and a duration of days",
+                "description": "Get a trip itinery based on a destination or multiple destinations and a duration of days",
                 "parameters": [
                     "type": "object",
-                    "description": "the itinerary for the trip",
                     "properties": [
-                        "id": [
+                        "tripTitle": [
                             "type": "string",
-                            "description": "a unique ID for the trip itinerary",
+                            "description": "list all of the destinations, ie 'Denver, Seattle, and Boise'",
                         ] as [String : Any],
-                        "trip_plan": [
+                        "tripPlan": [
                             "type": "array",
-                            "description": "an array that contains an object for each destination",
+                            "description": "the itinerary for all destinations, separated by destination",
                             "items": [
                                 "type": "object",
                                 "properties": [
                                     "id": [
                                         "type": "string",
-                                        "description": "a unique ID for each destination",
+                                        "description": "a unique ID for each destination. This should be 16 characters in length and should be randomized",
                                     ] as [String : Any],
-                                    "location": [
+                                    "destination": [
                                         "type": "string",
                                         "description": "the name of the destination the user wants to visit",
                                     ] as [String : Any],
-                                    "itinerary": [
+                                    "destinationItinerary": [
                                         "type": "array",
-                                        "description": "this is the itinerary you are suggesting",
+                                        "description": "this is the whole itinerary you are suggesting for each destination",
                                         "items": [
                                             "type": "object",
                                             "description": "the day and the itinerary items for each day, NEVER include specific dates",
                                             "properties": [
-                                                "day": [
+                                                "dayTitle": [
                                                     "type": "string",
                                                     "description": "This is the title of the day. This should always be formatted as 'Day 1', 'Day 2', etc.",
                                                     "items": [
@@ -56,14 +55,14 @@ struct OpenAIFunctionParams {
                                                         "type": "string",
                                                     ]
                                                 ]  as [String : Any],
-                                                "itineraryItems": [
+                                                "dayItineraryItems": [
                                                     "type": "array",
                                                     "description": "the itinerary items for this specific day",
                                                     "items": [
                                                         "type": "object",
                                                         "description": "each suggestion for the day, including any hyperlinks",
                                                         "properties": [
-                                                            "activity": [
+                                                            "activityTitle": [
                                                                 "type": "string",
                                                                 "description": "a headline of the specific activity suggested for the day, 3-5 words max length",
                                                                 "items": [
@@ -101,7 +100,7 @@ struct OpenAIFunctionParams {
                             ] as [String : Any],
                         ]
                     ],
-                    "required": ["trip_plan", "id"],
+                    "required": ["id", "tripTitle", "tripPlan"],
                 ] as [String : Any]
             ],
         ]

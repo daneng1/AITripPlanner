@@ -12,7 +12,7 @@ class PlannerViewModel: ObservableObject {
     @Published var sightsToSee = ""
     @Published var location = ""
     @Published var numberOfDays = ""
-    @Published var response: TripData?
+    @Published var response: Itinerary?
     @Published var error: Error?
     @Published var timeOfYear = ""
     @Published var loading: Bool = false
@@ -20,10 +20,11 @@ class PlannerViewModel: ObservableObject {
     @Published var selectedImage: String = ""
     @Published var unsplashImage: Results?
     @Published var showAlert: Bool = false
+    @Published var canNavigateToResults: Bool = false
     private var connector = OpenAIConnector()
     private var travailAPI = TravailAPI()
     
-    init(unsplashImage: Results?, error: Error?, response: TripData?) {
+    init(unsplashImage: Results?, error: Error?, response: Itinerary?) {
         self.unsplashImage = unsplashImage
         self.error = error
         self.response = response
@@ -33,6 +34,7 @@ class PlannerViewModel: ObservableObject {
         if checkValid() {
             let destination = Destination(name: self.location, sightsToSee: self.sightsToSee, numberOfDays: self.numberOfDays)
             destinations.append(destination)
+            resetInputs()
         } else {
             showAlert = true
         }
@@ -43,23 +45,43 @@ class PlannerViewModel: ObservableObject {
     }
     
     func buildQuery() {
-        if sightsToSee == "" {
-            sightsToSee = "the top tourist sights"
-        }
         self.loading = true
-        let message = "Please give me an itinerary for a trip to \(location), that lasts \(numberOfDays) days during \(timeOfYear) and I'd like to see or experience \(sightsToSee). Please provide links to any sights you recommend, consider the local holidays, crowds and the best time of the day to visit each site. Do not include specific dates for travel, just the time of year requested."
-        connector.logMessage(message, messageUserType: .user)
-        
-        fetchPhoto { (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let response):
-                    self.unsplashImage = response.results[0]
-                case .failure(let error):
-                    print("Unsplash Error: \(error)")
+        self.canNavigateToResults = true
+        var message = ""
+        if destinations.count > 1 {
+            message.append("Please build a multi-destination travel itinerary. You must return the itinerary in the exact order requested. You must include travel days to get between each destination. You must make recomendation for the best mode of transportation between destinations. ")
+            for (index, item) in destinations.enumerated() {
+                if item.sightsToSee == "" {
+                    item.sightsToSee = "the top tourist sights"
+                }
+                if index == 0 {
+                    message.append("First, I'd like to visit \(item.name) for \(item.numberOfDays) day(s) and I'd like to see or experience \(item.sightsToSee). ")
+                } else if index == destinations.count - 1 {
+                    message.append("Finally, I'd like to visit \(item.name) for \(item.numberOfDays) day(s) and I'd like to see or experience \(item.sightsToSee). ")
+                } else {
+                    message.append("Next, I'd like to visit \(item.name) for \(item.numberOfDays) day(s) and I'd like to see or experience \(item.sightsToSee). ")
                 }
             }
+        } else {
+            if destinations[0].sightsToSee == "" {
+                destinations[0].sightsToSee = "the top tourist sights"
+            }
+            message.append("Please build a travel itinerary for a trip to \(destinations[0].name), that lasts \(destinations[0].numberOfDays) days and I'd like to see or experience \(destinations[0].sightsToSee). ")
         }
+        message.append("Please provide links to any sights you recommend, consider the local holidays, crowds, and the best time of the day to visit each site. Do not include specific dates for travel. ")
+        print("******* \(message)")
+        connector.logMessage(message, messageUserType: .user)
+        
+//        fetchPhoto { (result) in
+//            DispatchQueue.main.async {
+//                switch result {
+//                case .success(let response):
+//                    self.unsplashImage = response.results[0]
+//                case .failure(let error):
+//                    print("Unsplash Error: \(error)")
+//                }
+//            }
+//        }
         connector.sendToAssistant { (result) in
             DispatchQueue.main.async {
                 switch result {
@@ -134,5 +156,11 @@ class PlannerViewModel: ObservableObject {
         response = nil
         error = nil
         unsplashImage = nil
+    }
+    
+    func resetInputs() {
+        sightsToSee = ""
+        location = ""
+        numberOfDays = ""
     }
 }

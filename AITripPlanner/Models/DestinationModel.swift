@@ -23,6 +23,6 @@ class Destination: Codable, Hashable {
     }
     
     let name: String
-    let sightsToSee: String
+    var sightsToSee: String
     let numberOfDays: String
 }

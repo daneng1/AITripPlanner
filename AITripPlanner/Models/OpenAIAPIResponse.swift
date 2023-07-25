@@ -42,48 +42,52 @@ struct FunctionCall: Codable {
     }
 }
 
-struct TripData: Codable, Equatable {
-    static func == (lhs: TripData, rhs: TripData) -> Bool {
-        return lhs.id == rhs.id
+struct Itinerary: Codable, Equatable {
+    static func == (lhs: Itinerary, rhs: Itinerary) -> Bool {
+        return lhs.tripTitle == rhs.tripTitle
     }
     
+//    let id: String
+    let tripTitle: String
+    let tripPlan: [TripPlan]
+    
+    enum CodingKeys: String, CodingKey {
+//        case id
+        case tripTitle
+        case tripPlan
+    }
+}
+
+struct TripPlan: Codable {
     let id: String
-    let tripPlan: [Itinerary]
+    let destination: String
+    let destinationItinerary: [DestinationItinerary]
     
     enum CodingKeys: String, CodingKey {
         case id
-        case tripPlan = "trip_plan"
+        case destination
+        case destinationItinerary
     }
 }
 
-struct Itinerary: Codable {
-    let id: String
-    let location: String
-    let itinerary: [Day]
-    
-    enum CodingKeys: String, CodingKey {
-        case id, location
-        case itinerary = "itinerary"
-    }
-}
-
-struct Day: Codable, Hashable {
-    static func == (lhs: Day, rhs: Day) -> Bool {
-        return lhs.day == rhs.day
+struct DestinationItinerary: Codable, Hashable {
+    static func == (lhs: DestinationItinerary, rhs: DestinationItinerary) -> Bool {
+        return lhs.dayTitle == rhs.dayTitle
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(day)
-        hasher.combine(itineraryItems)
+        hasher.combine(dayTitle)
+        hasher.combine(dayDescription)
+        hasher.combine(dayItineraryItems)
     }
     
-    let day: String
+    let dayTitle: String
     let dayDescription: String
-    let itineraryItems: [ItineraryItem]
+    let dayItineraryItems: [ItineraryItem]
     
     enum CodingKeys: String, CodingKey {
-        case day, dayDescription
-        case itineraryItems = "itineraryItems"
+        case dayTitle, dayDescription
+        case dayItineraryItems
     }
 }
 

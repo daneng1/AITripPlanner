@@ -2,22 +2,23 @@
 //  APIResponseFixture.swift
 //  AITripPlanner
 //
-//  Created by Dan and Beth Engel on 7/6/23.
+//  Created by Dan Engel on 7/6/23.
 //
 
 import Foundation
 
 struct APIResponseFixture {
-    static func getOpenAIData() -> TripData {
-        return TripData(
-            id: "12345",
+    static func getOpenAIData() -> Itinerary {
+        return Itinerary(
+//            id: "12345",
+            tripTitle: "Denver and Seattle",
             tripPlan: [
-                Itinerary(id: "ijsdhf8",
-                          location: "Denver",
-                          itinerary: [
-                            Day(day: "Day 1",
+                TripPlan(id: "ijsdhf8",
+                          destination: "Denver",
+                          destinationItinerary: [
+                            DestinationItinerary(dayTitle: "Day 1",
                                 dayDescription: "Tour Denver",
-                                itineraryItems: [
+                                dayItineraryItems: [
                                     ItineraryItem(activity: "Visit Red Rocks Park and Amphitheater",
                                                   activityDescription: "Explore the beautiful Red Rocks Park and Amphitheater, known for its stunning natural rock formations and panoramic views of Denver. You can take a hike or simply enjoy the scenery. The amphitheater also hosts concerts and events.",
                                                   activityTips: "Arrive early in the morning to beat the crowd. Wear comfortable shoes for walking.",
@@ -34,12 +35,12 @@ struct APIResponseFixture {
                                ),
                           ]
                          ),
-                Itinerary(id: "ijsdfgdsg",
-                          location: "Salt Lake City",
-                          itinerary: [
-                            Day(day: "Day 1",
+                TripPlan(id: "ijsdfgdsg",
+                          destination: "Salt Lake City",
+                          destinationItinerary: [
+                            DestinationItinerary(dayTitle: "Day 1",
                                 dayDescription: "Tour Salt Lake City",
-                                itineraryItems: [
+                                dayItineraryItems: [
                                     ItineraryItem(activity: "Visit Red Rocks Park and Amphitheater",
                                                   activityDescription: "Explore the beautiful Red Rocks Park and Amphitheater, known for its stunning natural rock formations and panoramic views of Denver. You can take a hike or simply enjoy the scenery. The amphitheater also hosts concerts and events.",
                                                   activityTips: "Arrive early in the morning to beat the crowd. Wear comfortable shoes for walking.",

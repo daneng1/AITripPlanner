@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DayItineraryView: View {
     @State private var detailsVisible: Bool = false
-    var dailyDetails: Day
+    var dailyDetails: DestinationItinerary
     
     var body: some View {
         VStack {
@@ -19,7 +19,7 @@ struct DayItineraryView: View {
                 }
             } label: {
                 HStack(spacing: 4) {
-                    Text(dailyDetails.day)
+                    Text(dailyDetails.dayTitle)
                         .font(.title3)
                         .fontWeight(.bold)
                         .foregroundColor(Color("background"))
@@ -46,7 +46,7 @@ struct DayItineraryView: View {
             .cornerRadius(10)
             if detailsVisible {
                 ScrollView {
-                    ForEach(dailyDetails.itineraryItems, id: \.self) { detail in
+                    ForEach(dailyDetails.dayItineraryItems, id: \.self) { detail in
                         DayDetailsView(details: detail)
                     }
                 }
@@ -58,7 +58,7 @@ struct DayItineraryView: View {
 struct DayItineraryView_Previews: PreviewProvider {
     static var previews: some View {
         let newItineraryItem = ItineraryItem(activity: "Rowing", activityDescription: "Lets go rowing", activityTips: "don't sink", link: "https://rowing.com")
-        let newDay = Day(day: "Day 1", dayDescription: "See the sights, here is a long description", itineraryItems: [newItineraryItem])
+        let newDay = DestinationItinerary(dayTitle: "Day 1", dayDescription: "See the sights, here is a long description", dayItineraryItems: [newItineraryItem])
         DayItineraryView(dailyDetails: newDay)
     }
 }

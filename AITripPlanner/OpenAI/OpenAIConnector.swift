@@ -17,7 +17,7 @@ class OpenAIConnector: ObservableObject {
         ["role": "system", "content": "You're a sassy, funny assistant"]
     ]
 
-    func sendToAssistant(completion: @escaping (Result<TripData, Error>) -> Void) {
+    func sendToAssistant(completion: @escaping (Result<Itinerary, Error>) -> Void) {
         travailAPI.fetchAPIKeys { (openAIKey, _, error) in
             if let error = error {
                 print("there was an error with your openAI api key")
@@ -53,24 +53,55 @@ class OpenAIConnector: ObservableObject {
                     } else if let data = data {
                         let jsonStr = String(data: data, encoding: .utf8)!
                         let responseHandler = OpenAIResponseHandler()
-                        if let responseData = (responseHandler.decodeJson(jsonString: jsonStr)) {
-                            do {
-                                let args = try responseHandler.decodeArgumentsJson(jsonString: responseData.choices[0].message.function_call.arguments)
+                        if let responseData = responseHandler.decodeJson(jsonString: jsonStr) {
+                            if let message = responseData.choices.first?.message.function_call.arguments {
+                                do {
+                                    let response = try responseHandler.decodeArgumentsJson(jsonString: message)
                                     DispatchQueue.main.async {
-                                        completion(.success(args))
+                                        print(response)
+                                        completion(.success(response))
                                     }
-                                
-                            } catch {
+                                } catch {
+                                    DispatchQueue.main.async {
+                                        completion(.failure(error))
+                                    }
+                                }
+                            } else {
+                                let error = NSError(domain: "", code: -1, userInfo: ["description": "Unable to parse response"])
                                 DispatchQueue.main.async {
                                     completion(.failure(error))
                                 }
                             }
-                        } else {
-                            let error = NSError(domain: "", code: -1, userInfo: ["description": "Unable to parse response"])
-                            DispatchQueue.main.async {
-                                completion(.failure(error))
-                            }
                         }
+                            // message is a JSON string. Convert it to pretty JSON:
+//                            if let messageData = message.data(using: .utf8),
+//
+//                               let jsonObject = try? JSONSerialization.jsonObject(with: messageData, options: []),
+//                               let prettyData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted),
+//                               let prettyStr = String(data: prettyData, encoding: .utf8) {
+//                                print(prettyStr)
+//                            }
+//                        }
+//                        let jsonStr = String(data: data, encoding: .utf8)!
+//                        let responseHandler = OpenAIResponseHandler()
+//                        if let responseData = (responseHandler.decodeJson(jsonString: jsonStr)) {
+//                            do {
+//                                let args = try responseHandler.decodeArgumentsJson(jsonString: responseData.choices[0].message.function_call.arguments)
+//                                    DispatchQueue.main.async {
+//                                        completion(.success(args))
+//                                    }
+//
+//                            } catch {
+//                                DispatchQueue.main.async {
+//                                    completion(.failure(error))
+//                                }
+//                            }
+//                        } else {
+//                            let error = NSError(domain: "", code: -1, userInfo: ["description": "Unable to parse response"])
+//                            DispatchQueue.main.async {
+//                                completion(.failure(error))
+//                            }
+//                        }
                     }
                 }
                 task.resume()
