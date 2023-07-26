@@ -2,7 +2,7 @@
 //  DayItineraryView.swift
 //  AITripPlanner
 //
-//  Created by Dan and Beth Engel on 6/29/23.
+//  Created by Dan Engel on 6/29/23.
 //
 
 import SwiftUI
@@ -57,7 +57,7 @@ struct DayItineraryView: View {
 
 struct DayItineraryView_Previews: PreviewProvider {
     static var previews: some View {
-        let newItineraryItem = ItineraryItem(activity: "Rowing", activityDescription: "Lets go rowing", activityTips: "don't sink", link: "https://rowing.com")
+        let newItineraryItem = ItineraryItem(activityTitle: "Rowing", activityDescription: "Lets go rowing", activityTips: "don't sink", link: "https://rowing.com")
         let newDay = DestinationItinerary(dayTitle: "Day 1", dayDescription: "See the sights, here is a long description", dayItineraryItems: [newItineraryItem])
         DayItineraryView(dailyDetails: newDay)
     }

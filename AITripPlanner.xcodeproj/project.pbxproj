@@ -13,6 +13,7 @@
 		4901AB1D2A42071100281A28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4901AB1C2A42071100281A28 /* Preview Assets.xcassets */; };
 		4901AB252A421D2700281A28 /* OpenAIResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901AB242A421D2700281A28 /* OpenAIResponseHandler.swift */; };
 		4901AB272A421D4F00281A28 /* OpenAIConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901AB262A421D4F00281A28 /* OpenAIConnector.swift */; };
+		4916EF2B2A70831C00799B4F /* DestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4916EF2A2A70831C00799B4F /* DestinationView.swift */; };
 		4927FE182A6EC24E00E15ABB /* DestinationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4927FE172A6EC24E00E15ABB /* DestinationModel.swift */; };
 		4927FE1A2A6ED11B00E15ABB /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4927FE192A6ED11B00E15ABB /* SplashView.swift */; };
 		4927FE1E2A702DD100E15ABB /* SubmitButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4927FE1D2A702DD100E15ABB /* SubmitButtonView.swift */; };
@@ -66,6 +67,7 @@
 		4901AB242A421D2700281A28 /* OpenAIResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIResponseHandler.swift; sourceTree = "<group>"; };
 		4901AB262A421D4F00281A28 /* OpenAIConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIConnector.swift; sourceTree = "<group>"; };
 		4901AB282A43490B00281A28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4916EF2A2A70831C00799B4F /* DestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationView.swift; sourceTree = "<group>"; };
 		4927FE172A6EC24E00E15ABB /* DestinationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationModel.swift; sourceTree = "<group>"; };
 		4927FE192A6ED11B00E15ABB /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		4927FE1D2A702DD100E15ABB /* SubmitButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButtonView.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				49A9A9F52A44AA42004C8650 /* LoaderView.swift */,
 				49A9A9F72A45F7DC004C8650 /* TripResultsView.swift */,
 				4927FE192A6ED11B00E15ABB /* SplashView.swift */,
+				4916EF2A2A70831C00799B4F /* DestinationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				49E31FEC2A6074E8007CB5E1 /* TravailAPI.swift in Sources */,
 				49870CA92A575E7E008171D8 /* APIResponseFixture.swift in Sources */,
 				49A9A9F82A45F7DC004C8650 /* TripResultsView.swift in Sources */,
+				4916EF2B2A70831C00799B4F /* DestinationView.swift in Sources */,
 				49A9AA012A4B50A1004C8650 /* UnSplashAPIResponse.swift in Sources */,
 				49870CAB2A5877E1008171D8 /* OpenAIFunctionParams.swift in Sources */,
 				49870CAD2A5E5B50008171D8 /* ImageCarouselView.swift in Sources */,

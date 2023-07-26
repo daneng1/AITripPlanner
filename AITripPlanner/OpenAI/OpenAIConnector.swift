@@ -33,6 +33,7 @@ class OpenAIConnector: ObservableObject {
                     "messages": self.messageLog,
                     "functions": OpenAIFunctionParams.getParams(),
                     "function_call": "auto",
+                    "temperature": 0.2,
                 ]
 
                 do {
@@ -45,8 +46,13 @@ class OpenAIConnector: ObservableObject {
                     }
                     self.logMessage("error", messageUserType: .assistant)
                 }
+                
+                let config = URLSessionConfiguration.default
+                config.timeoutIntervalForRequest = 45.0
+                
+                let session = URLSession(configuration: config)
 
-                let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                let task = session.dataTask(with: request) { (data, response, error) in
                     if let error = error {
                         print("Error: \(error)")
                         completion(.failure(error))
@@ -73,35 +79,6 @@ class OpenAIConnector: ObservableObject {
                                 }
                             }
                         }
-                            // message is a JSON string. Convert it to pretty JSON:
-//                            if let messageData = message.data(using: .utf8),
-//
-//                               let jsonObject = try? JSONSerialization.jsonObject(with: messageData, options: []),
-//                               let prettyData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted),
-//                               let prettyStr = String(data: prettyData, encoding: .utf8) {
-//                                print(prettyStr)
-//                            }
-//                        }
-//                        let jsonStr = String(data: data, encoding: .utf8)!
-//                        let responseHandler = OpenAIResponseHandler()
-//                        if let responseData = (responseHandler.decodeJson(jsonString: jsonStr)) {
-//                            do {
-//                                let args = try responseHandler.decodeArgumentsJson(jsonString: responseData.choices[0].message.function_call.arguments)
-//                                    DispatchQueue.main.async {
-//                                        completion(.success(args))
-//                                    }
-//
-//                            } catch {
-//                                DispatchQueue.main.async {
-//                                    completion(.failure(error))
-//                                }
-//                            }
-//                        } else {
-//                            let error = NSError(domain: "", code: -1, userInfo: ["description": "Unable to parse response"])
-//                            DispatchQueue.main.async {
-//                                completion(.failure(error))
-//                            }
-//                        }
                     }
                 }
                 task.resume()
@@ -133,7 +110,7 @@ extension OpenAIConnector {
         })
         task.resume()
         
-        let timeout = DispatchTime.now() + .seconds(20)
+        let timeout = DispatchTime.now() + .seconds(30)
         print("Waiting for semaphore signal")
         let retVal = semaphore.wait(timeout: timeout)
         print("Done waiting, obtained - \(retVal)")

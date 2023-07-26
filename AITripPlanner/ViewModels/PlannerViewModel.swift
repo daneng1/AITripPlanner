@@ -154,8 +154,11 @@ class PlannerViewModel: ObservableObject {
     
     func resetData() {
         response = nil
-        error = nil
         unsplashImage = nil
+    }
+    
+    func resetError() {
+        error = nil
     }
     
     func resetInputs() {

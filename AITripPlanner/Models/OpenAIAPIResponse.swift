@@ -58,13 +58,23 @@ struct Itinerary: Codable, Equatable {
     }
 }
 
-struct TripPlan: Codable {
-    let id: String
+struct TripPlan: Codable, Hashable {
+    static func == (lhs: TripPlan, rhs: TripPlan) -> Bool {
+        return lhs.destination == rhs.destination
+    }
+    
+    func hash(into hasher: inout Hasher) {
+//        hasher.combine(id)
+        hasher.combine(destination)
+        hasher.combine(destinationItinerary)
+    }
+    
+//    let id: String
     let destination: String
     let destinationItinerary: [DestinationItinerary]
     
     enum CodingKeys: String, CodingKey {
-        case id
+//        case id
         case destination
         case destinationItinerary
     }
@@ -92,21 +102,21 @@ struct DestinationItinerary: Codable, Hashable {
 }
 
 struct ItineraryItem: Codable, Hashable {
-    let activity: String
+    let activityTitle: String
     let activityDescription: String
     let activityTips: String
     let link: String?
     
     enum CodingKeys: String, CodingKey {
-        case activity, activityTips, link, activityDescription
+        case activityTitle, activityTips, link, activityDescription
     }
     
     static func == (lhs: ItineraryItem, rhs: ItineraryItem) -> Bool {
-        return lhs.activity == rhs.activity
+        return lhs.activityTitle == rhs.activityTitle
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(activity)
+        hasher.combine(activityTitle)
     }
 }
 
