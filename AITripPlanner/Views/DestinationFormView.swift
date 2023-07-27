@@ -16,8 +16,8 @@ struct DestinationFormView: View {
     let backgroundColor = Color("b")
     
     let destinations = [
-    Destination(name: "Seattle", sightsToSee: "space needle", numberOfDays: "1"),
-    Destination(name: "Portland", sightsToSee: "breweries, rose garden, mount hood, trailblazers ", numberOfDays: "5")
+        Destination(name: "Seattle", sightsToSee: "space needle", numberOfDays: "1"),
+        Destination(name: "Portland", sightsToSee: "breweries, rose garden, mount hood, trailblazers ", numberOfDays: "5")
     ]
     
     var body: some View {
@@ -77,7 +77,7 @@ struct DestinationFormView: View {
         if destination.sightsToSee == "" {
             return "\(destination.name) - \(destination.numberOfDays) \(days)"
         } else {
-           return "\(destination.name) - \(destination.numberOfDays) \(days), \(destination.sightsToSee)"
+            return "\(destination.name) - \(destination.numberOfDays) \(days), \(destination.sightsToSee)"
         }
     }
 }
@@ -106,55 +106,71 @@ struct DestinationInputView: View {
     
     var body: some View {
         VStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("Where do you want to go?")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color("secondary2"))
-                    TextField("", text: $viewModel.location)
-                        .padding(8)
-                        .background(RoundedRectangle(cornerRadius: 10).stroke(.black, lineWidth: 0.5))
-                        .background(Color("background"))
-                        .cornerRadius(10)
-                    Text("For how many days?")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color("secondary2"))
-                        .padding(.top, 10)
-                    TextField("", text: $viewModel.numberOfDays)
-                        .padding(8)
-                        .background(RoundedRectangle(cornerRadius: 10).stroke(.black, lineWidth: 0.5))
-                        .background(Color("background"))
-                        .cornerRadius(10)
-                        .padding(0)
-                    Text("Any specific sights or activities?")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color("secondary2"))
-                        .padding(.top, 10)
-                    TextField("", text: $viewModel.sightsToSee)
-                        .padding(8)
-                        .background(RoundedRectangle(cornerRadius: 10).stroke(.black, lineWidth: 0.5))
-                        .background(Color("background"))
-                        .cornerRadius(10)
-                }
-                VStack(alignment: .center) {
-                    SubmitButtonView(text: "Add destination")
-                        .onTapGesture {
-                            viewModel.addDestination()
-                            if !viewModel.showAlert {
-                                presentationMode.wrappedValue.dismiss()
-                            }
+            ZStack {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Where do you want to go?")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color("secondary2"))
+                        TextField("", text: $viewModel.location)
+                            .padding(8)
+                            .background(RoundedRectangle(cornerRadius: 10).stroke(.black, lineWidth: 0.5))
+                            .background(Color("background"))
+                            .cornerRadius(10)
+                        Text("For how many days?")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color("secondary2"))
+                            .padding(.top, 10)
+                        TextField("", text: $viewModel.numberOfDays)
+                            .padding(8)
+                            .background(RoundedRectangle(cornerRadius: 10).stroke(.black, lineWidth: 0.5))
+                            .background(Color("background"))
+                            .cornerRadius(10)
+                            .padding(0)
+                        Text("Any specific sights or activities?")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color("secondary2"))
+                            .padding(.top, 10)
+                        TextField("", text: $viewModel.sightsToSee)
+                            .padding(8)
+                            .background(RoundedRectangle(cornerRadius: 10).stroke(.black, lineWidth: 0.5))
+                            .background(Color("background"))
+                            .cornerRadius(10)
+                        VStack(alignment: .center) {
+                            SubmitButtonView(text: "Add destination")
+                                .onTapGesture {
+                                    viewModel.addDestination()
+                                    if !viewModel.showAlert {
+                                        presentationMode.wrappedValue.dismiss()
+                                    }
+                                }
                         }
+                        .padding(.vertical)
+                    }
                 }
-                .padding(.vertical)
+                if !viewModel.suggestions.isEmpty {
+                    List(viewModel.suggestions, id: \.self) { suggestion in
+                        Text(suggestion.title)
+                            .onTapGesture {
+                                viewModel.setLocation(location: suggestion.title)
+                            }
+                    }
+                    .scrollContentBackground(.hidden)
+                    .padding(.top, 48)
+                    .shadow(radius: 10)
+                }
             }
         }
         .padding(.top, 40)
         .padding()
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text("Ooops, there was an issue"), message: Text("it looks like you may not have entered anything in one or more fields."))
+        }
+        .onReceive(viewModel.$location) { input in
+            viewModel.completer.queryFragment = input
         }
     }
 }
