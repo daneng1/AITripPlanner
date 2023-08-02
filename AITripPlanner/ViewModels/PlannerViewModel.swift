@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import MapKit
-import CoreLocation
+//import MapKit
+//import CoreLocation
 
-class PlannerViewModel: NSObject, ObservableObject, MKLocalSearchCompleterDelegate {
+class PlannerViewModel: ObservableObject {
     @Published var destinations: [Destination] = []
     @Published var sightsToSee = ""
     @Published var location = ""
@@ -23,28 +23,28 @@ class PlannerViewModel: NSObject, ObservableObject, MKLocalSearchCompleterDelega
     @Published var unsplashImage: Results?
     @Published var showAlert: Bool = false
     @Published var canNavigateToResults: Bool = false
-    @Published var suggestions: [MKLocalSearchCompletion] = []
+//    @Published var suggestions: [MKLocalSearchCompletion] = []
     
     private var connector = OpenAIConnector()
     private var travailAPI = TravailAPI()
-    var completer = MKLocalSearchCompleter()
+//    var completer = MKLocalSearchCompleter()
 
-    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-        print(completer.results)
-        let filteredResults = completer.results.filter {
-            completion in
-            return completion.title.contains(",") || !completion.subtitle.contains(",")
-        }
-        suggestions = filteredResults
-    }
+//    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+//        print(completer.results)
+//        let filteredResults = completer.results.filter {
+//            completion in
+//            return completion.title.contains(",") || !completion.subtitle.contains(",")
+//        }
+//        suggestions = filteredResults
+//    }
     
     init(unsplashImage: Results?, error: Error?, response: Itinerary?) {
-        super.init()
+//        super.init()
         self.unsplashImage = unsplashImage
         self.error = error
         self.response = response
-        completer.resultTypes = .address
-        completer.delegate = self
+//        completer.resultTypes = .address
+//        completer.delegate = self
     }
     
     func addDestination() {
@@ -57,10 +57,10 @@ class PlannerViewModel: NSObject, ObservableObject, MKLocalSearchCompleterDelega
         }
     }
     
-    func setLocation(location: String) {
-        self.suggestions = []
-        self.location = location
-    }
+//    func setLocation(location: String) {
+//        self.suggestions = []
+//        self.location = location
+//    }
     
     func deleteDestination(at index: IndexSet) {
         destinations.remove(atOffsets: index)

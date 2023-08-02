@@ -151,17 +151,17 @@ struct DestinationInputView: View {
                         .padding(.vertical)
                     }
                 }
-                if !viewModel.suggestions.isEmpty {
-                    List(viewModel.suggestions, id: \.self) { suggestion in
-                        Text(suggestion.title)
-                            .onTapGesture {
-                                viewModel.setLocation(location: suggestion.title)
-                            }
-                    }
-                    .scrollContentBackground(.hidden)
-                    .padding(.top, 48)
-                    .shadow(radius: 10)
-                }
+//                if !viewModel.suggestions.isEmpty {
+//                    List(viewModel.suggestions, id: \.self) { suggestion in
+//                        Text(suggestion.title)
+//                            .onTapGesture {
+//                                viewModel.setLocation(location: suggestion.title)
+//                            }
+//                    }
+//                    .scrollContentBackground(.hidden)
+//                    .padding(.top, 48)
+//                    .shadow(radius: 10)
+//                }
             }
         }
         .padding(.top, 40)
@@ -169,9 +169,9 @@ struct DestinationInputView: View {
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text("Ooops, there was an issue"), message: Text("it looks like you may not have entered anything in one or more fields."))
         }
-        .onReceive(viewModel.$location) { input in
-            viewModel.completer.queryFragment = input
-        }
+//        .onReceive(viewModel.$location) { input in
+//            viewModel.completer.queryFragment = input
+//        }
     }
 }
 
