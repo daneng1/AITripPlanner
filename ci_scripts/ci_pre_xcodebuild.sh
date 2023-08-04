@@ -4,19 +4,18 @@
 #  AITripPlanner
 #
 #  Created by Dan and Beth Engel on 8/3/23.
-#  
+#
 
 echo "Stage: PRE-Xcode Build is activated .... "
 
-# for future reference
-# https://developer.apple.com/documentation/xcode/environment-variable-reference
+# Move to the place where the scripts are located.
+# This is important because the position of the subsequently mentioned files depend of this origin.
+cd $AITripPlanner/ci_scripts || exit 1
 
-cd ../AITripPlanner/
+# Write a JSON File containing all the environment variables and secrets.
+printf "{\"OPEN_AI_KEY\":\"%s\",\"UNSPLASH_ACCESS_KEY\":\"%s\"}" "$OPEN_AI_KEY" "$UNSPLASH_ACCESS_KEY" >> ../Secrets.json
 
-plutil -replace OPENAI_API_KEY -string $OPENAI_API_KEY Info.plist
-plutil -replace UNSPLASH_ACCESS_KEY -string $UNSPLASH_ACCESS_KEY Info.plist
-
-plutil -p Info.plist
+echo "Wrote Secrets.json file."
 
 echo "Stage: PRE-Xcode Build is DONE .... "
 

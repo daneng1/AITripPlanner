@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4901906B2A7D41C700BAF636 /* Secrets.json in Resources */ = {isa = PBXBuildFile; fileRef = 490190692A7C5EF900BAF636 /* Secrets.json */; };
 		4901AB162A42071000281A28 /* AITripPlannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901AB152A42071000281A28 /* AITripPlannerApp.swift */; };
 		4901AB182A42071000281A28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901AB172A42071000281A28 /* ContentView.swift */; };
 		4901AB1A2A42071100281A28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4901AB192A42071100281A28 /* Assets.xcassets */; };
@@ -54,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		490190682A7C3A0100BAF636 /* ci_pre_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_pre_xcodebuild.sh; sourceTree = "<group>"; };
+		490190692A7C5EF900BAF636 /* Secrets.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Secrets.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		4901AB122A42071000281A28 /* AITripPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AITripPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4901AB152A42071000281A28 /* AITripPlannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITripPlannerApp.swift; sourceTree = "<group>"; };
 		4901AB172A42071000281A28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,10 +121,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		490190672A7C395100BAF636 /* ci_scripts */ = {
+			isa = PBXGroup;
+			children = (
+				490190682A7C3A0100BAF636 /* ci_pre_xcodebuild.sh */,
+			);
+			path = ci_scripts;
+			sourceTree = "<group>";
+		};
 		4901AB092A42071000281A28 = {
 			isa = PBXGroup;
 			children = (
+				490190672A7C395100BAF636 /* ci_scripts */,
 				49A9A9F42A44969A004C8650 /* Config.xcconfig */,
+				490190692A7C5EF900BAF636 /* Secrets.json */,
 				4901AB142A42071000281A28 /* AITripPlanner */,
 				49870C902A575110008171D8 /* AITripPlannerUITests */,
 				49870C9F2A575123008171D8 /* AITripPlannerTests */,
@@ -391,6 +404,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4901906B2A7D41C700BAF636 /* Secrets.json in Resources */,
 				4901AB1D2A42071100281A28 /* Preview Assets.xcassets in Resources */,
 				4901AB1A2A42071100281A28 /* Assets.xcassets in Resources */,
 			);
