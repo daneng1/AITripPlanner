@@ -3,7 +3,7 @@
 #  ci_pre_xcodebuild.sh
 #  AITripPlanner
 #
-#  Created by Dan and Beth Engel on 8/3/23.
+#  Created by Dan Engel on 8/3/23.
 #
 
 echo "Stage: PRE-Xcode Build is activated .... "
