@@ -62,15 +62,17 @@ struct APIResponseFixture {
         )
     }
     
-    static func getUnsplashData() -> Results {
-        return Results(
-            id: "12345",
-            altDescription: "this is an alt description",
-            urls: Urls(
-                small: "https://images.unsplash.com/photo-1423450822265-fcd97e52ecb5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NjkwMzR8MHwxfHNlYXJjaHwxfHxEZW52ZXJ8ZW58MHwyfHx8MTY4ODU4MDk1OHww&ixlib=rb-4.0.3&q=80&w=400",
-                regular: "https://images.unsplash.com/photo-1423450822265-fcd97e52ecb5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NjkwMzR8MHwxfHNlYXJjaHwxfHxEZW52ZXJ8ZW58MHwyfHx8MTY4ODU4MDk1OHww&ixlib=rb-4.0.3&q=80&w=1080"
-            )
-        )
+    static func getUnsplashData() -> [Photo] {
+        return [
+            Photo(
+                id: "12345",
+                altDescription: "this is an alt description",
+                urls: Urls(
+                    small: "https://images.unsplash.com/photo-1423450822265-fcd97e52ecb5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NjkwMzR8MHwxfHNlYXJjaHwxfHxEZW52ZXJ8ZW58MHwyfHx8MTY4ODU4MDk1OHww&ixlib=rb-4.0.3&q=80&w=400",
+                    regular: "https://images.unsplash.com/photo-1423450822265-fcd97e52ecb5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NjkwMzR8MHwxfHNlYXJjaHwxfHxEZW52ZXJ8ZW58MHwyfHx8MTY4ODU4MDk1OHww&ixlib=rb-4.0.3&q=80&w=1080"
+                )
+            ),
+        ]
     }
     
 }

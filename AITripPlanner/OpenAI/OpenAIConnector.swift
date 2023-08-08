@@ -16,8 +16,8 @@ class OpenAIConnector: ObservableObject {
     @Published var messageLog: [[String: String]] = [
         ["role": "system", "content": "You're a sassy, funny assistant"]
     ]
-
-    func sendToAssistant(completion: @escaping (Result<Itinerary, Error>) -> Void) {
+    
+    func fetchOpenAIData(completion: @escaping (Result<Itinerary, Error>) -> Void) {
         travailAPI.fetchAPIKeys { (openAIKey, _, error) in
             if let error = error {
                 print("there was an error with your openAI api key")
@@ -35,7 +35,7 @@ class OpenAIConnector: ObservableObject {
                     "function_call": "auto",
                     "temperature": 0.2,
                 ]
-
+                
                 do {
                     let httpBodyJson = try JSONSerialization.data(withJSONObject: httpBody, options: .prettyPrinted)
                     request.httpBody = httpBodyJson
@@ -51,7 +51,7 @@ class OpenAIConnector: ObservableObject {
                 config.timeoutIntervalForRequest = 45.0
                 
                 let session = URLSession(configuration: config)
-
+                
                 let task = session.dataTask(with: request) { (data, response, error) in
                     if let error = error {
                         print("Error: \(error)")
@@ -85,7 +85,6 @@ class OpenAIConnector: ObservableObject {
             }
         }
     }
-
 }
 
 extension OpenAIConnector {

@@ -20,7 +20,7 @@ class PlannerViewModel: ObservableObject {
     @Published var loading: Bool = false
     @Published var showDetailsView: Bool = false
     @Published var selectedImage: String = ""
-    @Published var unsplashImage: Results?
+    @Published var unsplashImage: Photo?
     @Published var showAlert: Bool = false
     @Published var canNavigateToResults: Bool = false
 //    @Published var suggestions: [MKLocalSearchCompletion] = []
@@ -37,9 +37,8 @@ class PlannerViewModel: ObservableObject {
 //        }
 //        suggestions = filteredResults
 //    }
-    
-    init(unsplashImage: Results?, error: Error?, response: Itinerary?) {
-//        super.init()
+
+    init(unsplashImage: Photo?, error: Error?, response: Itinerary?) {
         self.unsplashImage = unsplashImage
         self.error = error
         self.response = response
@@ -56,11 +55,6 @@ class PlannerViewModel: ObservableObject {
             showAlert = true
         }
     }
-    
-//    func setLocation(location: String) {
-//        self.suggestions = []
-//        self.location = location
-//    }
     
     func deleteDestination(at index: IndexSet) {
         destinations.remove(atOffsets: index)
@@ -93,21 +87,12 @@ class PlannerViewModel: ObservableObject {
             }
             message.append("Please build a travel itinerary for a trip to \(destinations[0].name), that lasts \(destinations[0].numberOfDays) days and I'd like to see or experience \(destinations[0].sightsToSee). ")
         }
+
         message.append("Please provide links to any sights you recommend, consider the local holidays, crowds, and the best time of the day to visit each site. Do not include specific dates for travel. ")
         print("******* \(message)")
         connector.logMessage(message, messageUserType: .user)
-        
-//        fetchPhoto { (result) in
-//            DispatchQueue.main.async {
-//                switch result {
-//                case .success(let response):
-//                    self.unsplashImage = response.results[0]
-//                case .failure(let error):
-//                    print("Unsplash Error: \(error)")
-//                }
-//            }
-//        }
-        connector.sendToAssistant { (result) in
+
+        connector.fetchOpenAIData { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
@@ -119,10 +104,6 @@ class PlannerViewModel: ObservableObject {
             }
         }
     }
-//    
-//    func getAPIKey(for key: String) -> String? {
-//        return ProcessInfo.processInfo.environment[key]
-//    }
     
     func fetchPhoto(destination: String) {
         queryUnSplashAPI(destination: destination) { (result) in
@@ -141,35 +122,32 @@ class PlannerViewModel: ObservableObject {
         let destinationNoSpaces = destination.replacingOccurrences(of: " ", with: "%20")
         let urlString = URL(string: "https://api.unsplash.com/search/photos?query=\(destinationNoSpaces)%20popular%20tourist%20destination&orientation=landscape&per_page=1")
         var request = URLRequest(url: urlString!)
-        travailAPI.fetchAPIKeys { (_, unsplashKey, error) in
-            if let error = error {
-                completion(.failure(error))
-            } else if let unsplashKey = unsplashKey {
-                request.httpMethod = "GET"
-                request.addValue("Client-ID \(unsplashKey)", forHTTPHeaderField: "Authorization")
-                
-                let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                    if let error = error {
-                        completion(.failure(error))
-                        return
-                    }
-                    guard let data = data else {
-                        print("there was an issue with the response from Unsplash")
-                        return
-                    }
-                    do {
-                        let jsonStr = String(data: data, encoding: .utf8)!
-                        let json = jsonStr.data(using: .utf8)!
-                        
-                        let decoder = JSONDecoder()
-                        let photoResponse = try decoder.decode(UnSplashAPIResponse.self, from: json)
-                        completion(.success(photoResponse))
-                    } catch let error {
-                        completion(.failure(error))
-                    }
+        if let unsplashAPIKey = Secrets.unsplashKey {
+            request.httpMethod = "GET"
+            request.addValue("Client-ID \(unsplashAPIKey)", forHTTPHeaderField: "Authorization")
+            
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let error = error {
+                    completion(.failure(error))
+                    return
                 }
-                task.resume()
+                guard let data = data else {
+                    return
+                }
+                do {
+                    let jsonStr = String(data: data, encoding: .utf8)!
+                    let json = jsonStr.data(using: .utf8)!
+                    
+                    let decoder = JSONDecoder()
+                    let photoResponse = try decoder.decode(UnSplashAPIResponse.self, from: json)
+                    completion(.success(photoResponse))
+                } catch let error {
+                    completion(.failure(error))
+                }
             }
+            task.resume()
+        } else if let error = error {
+            completion(.failure(error))
         }
     }
     

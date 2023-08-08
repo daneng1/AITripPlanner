@@ -2,7 +2,7 @@
 //  ErrorView.swift
 //  AITripPlanner
 //
-//  Created by Dan and Beth Engel on 7/13/23.
+//  Created by Dan Engel on 7/13/23.
 //
 
 import SwiftUI
