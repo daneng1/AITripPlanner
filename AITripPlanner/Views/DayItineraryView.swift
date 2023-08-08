@@ -2,7 +2,7 @@
 //  DayItineraryView.swift
 //  AITripPlanner
 //
-//  Created by Dan and Beth Engel on 6/29/23.
+//  Created by Dan Engel on 6/29/23.
 //
 
 import SwiftUI

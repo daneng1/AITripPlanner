@@ -34,7 +34,7 @@ struct Secrets {
             print("Error: 'OPEN_AI_KEY' not found in 'Secrets.json'")
             return nil
         }
-        print(openAIKey)
+        print("OPENAI Key, \(openAIKey)")
         return openAIKey
     }
 
@@ -43,7 +43,7 @@ struct Secrets {
             print("Error: 'UNSPLASH_ACCESS_KEY' not found in 'Secrets.json'")
             return nil
         }
-        print(unsplashKey)
+        print("unsplash key,  \(unsplashKey)")
         return unsplashKey
     }
 }

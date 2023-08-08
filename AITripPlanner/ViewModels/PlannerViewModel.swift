@@ -18,12 +18,12 @@ class PlannerViewModel: ObservableObject {
     @Published var loading: Bool = false
     @Published var showDetailsView: Bool = false
     @Published var selectedImage: String = ""
-    @Published var unsplashImage: Results?
+    @Published var unsplashImage: Photo?
     @Published var showAlert: Bool = false
     private var connector = OpenAIConnector()
     private var travailAPI = TravailAPI()
     
-    init(unsplashImage: Results?, error: Error?, response: OpenAIFunctionResponse?) {
+    init(unsplashImage: Photo?, error: Error?, response: OpenAIFunctionResponse?) {
         self.unsplashImage = unsplashImage
         self.error = error
         self.response = response
@@ -48,7 +48,7 @@ class PlannerViewModel: ObservableObject {
                 }
             }
         }
-        connector.sendToAssistant { (result) in
+        connector.fetchOpenAIData { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
@@ -75,7 +75,6 @@ class PlannerViewModel: ObservableObject {
                     return
                 }
                 guard let data = data else {
-                    print("there was an issue with the response from Unsplash")
                     return
                 }
                 do {
@@ -93,36 +92,6 @@ class PlannerViewModel: ObservableObject {
         } else if let error = error {
             completion(.failure(error))
         }
-//        travailAPI.fetchAPIKeys { (_, unsplashKey, error) in
-//            if let error = error {
-//                completion(.failure(error))
-//            } else if let unsplashKey = unsplashKey {
-//                request.httpMethod = "GET"
-//                request.addValue("Client-ID \(unsplashKey)", forHTTPHeaderField: "Authorization")
-//                
-//                let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-//                    if let error = error {
-//                        completion(.failure(error))
-//                        return
-//                    }
-//                    guard let data = data else {
-//                        print("there was an issue with the response from Unsplash")
-//                        return
-//                    }
-//                    do {
-//                        let jsonStr = String(data: data, encoding: .utf8)!
-//                        let json = jsonStr.data(using: .utf8)!
-//                        
-//                        let decoder = JSONDecoder()
-//                        let photoResponse = try decoder.decode(UnSplashAPIResponse.self, from: json)
-//                        completion(.success(photoResponse))
-//                    } catch let error {
-//                        completion(.failure(error))
-//                    }
-//                }
-//                task.resume()
-//            }
-//        }
     }
     
     func checkValid() -> Bool {

@@ -9,10 +9,10 @@ import Foundation
 
 
 struct UnSplashAPIResponse: Codable {
-    let results: [Results]
+    let results: [Photo]
 }
 
-struct Results: Codable, Hashable {
+struct Photo: Codable, Hashable {
     let id: String
     let altDescription: String
     let urls: Urls
@@ -22,7 +22,7 @@ struct Results: Codable, Hashable {
         case altDescription = "alt_description"
     }
     
-    static func == (lhs: Results, rhs: Results) -> Bool {
+    static func == (lhs: Photo, rhs: Photo) -> Bool {
         return lhs.id == rhs.id
     }
     
