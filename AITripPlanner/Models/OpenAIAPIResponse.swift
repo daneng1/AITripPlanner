@@ -47,12 +47,10 @@ struct Itinerary: Codable, Equatable {
         return lhs.tripTitle == rhs.tripTitle
     }
     
-//    let id: String
     let tripTitle: String
     let tripPlan: [TripPlan]
     
     enum CodingKeys: String, CodingKey {
-//        case id
         case tripTitle
         case tripPlan
     }
@@ -60,22 +58,19 @@ struct Itinerary: Codable, Equatable {
 
 struct TripPlan: Codable, Hashable {
     static func == (lhs: TripPlan, rhs: TripPlan) -> Bool {
-        return lhs.destination == rhs.destination
+        return lhs.locationName == rhs.locationName
     }
     
     func hash(into hasher: inout Hasher) {
-//        hasher.combine(id)
-        hasher.combine(destination)
+        hasher.combine(locationName)
         hasher.combine(destinationItinerary)
     }
     
-//    let id: String
-    let destination: String
+    let locationName: String
     let destinationItinerary: [DestinationItinerary]
     
     enum CodingKeys: String, CodingKey {
-//        case id
-        case destination
+        case locationName
         case destinationItinerary
     }
 }

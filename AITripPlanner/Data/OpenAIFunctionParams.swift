@@ -30,7 +30,7 @@ struct OpenAIFunctionParams {
                                         "type": "string",
                                         "description": "Create a unique ID for each destination. This should be 16 characters in length and should be randomized",
                                     ] as [String : Any],
-                                    "destination": [
+                                    "locationName": [
                                         "type": "string",
                                         "description": "This is the name of the destination the user wants to visit",
                                     ] as [String : Any],

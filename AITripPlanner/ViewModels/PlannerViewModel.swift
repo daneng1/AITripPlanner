@@ -6,8 +6,6 @@
 //
 
 import Foundation
-//import MapKit
-//import CoreLocation
 
 class PlannerViewModel: ObservableObject {
     @Published var destinations: [Destination] = []
@@ -20,30 +18,16 @@ class PlannerViewModel: ObservableObject {
     @Published var loading: Bool = false
     @Published var showDetailsView: Bool = false
     @Published var selectedImage: String = ""
-    @Published var unsplashImage: Photo?
+    @Published var unsplashImage: [(String, Photo)] = []
     @Published var showAlert: Bool = false
     @Published var canNavigateToResults: Bool = false
-//    @Published var suggestions: [MKLocalSearchCompletion] = []
     
     private var connector = OpenAIConnector()
     private var travailAPI = TravailAPI()
-//    var completer = MKLocalSearchCompleter()
 
-//    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-//        print(completer.results)
-//        let filteredResults = completer.results.filter {
-//            completion in
-//            return completion.title.contains(",") || !completion.subtitle.contains(",")
-//        }
-//        suggestions = filteredResults
-//    }
-
-    init(unsplashImage: Photo?, error: Error?, response: Itinerary?) {
-        self.unsplashImage = unsplashImage
+    init(error: Error?, response: Itinerary?) {
         self.error = error
         self.response = response
-//        completer.resultTypes = .address
-//        completer.delegate = self
     }
     
     func addDestination() {
@@ -60,18 +44,16 @@ class PlannerViewModel: ObservableObject {
         destinations.remove(atOffsets: index)
     }
     
-    func buildQuery() {
-        self.loading = true
-        self.canNavigateToResults = true
+    func buildQuery() -> String {
         var message = ""
         if destinations.count > 1 {
-            message.append("Please build a multi-destination travel itinerary. You must return the itinerary in the exact order requested. You must include travel days to get between each destination. You must make recomendation for the best mode of transportation between destinations. ")
+            message.append("Please build a multi-destination travel itinerary. You must return the itinerary in the exact order requested. You must make recomendations for the best mode of transportation between destinations.")
             for (index, item) in destinations.enumerated() {
                 var sights = ""
                 if item.sightsToSee == "" {
                     sights = "the top tourist sights"
                 } else {
-                    sights = sightsToSee
+                    sights = item.sightsToSee
                 }
                 if index == 0 {
                     message.append("First, I'd like to visit \(item.name) for \(item.numberOfDays) day(s) and I'd like to see or experience \(sights). ")
@@ -89,7 +71,14 @@ class PlannerViewModel: ObservableObject {
         }
 
         message.append("Please provide links to any sights you recommend, consider the local holidays, crowds, and the best time of the day to visit each site. Do not include specific dates for travel. ")
-        print("******* \(message)")
+        return message
+    }
+    
+    func fetchItinerary() {
+        self.loading = true
+        self.canNavigateToResults = true
+        let message = buildQuery()
+        
         connector.logMessage(message, messageUserType: .user)
 
         connector.fetchOpenAIData { (result) in
@@ -97,6 +86,7 @@ class PlannerViewModel: ObservableObject {
                 switch result {
                 case .success(let response):
                     self.response = response
+                    self.error = nil
                 case .failure(let error):
                     self.error = error
                 }
@@ -110,7 +100,7 @@ class PlannerViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
-                    self.unsplashImage = response.results[0]
+                    self.unsplashImage.append((destination, response.results[0]))
                 case .failure(let error):
                     print("Unsplash Error: \(error)")
                 }
@@ -170,7 +160,7 @@ class PlannerViewModel: ObservableObject {
     
     func resetData() {
         response = nil
-        unsplashImage = nil
+        unsplashImage = []
     }
     
     func resetError() {

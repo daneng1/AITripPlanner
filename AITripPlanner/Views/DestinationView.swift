@@ -10,19 +10,20 @@ import URLImageModule
 
 struct DestinationView: View {
     @EnvironmentObject var viewModel: PlannerViewModel
+    var destination: TripPlan
+    
     var body: some View {
         VStack {
             if viewModel.error != nil {
                 ErrorView()
             } else if viewModel.response != nil {
                 VStack {
-                    if let url = viewModel.unsplashImage?.urls.regular {
-                        URLImage(url: URL(string: url)!) { image in
+                    if let photo = viewModel.unsplashImage.first(where: { destination.locationName == $0.0 }) {
+                        URLImage(url: URL(string: photo.1.urls.regular)!) { image in
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .accessibility(label: Text(viewModel.unsplashImage?.altDescription ?? "A travel image"))
-                            
+                                .accessibility(label: Text(photo.1.altDescription))
                         }
                     } else {
                         Image(systemName: "image_09")
@@ -32,25 +33,32 @@ struct DestinationView: View {
                             .ignoresSafeArea(.all)
                             .accessibility(label: Text("An image of the Eiffel Tower"))
                     }
-                    VStack {
-                        Text("Here's your itinerary for \(viewModel.location)!")
-                            .font(.headline)
-                            .foregroundColor(Color("secondary2"))
-                    }
-                    .padding()
                 }
+                VStack {
+                    Text("Here's your itinerary for \(destination.locationName)!")
+                        .font(.headline)
+                        .foregroundColor(Color("secondary2"))
+                    ScrollView {
+                        ForEach(destination.destinationItinerary, id: \.dayTitle) { day in
+                            DayItineraryView(dailyDetails: day)
+                        }
+                    }
+                }
+                .padding()
             } else {
                 LoaderView()
             }
         }
-//        onAppear {
-//            viewModel.
-//        }
+        onAppear {
+            viewModel.fetchPhoto(destination: destination.locationName)
+        }
     }
 }
 
 struct DestinationView_Previews: PreviewProvider {
     static var previews: some View {
-        DestinationView()
+        DestinationView(destination: APIResponseFixture.getOpenAIData().tripPlan[0])
+            .environmentObject(PlannerViewModel(error: nil, response: nil))
+
     }
 }

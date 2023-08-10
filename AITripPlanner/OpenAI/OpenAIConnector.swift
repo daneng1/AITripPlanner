@@ -29,7 +29,7 @@ class OpenAIConnector: ObservableObject {
                 request.addValue("Bearer \(openAIKey)", forHTTPHeaderField: "Authorization")
                 
                 let httpBody: [String: Any] = [
-                    "model": "gpt-3.5-turbo-0613",
+                    "model": "gpt-4-0613",
                     "messages": self.messageLog,
                     "functions": OpenAIFunctionParams.getParams(),
                     "function_call": "auto",
@@ -48,7 +48,7 @@ class OpenAIConnector: ObservableObject {
                 }
                 
                 let config = URLSessionConfiguration.default
-                config.timeoutIntervalForRequest = 45.0
+                config.timeoutIntervalForRequest = 240.0
                 
                 let session = URLSession(configuration: config)
                 
@@ -104,15 +104,15 @@ extension OpenAIConnector {
                 requestData = data
             }
             
-            print("Semaphore signalled")
+//            print("Semaphore signalled")
             semaphore.signal()
         })
         task.resume()
         
         let timeout = DispatchTime.now() + .seconds(30)
-        print("Waiting for semaphore signal")
+//        print("Waiting for semaphore signal")
         let retVal = semaphore.wait(timeout: timeout)
-        print("Done waiting, obtained - \(retVal)")
+//        print("Done waiting, obtained - \(retVal)")
         return requestData
     }
 }
