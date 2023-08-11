@@ -24,13 +24,6 @@ struct DayItineraryView: View {
                         .fontWeight(.bold)
                         .foregroundColor(Color("background"))
                         .padding(.leading, 40)
-                    Text(" - ")
-                        .font(.title3)
-                        .foregroundColor(Color("background"))
-                    Text(dailyDetails.dayDescription)
-                        .font(.custom("", size: 12))
-                        .foregroundColor(Color("background"))
-                    Spacer()
                 }
                 .frame(maxWidth: .infinity)
                 .frame(height: 60)
@@ -46,6 +39,9 @@ struct DayItineraryView: View {
             .cornerRadius(10)
             if detailsVisible {
                 ScrollView {
+                    Text(dailyDetails.dayDescription)
+                        .font(.headline)
+                        .foregroundColor(Color("text"))
                     ForEach(dailyDetails.dayItineraryItems, id: \.self) { detail in
                         DayDetailsView(details: detail)
                     }
@@ -58,7 +54,7 @@ struct DayItineraryView: View {
 struct DayItineraryView_Previews: PreviewProvider {
     static var previews: some View {
         let newItineraryItem = ItineraryItem(activityTitle: "Rowing", activityDescription: "Lets go rowing", activityTips: "don't sink", link: "https://rowing.com")
-        let newDay = DestinationItinerary(dayTitle: "Day 1", dayDescription: "See the sights, here is a long description", dayItineraryItems: [newItineraryItem])
+        let newDay = DestinationItinerary(dayTitle: "Day 1", dayDescription: "See the sights, here is a long description that includes lots and lots of text", dayItineraryItems: [newItineraryItem])
         DayItineraryView(dailyDetails: newDay)
     }
 }

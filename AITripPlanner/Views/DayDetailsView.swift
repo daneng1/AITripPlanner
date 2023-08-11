@@ -18,6 +18,9 @@ struct DayDetailsView: View {
             Text(details.activityDescription)
                 .font(.subheadline)
                 .foregroundColor(Color("text"))
+                .multilineTextAlignment(.leading)
+                .fixedSize(horizontal: false, vertical: false)
+                .lineLimit(nil)
             VStack(alignment: .leading) {
                 ZStack {
                     Rectangle()
@@ -38,6 +41,8 @@ struct DayDetailsView: View {
                 Text(details.activityTips)
                     .font(.subheadline)
                     .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: false)
+                    .lineLimit(nil)
             }
             .padding(.top, 4)
             if let link = details.link,
