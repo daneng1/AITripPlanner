@@ -6,65 +6,62 @@
 //
 
 import SwiftUI
-import URLImageModule
 
 struct TripResultsView: View {
     @EnvironmentObject var viewModel: PlannerViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
-        ZStack {
-            Image(viewModel.selectedImage)
-                .resizable()
-                .scaledToFill()
-                .frame(maxWidth: UIScreen.main.bounds.width)
-                .edgesIgnoringSafeArea(.all)
-                .opacity(0.2)
-            VStack {
-                if viewModel.error != nil {
-                    ErrorView()
-                } else if viewModel.response != nil {
-                    VStack {
-                        if let url = viewModel.unsplashImage?.urls.regular {
-                            URLImage(url: URL(string: url)!) { image in
-                                image
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .accessibility(label: Text(viewModel.unsplashImage?.altDescription ?? "A travel image"))
-
-                            }
-                        } else {
-                            Image(systemName: "image_09")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(maxHeight: 300)
-                                .ignoresSafeArea(.all)
-                                .accessibility(label: Text("An image of the Eiffel Tower"))
+            ZStack {
+                Image(viewModel.selectedImage)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(maxWidth: UIScreen.main.bounds.width)
+                    .edgesIgnoringSafeArea(.all)
+                    .opacity(0.2)
+                VStack {
+                    if viewModel.error != nil {
+                        ErrorView()
+                    } else if viewModel.loading {
+                        LoaderView()
+                    } else {
+                        NavigationStack {
+                            TripResultsListView()
                         }
-                        VStack {
-                            Text("Here's your itinerary for \(viewModel.location)!")
-                                .font(.headline)
-                                .foregroundColor(Color("secondary2"))
-                            ScrollView {
-                                if let itinerary = viewModel.response?.itinerary {
-                                    ForEach(itinerary, id: \.self) { day in
-                                        DayItineraryView(dailyDetails: day)
-                                    }
-                                }
-                            }
-                        }
-                        .padding()
                     }
-                } else {
-                    LoaderView()
                 }
             }
+            .onAppear {
+                viewModel.fetchItinerary()
         }
-        .onAppear {
-            viewModel.buildQuery()
-        }
-        .onDisappear {
-            viewModel.resetData()
+    }
+}
+
+struct TripResultsListView: View {
+    @EnvironmentObject var viewModel: PlannerViewModel
+    let data = APIResponseFixture.getOpenAIData()
+    var body: some View {
+        VStack {
+            Text(viewModel.response?.tripTitle ?? "Trip itinerary")
+                .font(.headline)
+                .foregroundColor(Color("secondary2"))
+            List {
+                if let tripPlan = viewModel.response?.tripPlan {
+                    ForEach(tripPlan, id: \.self) { destination in
+                        NavigationLink(destination: DestinationView(destination: destination)) {
+                            Text(destination.locationName)
+                        }
+                    }
+                    .listRowBackground(
+                        Rectangle()
+                            .fill(Color("background").opacity(0.8))
+                            .cornerRadius(10)
+                            .padding(.vertical, 2)
+                    )
+                    .listRowSeparator(.hidden)
+                }
+            }
+            .scrollContentBackground(.hidden)
         }
     }
 }
@@ -72,7 +69,7 @@ struct TripResultsView: View {
 struct TripResultsView_Previews: PreviewProvider {
     static var previews: some View {
         TripResultsView()
-            .environmentObject(PlannerViewModel(unsplashImage: nil, error: nil, response: APIResponseFixture.getOpenAIData()))
+            .environmentObject(PlannerViewModel(error: nil, response: APIResponseFixture.getOpenAIData()))
             .environmentObject(OpenAIConnector())
     }
 }

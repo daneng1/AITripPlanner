@@ -22,11 +22,11 @@ struct OpenAIResponseHandler {
         return nil
     }
     
-    func decodeArgumentsJson(jsonString: String) throws -> OpenAIFunctionResponse {
+    func decodeArgumentsJson(jsonString: String) throws -> Itinerary {
         let responseData = jsonString.data(using: .utf8)!
         let decoder = JSONDecoder()
         do {
-            let response = try decoder.decode(OpenAIFunctionResponse.self, from: responseData)
+            let response = try decoder.decode(Itinerary.self, from: responseData)
             return response
         } catch {
             print("Error deserializing JSON: \(error)")

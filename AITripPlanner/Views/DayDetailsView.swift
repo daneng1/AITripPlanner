@@ -11,7 +11,7 @@ struct DayDetailsView: View {
     var details: ItineraryItem
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(details.activity)
+            Text(details.activityTitle)
                 .font(.subheadline)
                 .fontWeight(.bold)
                 .foregroundColor(Color("text"))
@@ -57,7 +57,7 @@ struct DayDetailsView: View {
 
 struct DayDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        let newItineraryItem = ItineraryItem(activity: "Rowing", activityDescription: "Lets go rowing around the whole puget sound", activityTips: "don't sink the boat because that would be really ", link: "https://rowing.com")
+        let newItineraryItem = ItineraryItem(activityTitle: "Rowing", activityDescription: "Lets go rowing around the whole puget sound", activityTips: "don't sink the boat because that would be really ", link: "https://rowing.com")
         DayDetailsView(details: newItineraryItem)
     }
 }

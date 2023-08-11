@@ -30,7 +30,6 @@ struct Message: Codable {
         case content, role
         case function_call = "function_call"
     }
-
 }
 
 struct FunctionCall: Codable {
@@ -43,53 +42,76 @@ struct FunctionCall: Codable {
     }
 }
 
-struct OpenAIFunctionResponse: Codable, Equatable {
-    let id: String
-    let location: String
-    let itinerary: [Day]
+struct Itinerary: Codable, Equatable {
+    static func == (lhs: Itinerary, rhs: Itinerary) -> Bool {
+        return lhs.tripTitle == rhs.tripTitle
+    }
+    
+    let tripTitle: String
+    let tripPlan: [TripPlan]
     
     enum CodingKeys: String, CodingKey {
-        case id, location
-        case itinerary = "itinerary"
+        case tripTitle
+        case tripPlan
     }
 }
 
-struct Day: Codable, Hashable {
-    static func == (lhs: Day, rhs: Day) -> Bool {
-        return lhs.day == rhs.day
+struct TripPlan: Codable, Hashable {
+    static func == (lhs: TripPlan, rhs: TripPlan) -> Bool {
+        return lhs.locationName == rhs.locationName
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(day)
-        hasher.combine(itineraryItems)
+        hasher.combine(locationName)
+        hasher.combine(destinationItinerary)
     }
     
-    let day: String
-    let dayDescription: String
-    let itineraryItems: [ItineraryItem]
+    let locationName: String
+    let destinationItinerary: [DestinationItinerary]
     
     enum CodingKeys: String, CodingKey {
-        case day, dayDescription
-        case itineraryItems = "itineraryItems"
+        case locationName
+        case destinationItinerary
+    }
+}
+
+struct DestinationItinerary: Codable, Hashable {
+    static func == (lhs: DestinationItinerary, rhs: DestinationItinerary) -> Bool {
+        return lhs.dayTitle == rhs.dayTitle
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(dayTitle)
+        hasher.combine(dayDescription)
+        hasher.combine(dayItineraryItems)
+    }
+    
+    let dayTitle: String
+    let dayDescription: String
+    let dayItineraryItems: [ItineraryItem]
+    
+    enum CodingKeys: String, CodingKey {
+        case dayTitle, dayDescription
+        case dayItineraryItems
     }
 }
 
 struct ItineraryItem: Codable, Hashable {
-    let activity: String
+    let activityTitle: String
     let activityDescription: String
     let activityTips: String
     let link: String?
     
     enum CodingKeys: String, CodingKey {
-        case activity, activityTips, link, activityDescription
+        case activityTitle, activityTips, link, activityDescription
     }
     
     static func == (lhs: ItineraryItem, rhs: ItineraryItem) -> Bool {
-        return lhs.activity == rhs.activity
+        return lhs.activityTitle == rhs.activityTitle
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(activity)
+        hasher.combine(activityTitle)
     }
 }
 

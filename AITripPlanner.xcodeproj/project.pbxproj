@@ -9,11 +9,16 @@
 /* Begin PBXBuildFile section */
 		4901906B2A7D41C700BAF636 /* Secrets.json in Resources */ = {isa = PBXBuildFile; fileRef = 490190692A7C5EF900BAF636 /* Secrets.json */; };
 		4901AB162A42071000281A28 /* AITripPlannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901AB152A42071000281A28 /* AITripPlannerApp.swift */; };
-		4901AB182A42071000281A28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901AB172A42071000281A28 /* ContentView.swift */; };
+		4901AB182A42071000281A28 /* DestinationFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901AB172A42071000281A28 /* DestinationFormView.swift */; };
 		4901AB1A2A42071100281A28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4901AB192A42071100281A28 /* Assets.xcassets */; };
 		4901AB1D2A42071100281A28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4901AB1C2A42071100281A28 /* Preview Assets.xcassets */; };
 		4901AB252A421D2700281A28 /* OpenAIResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901AB242A421D2700281A28 /* OpenAIResponseHandler.swift */; };
 		4901AB272A421D4F00281A28 /* OpenAIConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901AB262A421D4F00281A28 /* OpenAIConnector.swift */; };
+		4916EF2B2A70831C00799B4F /* DestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4916EF2A2A70831C00799B4F /* DestinationView.swift */; };
+		4927FE182A6EC24E00E15ABB /* DestinationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4927FE172A6EC24E00E15ABB /* DestinationModel.swift */; };
+		4927FE1A2A6ED11B00E15ABB /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4927FE192A6ED11B00E15ABB /* SplashView.swift */; };
+		4927FE1E2A702DD100E15ABB /* SubmitButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4927FE1D2A702DD100E15ABB /* SubmitButtonView.swift */; };
+		4927FE202A702F5B00E15ABB /* AddItemButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4927FE1F2A702F5B00E15ABB /* AddItemButtonView.swift */; };
 		49870C8A2A571616008171D8 /* AppLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49870C892A571616008171D8 /* AppLogoView.swift */; };
 		49870C922A575110008171D8 /* AITripPlannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49870C912A575110008171D8 /* AITripPlannerUITests.swift */; };
 		49870C942A575110008171D8 /* AITripPlannerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49870C932A575110008171D8 /* AITripPlannerUITestsLaunchTests.swift */; };
@@ -30,6 +35,7 @@
 		49A9AA052A4E5F38004C8650 /* DayItineraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9AA042A4E5F38004C8650 /* DayItineraryView.swift */; };
 		49A9AA072A4E6D54004C8650 /* DayDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9AA062A4E6D54004C8650 /* DayDetailsView.swift */; };
 		49A9AA0A2A4F3392004C8650 /* UnsplashPhotoPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 49A9AA092A4F3392004C8650 /* UnsplashPhotoPicker */; };
+		49C120E52A85BE5C000C3C13 /* DeleteItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C120E42A85BE5C000C3C13 /* DeleteItemView.swift */; };
 		49D480422A56102E0027B4FC /* URLImageModule in Frameworks */ = {isa = PBXBuildFile; productRef = 49D480412A56102E0027B4FC /* URLImageModule */; };
 		49E31FEC2A6074E8007CB5E1 /* TravailAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E31FEB2A6074E8007CB5E1 /* TravailAPI.swift */; };
 		49E31FEE2A609B3C007CB5E1 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E31FED2A609B3C007CB5E1 /* ErrorView.swift */; };
@@ -58,12 +64,17 @@
 		490190692A7C5EF900BAF636 /* Secrets.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Secrets.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		4901AB122A42071000281A28 /* AITripPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AITripPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4901AB152A42071000281A28 /* AITripPlannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITripPlannerApp.swift; sourceTree = "<group>"; };
-		4901AB172A42071000281A28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4901AB172A42071000281A28 /* DestinationFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationFormView.swift; sourceTree = "<group>"; };
 		4901AB192A42071100281A28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4901AB1C2A42071100281A28 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4901AB242A421D2700281A28 /* OpenAIResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIResponseHandler.swift; sourceTree = "<group>"; };
 		4901AB262A421D4F00281A28 /* OpenAIConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIConnector.swift; sourceTree = "<group>"; };
 		4901AB282A43490B00281A28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4916EF2A2A70831C00799B4F /* DestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationView.swift; sourceTree = "<group>"; };
+		4927FE172A6EC24E00E15ABB /* DestinationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationModel.swift; sourceTree = "<group>"; };
+		4927FE192A6ED11B00E15ABB /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		4927FE1D2A702DD100E15ABB /* SubmitButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButtonView.swift; sourceTree = "<group>"; };
+		4927FE1F2A702F5B00E15ABB /* AddItemButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemButtonView.swift; sourceTree = "<group>"; };
 		49870C892A571616008171D8 /* AppLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogoView.swift; sourceTree = "<group>"; };
 		49870C8F2A575110008171D8 /* AITripPlannerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AITripPlannerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49870C912A575110008171D8 /* AITripPlannerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITripPlannerUITests.swift; sourceTree = "<group>"; };
@@ -85,6 +96,7 @@
 		49A9AA022A4DF02C004C8650 /* OpenAIAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIAPIResponse.swift; sourceTree = "<group>"; };
 		49A9AA042A4E5F38004C8650 /* DayItineraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayItineraryView.swift; sourceTree = "<group>"; };
 		49A9AA062A4E6D54004C8650 /* DayDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailsView.swift; sourceTree = "<group>"; };
+		49C120E42A85BE5C000C3C13 /* DeleteItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteItemView.swift; sourceTree = "<group>"; };
 		49E31FEB2A6074E8007CB5E1 /* TravailAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravailAPI.swift; sourceTree = "<group>"; };
 		49E31FED2A609B3C007CB5E1 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		49E31FF02A64B49D007CB5E1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -186,6 +198,17 @@
 			path = OpenAI;
 			sourceTree = "<group>";
 		};
+		4927FE1B2A702DA600E15ABB /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				49870C892A571616008171D8 /* AppLogoView.swift */,
+				4927FE1D2A702DD100E15ABB /* SubmitButtonView.swift */,
+				4927FE1F2A702F5B00E15ABB /* AddItemButtonView.swift */,
+				49C120E42A85BE5C000C3C13 /* DeleteItemView.swift */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
 		49870C902A575110008171D8 /* AITripPlannerUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,14 +265,16 @@
 		49A9A9FB2A4A10BC004C8650 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4927FE1B2A702DA600E15ABB /* UIComponents */,
 				4901AB152A42071000281A28 /* AITripPlannerApp.swift */,
 				49E31FED2A609B3C007CB5E1 /* ErrorView.swift */,
-				49870C892A571616008171D8 /* AppLogoView.swift */,
 				49A9AA042A4E5F38004C8650 /* DayItineraryView.swift */,
 				49A9AA062A4E6D54004C8650 /* DayDetailsView.swift */,
-				4901AB172A42071000281A28 /* ContentView.swift */,
+				4901AB172A42071000281A28 /* DestinationFormView.swift */,
 				49A9A9F52A44AA42004C8650 /* LoaderView.swift */,
 				49A9A9F72A45F7DC004C8650 /* TripResultsView.swift */,
+				4927FE192A6ED11B00E15ABB /* SplashView.swift */,
+				4916EF2A2A70831C00799B4F /* DestinationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -267,6 +292,7 @@
 			children = (
 				49A9AA002A4B50A1004C8650 /* UnSplashAPIResponse.swift */,
 				49A9AA022A4DF02C004C8650 /* OpenAIAPIResponse.swift */,
+				4927FE172A6EC24E00E15ABB /* DestinationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -428,11 +454,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4901AB182A42071000281A28 /* ContentView.swift in Sources */,
+				4927FE1E2A702DD100E15ABB /* SubmitButtonView.swift in Sources */,
+				4901AB182A42071000281A28 /* DestinationFormView.swift in Sources */,
 				49E31FF12A64B49D007CB5E1 /* Extensions.swift in Sources */,
 				4901AB252A421D2700281A28 /* OpenAIResponseHandler.swift in Sources */,
 				49A9AA032A4DF02C004C8650 /* OpenAIAPIResponse.swift in Sources */,
+				4927FE182A6EC24E00E15ABB /* DestinationModel.swift in Sources */,
 				49A9A9FA2A460A81004C8650 /* PlannerViewModel.swift in Sources */,
+				4927FE202A702F5B00E15ABB /* AddItemButtonView.swift in Sources */,
 				49E31FEE2A609B3C007CB5E1 /* ErrorView.swift in Sources */,
 				4901AB162A42071000281A28 /* AITripPlannerApp.swift in Sources */,
 				49870C8A2A571616008171D8 /* AppLogoView.swift in Sources */,
@@ -441,10 +470,13 @@
 				49E31FEC2A6074E8007CB5E1 /* TravailAPI.swift in Sources */,
 				49870CA92A575E7E008171D8 /* APIResponseFixture.swift in Sources */,
 				49A9A9F82A45F7DC004C8650 /* TripResultsView.swift in Sources */,
+				4916EF2B2A70831C00799B4F /* DestinationView.swift in Sources */,
 				49A9AA012A4B50A1004C8650 /* UnSplashAPIResponse.swift in Sources */,
 				49870CAB2A5877E1008171D8 /* OpenAIFunctionParams.swift in Sources */,
+				49C120E52A85BE5C000C3C13 /* DeleteItemView.swift in Sources */,
 				49A9A9F62A44AA42004C8650 /* LoaderView.swift in Sources */,
 				49A9AA072A4E6D54004C8650 /* DayDetailsView.swift in Sources */,
+				4927FE1A2A6ED11B00E15ABB /* SplashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
