@@ -12,7 +12,7 @@ struct AITripPlannerApp: App {
     let openAIConnector = OpenAIConnector()
     @StateObject var viewModel = PlannerViewModel(error: nil, response: nil)
 
-    var body: some Scene {
+    var body: some Scene { 
         WindowGroup {
             SplashView()
                 .environmentObject(openAIConnector)
