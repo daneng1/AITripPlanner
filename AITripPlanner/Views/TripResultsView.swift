@@ -12,25 +12,27 @@ struct TripResultsView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
-        ZStack {
-            Image(viewModel.selectedImage)
-                .resizable()
-                .scaledToFill()
-                .frame(maxWidth: UIScreen.main.bounds.width)
-                .edgesIgnoringSafeArea(.all)
-                .opacity(0.2)
-            VStack {
-                if viewModel.error != nil {
-                    ErrorView()
-                } else if viewModel.loading {
-                    LoaderView()
-                } else {
-                    TripResultsListView()
+            ZStack {
+                Image(viewModel.selectedImage)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(maxWidth: UIScreen.main.bounds.width)
+                    .edgesIgnoringSafeArea(.all)
+                    .opacity(0.2)
+                VStack {
+                    if viewModel.error != nil {
+                        ErrorView()
+                    } else if viewModel.loading {
+                        LoaderView()
+                    } else {
+                        NavigationStack {
+                            TripResultsListView()
+                        }
+                    }
                 }
             }
-        }
-        .onAppear {
-            viewModel.fetchItinerary()
+            .onAppear {
+                viewModel.fetchItinerary()
         }
     }
 }
@@ -59,6 +61,7 @@ struct TripResultsListView: View {
                     .listRowSeparator(.hidden)
                 }
             }
+            .scrollContentBackground(.hidden)
         }
     }
 }

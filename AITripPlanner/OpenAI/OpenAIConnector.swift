@@ -104,15 +104,11 @@ extension OpenAIConnector {
                 requestData = data
             }
             
-//            print("Semaphore signalled")
             semaphore.signal()
         })
         task.resume()
         
         let timeout = DispatchTime.now() + .seconds(30)
-//        print("Waiting for semaphore signal")
-        let retVal = semaphore.wait(timeout: timeout)
-//        print("Done waiting, obtained - \(retVal)")
         return requestData
     }
 }

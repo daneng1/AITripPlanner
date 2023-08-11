@@ -12,13 +12,8 @@ struct DestinationFormView: View {
     @EnvironmentObject var viewModel: PlannerViewModel
     @EnvironmentObject var connector: OpenAIConnector
     @State private var inputIsPresented = false
+    @State private var alertIsPresented = false
     @State private var showDetailView: Bool = false
-    let backgroundColor = Color("b")
-    
-    let destinations = [
-        Destination(name: "Seattle", sightsToSee: "space needle", numberOfDays: "1"),
-        Destination(name: "Portland", sightsToSee: "breweries, rose garden, mount hood, trailblazers ", numberOfDays: "5")
-    ]
     
     var body: some View {
         NavigationStack {
@@ -58,6 +53,15 @@ struct DestinationFormView: View {
                     .headerProminence(.increased)
                     .scrollContentBackground(.hidden)
                     if viewModel.destinations.count > 0 {
+                        Button {
+                            withAnimation(.spring(response: 0.2)) {
+                                alertIsPresented.toggle()
+                            }
+                        } label: {
+                            DeleteItemView()
+                        }
+                    }
+                    if viewModel.destinations.count > 0 {
                         NavigationLink {
                             TripResultsView()
                         } label: {
@@ -69,6 +73,15 @@ struct DestinationFormView: View {
         }
         .sheet(isPresented: $inputIsPresented) {
             DestinationInputView()
+        }
+        .alert(isPresented: $alertIsPresented) {
+            Alert(
+                title: Text("Delete itinerary"),
+                primaryButton: .destructive(Text("Delete")) {
+                    viewModel.deleteItinerary()
+                },
+                secondaryButton: .cancel()
+            )
         }
     }
     

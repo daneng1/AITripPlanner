@@ -43,7 +43,7 @@ struct OpenAIFunctionParams {
                                             "properties": [
                                                 "dayTitle": [
                                                     "type": "string",
-                                                    "description": "This is the title of the day. This should always be formatted as 'Day 1', 'Day 2', etc.",
+                                                    "description": "This is the title of the day. This should ALWAYS be formatted specifically as 'Day 1', 'Day 2', etc.",
                                                     "items": [
                                                         "type": "string",
                                                     ]

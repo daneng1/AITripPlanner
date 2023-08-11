@@ -13,43 +13,49 @@ struct DestinationView: View {
     var destination: TripPlan
     
     var body: some View {
-        VStack {
-            if viewModel.error != nil {
-                ErrorView()
-            } else if viewModel.response != nil {
-                VStack {
-                    if let photo = viewModel.unsplashImage.first(where: { destination.locationName == $0.0 }) {
-                        URLImage(url: URL(string: photo.1.urls.regular)!) { image in
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .accessibility(label: Text(photo.1.altDescription))
-                        }
-                    } else {
-                        Image(systemName: "image_09")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(maxHeight: 300)
-                            .ignoresSafeArea(.all)
-                            .accessibility(label: Text("An image of the Eiffel Tower"))
-                    }
-                }
-                VStack {
-                    Text("Here's your itinerary for \(destination.locationName)!")
-                        .font(.headline)
-                        .foregroundColor(Color("secondary2"))
-                    ScrollView {
-                        ForEach(destination.destinationItinerary, id: \.dayTitle) { day in
-                            DayItineraryView(dailyDetails: day)
-                        }
-                    }
-                }
-                .padding()
-            } else {
+        ZStack {
+            Image(viewModel.selectedImage)
+                .resizable()
+                .scaledToFill()
+                .frame(maxWidth: UIScreen.main.bounds.width)
+                .edgesIgnoringSafeArea(.all)
+                .opacity(0.2)
+            if viewModel.loading {
                 LoaderView()
+            } else {
+                VStack {
+                    VStack {
+                        if let photo = viewModel.unsplashImage.first(where: { destination.locationName == $0.0 }) {
+                            URLImage(url: URL(string: photo.1.urls.regular)!) { image in
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .accessibility(label: Text(photo.1.altDescription))
+                            }
+                        } else {
+                            Image(systemName: "image_09")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxHeight: 300)
+                                .ignoresSafeArea(.all)
+                                .accessibility(label: Text("An image of the Eiffel Tower"))
+                        }
+                    }
+                    VStack {
+                        Text("Here's your itinerary for \(destination.locationName)!")
+                            .font(.headline)
+                            .foregroundColor(Color("secondary2"))
+                        ScrollView {
+                            ForEach(destination.destinationItinerary, id: \.dayTitle) { day in
+                                DayItineraryView(dailyDetails: day)
+                            }
+                        }
+                    }
+                    .padding()
+                }
             }
         }
-        onAppear {
+        .onAppear {
             viewModel.fetchPhoto(destination: destination.locationName)
         }
     }

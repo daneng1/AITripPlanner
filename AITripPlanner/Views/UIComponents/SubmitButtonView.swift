@@ -2,7 +2,7 @@
 //  SubmitButtonView.swift
 //  AITripPlanner
 //
-//  Created by Dan and Beth Engel on 7/25/23.
+//  Created by Dan Engel on 7/25/23.
 //
 
 import SwiftUI

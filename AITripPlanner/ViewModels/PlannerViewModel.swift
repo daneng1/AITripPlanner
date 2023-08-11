@@ -14,7 +14,6 @@ class PlannerViewModel: ObservableObject {
     @Published var numberOfDays = ""
     @Published var response: Itinerary?
     @Published var error: Error?
-    @Published var timeOfYear = ""
     @Published var loading: Bool = false
     @Published var showDetailsView: Bool = false
     @Published var selectedImage: String = ""
@@ -75,6 +74,7 @@ class PlannerViewModel: ObservableObject {
     }
     
     func fetchItinerary() {
+        if self.response != nil { return }
         self.loading = true
         self.canNavigateToResults = true
         let message = buildQuery()
@@ -96,6 +96,10 @@ class PlannerViewModel: ObservableObject {
     }
     
     func fetchPhoto(destination: String) {
+        for location in unsplashImage {
+            if location.0 == destination { return }
+        }
+        self.loading = true
         queryUnSplashAPI(destination: destination) { (result) in
             DispatchQueue.main.async {
                 switch result {
@@ -104,6 +108,7 @@ class PlannerViewModel: ObservableObject {
                 case .failure(let error):
                     print("Unsplash Error: \(error)")
                 }
+                self.loading = false
             }
         }
     }
@@ -158,11 +163,6 @@ class PlannerViewModel: ObservableObject {
         selectedImage = "image_0\(number)"
     }
     
-    func resetData() {
-        response = nil
-        unsplashImage = []
-    }
-    
     func resetError() {
         error = nil
     }
@@ -171,5 +171,12 @@ class PlannerViewModel: ObservableObject {
         sightsToSee = ""
         location = ""
         numberOfDays = ""
+    }
+    
+    func deleteItinerary() {
+        destinations = []
+        response = nil
+        unsplashImage = []
+        error = nil
     }
 }
