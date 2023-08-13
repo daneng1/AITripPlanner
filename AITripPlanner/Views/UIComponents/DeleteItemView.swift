@@ -11,13 +11,13 @@ struct DeleteItemView: View {
     var body: some View {
         ZStack {
             Circle()
-                .foregroundColor(Color("secondary1").opacity(0.8))
+                .foregroundColor(Color("secondary1"))
                 .frame(width: 40)
             Image(systemName: "trash")
                 .resizable()
                 .scaledToFit()
                 .foregroundColor(Color("primary"))
-                .frame(width: 20)
+                .frame(width: 17)
         }
     }
 }

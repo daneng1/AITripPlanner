@@ -15,14 +15,13 @@ struct SplashView: View {
     @State private var scale: CGFloat = 1
     
     var body: some View {
-        NavigationView {
             ZStack {
                 Image(viewModel.selectedImage)
                     .resizable()
                     .scaledToFill()
                     .frame(maxWidth: UIScreen.main.bounds.width)
                     .edgesIgnoringSafeArea(.all)
-                    .opacity(0.3)
+                    .opacity(0.6)
                 VStack {
                     if isNavActive {
                         DestinationFormView()
@@ -53,7 +52,6 @@ struct SplashView: View {
                     }
                 }
             }
-        }
         .onAppear {
             viewModel.selectImage()
         }

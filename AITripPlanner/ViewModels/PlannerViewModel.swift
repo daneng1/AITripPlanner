@@ -30,6 +30,7 @@ class PlannerViewModel: ObservableObject {
     }
     
     func addDestination() {
+        response = nil
         if checkValid() {
             let destination = Destination(name: self.location, sightsToSee: self.sightsToSee, numberOfDays: self.numberOfDays)
             destinations.append(destination)
@@ -40,6 +41,7 @@ class PlannerViewModel: ObservableObject {
     }
     
     func deleteDestination(at index: IndexSet) {
+        response = nil
         destinations.remove(atOffsets: index)
     }
     
@@ -63,10 +65,8 @@ class PlannerViewModel: ObservableObject {
                 }
             }
         } else {
-            if destinations[0].sightsToSee == "" {
-                destinations[0].sightsToSee = "the top tourist sights"
-            }
-            message.append("Please build a travel itinerary for a trip to \(destinations[0].name), that lasts \(destinations[0].numberOfDays) days and I'd like to see or experience \(destinations[0].sightsToSee). ")
+            var sights = destinations[0].sightsToSee == "" ? "the top tourist sights" : destinations[0].sightsToSee
+            message.append("Please build a travel itinerary for a trip to \(destinations[0].name), that lasts \(destinations[0].numberOfDays) days and I'd like to see or experience \(sights). ")
         }
 
         message.append("Please provide links to any sights you recommend, consider the local holidays, crowds, and the best time of the day to visit each site. Do not include specific dates for travel. ")

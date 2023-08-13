@@ -12,25 +12,32 @@ struct TripResultsView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
-            ZStack {
-                Image(viewModel.selectedImage)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(maxWidth: UIScreen.main.bounds.width)
-                    .edgesIgnoringSafeArea(.all)
-                    .opacity(0.2)
-                VStack {
-                    if viewModel.error != nil {
+            VStack {
+                if viewModel.error != nil {
+                    ZStack {
+                        Image(viewModel.selectedImage)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(maxWidth: UIScreen.main.bounds.width)
+                            .edgesIgnoringSafeArea(.all)
+                            .opacity(0.2)
                         ErrorView()
-                    } else if viewModel.loading {
-                        LoaderView()
-                    } else {
-                        NavigationStack {
-                            TripResultsListView()
-                        }
                     }
+                } else if viewModel.loading {
+                    ZStack {
+                        Image(viewModel.selectedImage)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(maxWidth: UIScreen.main.bounds.width)
+                            .edgesIgnoringSafeArea(.all)
+                            .opacity(0.2)
+                        LoaderView()
+                    }
+                } else {
+                    TripResultsListView()
                 }
             }
+            .frame(maxHeight: UIScreen.main.bounds.height)
             .onAppear {
                 viewModel.fetchItinerary()
         }
@@ -41,28 +48,37 @@ struct TripResultsListView: View {
     @EnvironmentObject var viewModel: PlannerViewModel
     let data = APIResponseFixture.getOpenAIData()
     var body: some View {
-        VStack {
-            Text(viewModel.response?.tripTitle ?? "Trip itinerary")
-                .font(.headline)
-                .foregroundColor(Color("secondary2"))
-            List {
-                if let tripPlan = viewModel.response?.tripPlan {
-                    ForEach(tripPlan, id: \.self) { destination in
-                        NavigationLink(destination: DestinationView(destination: destination)) {
-                            Text(destination.locationName)
+        NavigationStack {
+            VStack {
+                Text(viewModel.response?.tripTitle ?? "Trip itinerary")
+                    .font(.headline)
+                    .foregroundColor(Color("secondary2"))
+                List {
+                    if let tripPlan = viewModel.response?.tripPlan {
+                        ForEach(tripPlan, id: \.self) { destination in
+//                            NavigationLink(destination.locationName, value: destination)
+                            NavigationLink(destination: DestinationView(destination: destination)) {
+                                Text(destination.locationName)
+                            }
                         }
+                        .listRowBackground(
+                            Rectangle()
+                                .fill(Color("background").opacity(0.8))
+                                .cornerRadius(10)
+                                .padding(.vertical, 2)
+                        )
+                        .listRowSeparator(.hidden)
                     }
-                    .listRowBackground(
-                        Rectangle()
-                            .fill(Color("background").opacity(0.8))
-                            .cornerRadius(10)
-                            .padding(.vertical, 2)
-                    )
-                    .listRowSeparator(.hidden)
                 }
+                .scrollContentBackground(.hidden)
+                .frame(maxWidth: 600)
             }
-            .scrollContentBackground(.hidden)
+            .frame(maxHeight: UIScreen.main.bounds.height)
+//            .navigationDestination(for: TripPlan.self) { destination in
+//                DestinationView(destination: destination)
+//            }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

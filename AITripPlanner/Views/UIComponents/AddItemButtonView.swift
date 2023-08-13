@@ -12,7 +12,7 @@ struct AddItemButtonView: View {
         ZStack {
             Circle()
                 .foregroundColor(Color("secondary1"))
-                .frame(width: 30)
+                .frame(width: 40)
             Image(systemName: "plus")
                 .resizable()
                 .scaledToFit()

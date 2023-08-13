@@ -13,13 +13,7 @@ struct DestinationView: View {
     var destination: TripPlan
     
     var body: some View {
-        ZStack {
-            Image(viewModel.selectedImage)
-                .resizable()
-                .scaledToFill()
-                .frame(maxWidth: UIScreen.main.bounds.width)
-                .edgesIgnoringSafeArea(.all)
-                .opacity(0.2)
+        VStack {
             if viewModel.loading {
                 LoaderView()
             } else {
@@ -55,6 +49,7 @@ struct DestinationView: View {
                 }
             }
         }
+        .frame(maxHeight: UIScreen.main.bounds.height)
         .onAppear {
             viewModel.fetchPhoto(destination: destination.locationName)
         }

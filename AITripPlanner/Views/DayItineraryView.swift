@@ -42,12 +42,14 @@ struct DayItineraryView: View {
                     Text(dailyDetails.dayDescription)
                         .font(.headline)
                         .foregroundColor(Color("text"))
+                        .padding()
                     ForEach(dailyDetails.dayItineraryItems, id: \.self) { detail in
                         DayDetailsView(details: detail)
                     }
                 }
             }
         }
+        .frame(maxWidth: 600)
     }
 }
 
