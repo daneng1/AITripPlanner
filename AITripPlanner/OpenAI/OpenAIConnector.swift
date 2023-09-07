@@ -36,6 +36,8 @@ class OpenAIConnector: ObservableObject {
                     "temperature": 0.2,
                 ]
                 
+                print("BODY ******* \(httpBody)")
+                
                 do {
                     let httpBodyJson = try JSONSerialization.data(withJSONObject: httpBody, options: .prettyPrinted)
                     request.httpBody = httpBodyJson

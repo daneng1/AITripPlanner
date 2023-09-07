@@ -27,6 +27,7 @@ struct OpenAIResponseHandler {
         let decoder = JSONDecoder()
         do {
             let response = try decoder.decode(Itinerary.self, from: responseData)
+            print("RESPONSE *************** \(response)")
             return response
         } catch {
             print("Error deserializing JSON: \(error)")

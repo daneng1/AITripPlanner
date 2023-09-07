@@ -69,7 +69,7 @@ struct plane: View {
     @State private var verticalOffset: CGFloat
     @State private var opacity: Double = 1.0
     @State private var delayTimer: CGFloat
-    @State private var duration: Double = 0.75
+    @State private var duration: Double = 0.75000
     @State private var timer: Timer? = nil
     
     init(angle: Double, horizontalOffset: CGFloat, verticalOffset: CGFloat, delayTimer: Double) {
@@ -90,7 +90,7 @@ struct plane: View {
             .rotationEffect(.degrees(angle))
             .offset(x: horizontalOffset, y: verticalOffset)
             .animation(Animation
-                .easeInOut(duration: 3)
+                .easeInOut(duration: 3.0000)
                 .delay(delayTimer)
                 .repeatForever(autoreverses: false),
                        value: rotateDegrees)
@@ -107,7 +107,7 @@ struct plane: View {
                         verticalOffset = verticalOffset * -1
                     }
                     
-                    timer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: true) { _ in
+                    timer = Timer.scheduledTimer(withTimeInterval: 1.5000, repeats: true) { _ in
                         if opacity == 0.0 {
                             opacity = 1.0
                         } else {
