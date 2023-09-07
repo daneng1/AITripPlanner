@@ -18,68 +18,63 @@ class OpenAIConnector: ObservableObject {
     
     func fetchOpenAIData(completion: @escaping (Result<Itinerary, Error>) -> Void) {
         guard let openAIKey = Secrets.openAIKey else { return completion(.failure(NSError(domain: "", code: -1, userInfo: ["description": "Error"]))) }
-
-                var request = URLRequest(url: self.openAIURL!)
-                request.httpMethod = "POST"
-                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-                request.addValue("Bearer \(openAIKey)", forHTTPHeaderField: "Authorization")
-                
-                let httpBody: [String: Any] = [
-                    "model": "gpt-4-0613",
-                    "messages": self.messageLog,
-                    "functions": OpenAIFunctionParams.getParams(),
-                    "function_call": "auto",
-                    "temperature": 0.2,
-                ]
-                
-                print("BODY ******* \(httpBody)")
-                
-                do {
-                    let httpBodyJson = try JSONSerialization.data(withJSONObject: httpBody, options: .prettyPrinted)
-                    request.httpBody = httpBodyJson
-                } catch {
-                    print("Unable to convert to JSON \(error)")
-                    DispatchQueue.main.async {
-                        completion(.failure(error))
-                    }
-                    self.logMessage("error", messageUserType: .assistant)
-                }
-                
-                let config = URLSessionConfiguration.default
-                config.timeoutIntervalForRequest = 240.0
-                
-                let session = URLSession(configuration: config)
-                
-                let task = session.dataTask(with: request) { (data, response, error) in
-                    if let error = error {
-                        print("Error: \(error)")
-                        completion(.failure(error))
-                    } else if let data = data {
-                        let jsonStr = String(data: data, encoding: .utf8)!
-                        let responseHandler = OpenAIResponseHandler()
-                        if let responseData = responseHandler.decodeJson(jsonString: jsonStr) {
-                            if let message = responseData.choices.first?.message.function_call.arguments {
-                                do {
-                                    let response = try responseHandler.decodeArgumentsJson(jsonString: message)
-                                    DispatchQueue.main.async {
-                                        print(response)
-                                        completion(.success(response))
-                                    }
-                                } catch {
-                                    DispatchQueue.main.async {
-                                        completion(.failure(error))
-                                    }
-                                }
-                            } else {
-                                let error = NSError(domain: "", code: -1, userInfo: ["description": "Unable to parse response"])
-                                DispatchQueue.main.async {
-                                    completion(.failure(error))
-                                }
+        
+        var request = URLRequest(url: self.openAIURL!)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer \(openAIKey)", forHTTPHeaderField: "Authorization")
+        
+        let httpBody: [String: Any] = [
+            "model": "gpt-4-0613",
+            "messages": self.messageLog,
+            "functions": OpenAIFunctionParams.getParams(),
+            "function_call": "auto",
+            "temperature": 0.2,
+        ]
+        
+        do {
+            let httpBodyJson = try JSONSerialization.data(withJSONObject: httpBody, options: .prettyPrinted)
+            request.httpBody = httpBodyJson
+        } catch {
+            DispatchQueue.main.async {
+                completion(.failure(error))
+            }
+            self.logMessage("error", messageUserType: .assistant)
+        }
+        
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 240.0
+        
+        let session = URLSession(configuration: config)
+        
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let data = data {
+                let jsonStr = String(data: data, encoding: .utf8)!
+                let responseHandler = OpenAIResponseHandler()
+                if let responseData = responseHandler.decodeJson(jsonString: jsonStr) {
+                    if let message = responseData.choices.first?.message.function_call.arguments {
+                        do {
+                            let response = try responseHandler.decodeArgumentsJson(jsonString: message)
+                            DispatchQueue.main.async {
+                                completion(.success(response))
                             }
+                        } catch {
+                            DispatchQueue.main.async {
+                                completion(.failure(error))
+                            }
+                        }
+                    } else {
+                        let error = NSError(domain: "", code: -1, userInfo: ["description": "Unable to parse response"])
+                        DispatchQueue.main.async {
+                            completion(.failure(error))
                         }
                     }
                 }
-                task.resume()
+            }
+        }
+        task.resume()
     }
 }
 
@@ -103,8 +98,7 @@ extension OpenAIConnector {
             semaphore.signal()
         })
         task.resume()
-        
-        let timeout = DispatchTime.now() + .seconds(30)
+    
         return requestData
     }
 }

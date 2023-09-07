@@ -8,7 +8,7 @@
 import Foundation
 
 struct OpenAIResponseHandler {
-    func decodeJson(jsonString: String) -> OpenAIResponse? {
+    func decodeJson(jsonString: String) throws -> OpenAIResponse? {
         let json = jsonString.data(using: .utf8)!
         let decoder = JSONDecoder()
         do {
@@ -16,10 +16,8 @@ struct OpenAIResponseHandler {
             return product
             
         } catch {
-            print("Error decoding OpenAI API Response -- \(error)")
+            throw error
         }
-        
-        return nil
     }
     
     func decodeArgumentsJson(jsonString: String) throws -> Itinerary {
@@ -27,10 +25,8 @@ struct OpenAIResponseHandler {
         let decoder = JSONDecoder()
         do {
             let response = try decoder.decode(Itinerary.self, from: responseData)
-            print("RESPONSE *************** \(response)")
             return response
         } catch {
-            print("Error deserializing JSON: \(error)")
             throw error
         }
     }

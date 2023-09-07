@@ -64,7 +64,7 @@ class PlannerViewModel: ObservableObject {
                 }
             }
         } else {
-            var sights = destinations[0].sightsToSee == "" ? "the top tourist sights" : destinations[0].sightsToSee
+            let sights = destinations[0].sightsToSee == "" ? "the top tourist sights" : destinations[0].sightsToSee
             message.append("Please build a travel itinerary for a trip to \(destinations[0].name), that lasts \(destinations[0].numberOfDays) days and I'd like to see or experience \(sights). ")
         }
 
