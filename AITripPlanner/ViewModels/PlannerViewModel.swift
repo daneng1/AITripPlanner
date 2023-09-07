@@ -22,7 +22,6 @@ class PlannerViewModel: ObservableObject {
     @Published var canNavigateToResults: Bool = false
     
     private var connector = OpenAIConnector()
-    private var travailAPI = TravailAPI()
 
     init(error: Error?, response: Itinerary?) {
         self.error = error

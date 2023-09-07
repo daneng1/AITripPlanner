@@ -9,7 +9,6 @@ import Foundation
 import Combine
 
 class OpenAIConnector: ObservableObject {
-    private let travailAPI = TravailAPI()
     
     let openAIURL = URL(string: "https://api.openai.com/v1/chat/completions")
     
@@ -18,11 +17,8 @@ class OpenAIConnector: ObservableObject {
     ]
     
     func fetchOpenAIData(completion: @escaping (Result<Itinerary, Error>) -> Void) {
-        travailAPI.fetchAPIKeys { (openAIKey, _, error) in
-            if let error = error {
-                print("there was an error with your openAI api key")
-                completion(.failure(NSError(domain: "", code: -1, userInfo: ["description": "\(error)"])))
-            } else if let openAIKey = openAIKey {
+        guard let openAIKey = Secrets.openAIKey else { return completion(.failure(NSError(domain: "", code: -1, userInfo: ["description": "Error"]))) }
+
                 var request = URLRequest(url: self.openAIURL!)
                 request.httpMethod = "POST"
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -84,8 +80,6 @@ class OpenAIConnector: ObservableObject {
                     }
                 }
                 task.resume()
-            }
-        }
     }
 }
 
