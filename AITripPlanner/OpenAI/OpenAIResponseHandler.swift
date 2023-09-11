@@ -14,7 +14,6 @@ struct OpenAIResponseHandler {
         do {
             let product = try decoder.decode(OpenAIResponse.self, from: json)
             return product
-            
         } catch {
             throw error
         }

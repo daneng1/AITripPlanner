@@ -18,12 +18,11 @@ struct DayItineraryView: View {
                     detailsVisible.toggle()
                 }
             } label: {
-                HStack(spacing: 4) {
+                HStack {
                     Text(dailyDetails.dayTitle)
                         .font(.title3)
                         .fontWeight(.bold)
                         .foregroundColor(Color("background"))
-                        .padding(.leading, 40)
                 }
                 .frame(maxWidth: .infinity)
                 .frame(height: 60)

@@ -49,28 +49,40 @@ class OpenAIConnector: ObservableObject {
         
         let task = session.dataTask(with: request) { (data, response, error) in
             if let error = error {
-                completion(.failure(error))
-            } else if let data = data {
-                let jsonStr = String(data: data, encoding: .utf8)!
-                let responseHandler = OpenAIResponseHandler()
-                if let responseData = responseHandler.decodeJson(jsonString: jsonStr) {
-                    if let message = responseData.choices.first?.message.function_call.arguments {
-                        do {
-                            let response = try responseHandler.decodeArgumentsJson(jsonString: message)
-                            DispatchQueue.main.async {
-                                completion(.success(response))
-                            }
-                        } catch {
-                            DispatchQueue.main.async {
-                                completion(.failure(error))
-                            }
-                        }
-                    } else {
-                        let error = NSError(domain: "", code: -1, userInfo: ["description": "Unable to parse response"])
-                        DispatchQueue.main.async {
-                            completion(.failure(error))
-                        }
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+                return
+            }
+
+            guard let data = data, let jsonStr = String(data: data, encoding: .utf8) else {
+                let error = NSError(domain: "", code: -1, userInfo: ["description": "Data is nil or encoding failed"])
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+                return
+            }
+
+            let responseHandler = OpenAIResponseHandler()
+
+            do {
+                let responseData = try responseHandler.decodeJson(jsonString: jsonStr)
+
+                guard let message = responseData?.choices.first?.message.function_call.arguments else {
+                    let error = NSError(domain: "", code: -1, userInfo: ["description": "Unable to parse response"])
+                    DispatchQueue.main.async {
+                        completion(.failure(error))
                     }
+                    return
+                }
+
+                let response = try responseHandler.decodeArgumentsJson(jsonString: message)
+                DispatchQueue.main.async {
+                    completion(.success(response))
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    completion(.failure(error))
                 }
             }
         }
